@@ -1,0 +1,7 @@
+role All
+	modelPermission: read
+
+	tablePermission DanhMucDauTu
+
+	annotation PBI_Id = db9e1773974d4eb3b9d6a5fb914cf354
+

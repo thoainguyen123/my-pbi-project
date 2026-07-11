@@ -1,0 +1,48 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "2cb9ad6a92b60e0db308",
+  "displayName": "9.4 Marketing",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "be4721d60b089548513c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DanhMucDauTu"
+              }
+            },
+            "Property": "TenDuAn_CoSTT"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "3ee11ef028a5eb426a3b",
+    "type": "Drillthrough",
+    "parameters": [
+      {
+        "name": "352996b5c1ab77a11e31",
+        "boundFilter": "be4721d60b089548513c",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DanhMucDauTu"
+              }
+            },
+            "Property": "TenDuAn_CoSTT"
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode"
+}

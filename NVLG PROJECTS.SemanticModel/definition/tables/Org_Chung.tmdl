@@ -1,0 +1,146 @@
+table Org_Chung
+	lineageTag: c00d29b4-d4a9-415a-ab39-7959f243c32e
+
+	column 'Mã dự án'
+		dataType: string
+		lineageTag: 664d9e81-c4e5-4f32-ac15-ae4ba5d27845
+		summarizeBy: none
+		sourceColumn: Mã dự án
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mã nhân viên'
+		dataType: string
+		lineageTag: 24db3306-4418-44ea-b3b2-d2c7c3023020
+		summarizeBy: none
+		sourceColumn: Mã nhân viên
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mã OC'
+		dataType: string
+		lineageTag: de378195-b9dd-4b5a-9e82-be0096b3b942
+		summarizeBy: none
+		sourceColumn: Mã OC
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Name OC'
+		dataType: string
+		lineageTag: 74d77bfa-5c37-4a14-9838-3db0852cd77a
+		summarizeBy: none
+		sourceColumn: Name OC
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Chức danh'
+		dataType: string
+		lineageTag: be8026ce-8818-47a0-90df-a4510017cf19
+		summarizeBy: none
+		sourceColumn: Chức danh
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Thứ tự'
+		dataType: int64
+		formatString: 0
+		lineageTag: 2326d8dc-a2d1-4951-b49e-84e1d415204b
+		summarizeBy: sum
+		sourceColumn: Thứ tự
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tình Trạng'
+		dataType: string
+		lineageTag: 0574854f-7a20-45d7-a7bf-97be0e7842aa
+		summarizeBy: none
+		sourceColumn: Tình Trạng
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ghi chú'
+		dataType: string
+		lineageTag: f085d915-3e8a-49e6-8fbb-8fee711c041d
+		summarizeBy: none
+		sourceColumn: Ghi chú
+
+		annotation SummarizationSetBy = Automatic
+
+	column OCD
+		dataType: string
+		lineageTag: 4758d954-d726-4024-b7e3-730e5ea6265d
+		summarizeBy: none
+		sourceColumn: OCD
+
+		annotation SummarizationSetBy = Automatic
+
+	column ITD
+		dataType: string
+		lineageTag: d10b80f4-755b-4cc8-b81d-94b71ede5bf4
+		summarizeBy: none
+		sourceColumn: ITD
+
+		annotation SummarizationSetBy = Automatic
+
+	column HRBP
+		dataType: string
+		lineageTag: 730ad39e-b331-43e8-8846-fdecfbf364df
+		summarizeBy: none
+		sourceColumn: HRBP
+
+		annotation SummarizationSetBy = Automatic
+
+	column Format_code_nv
+		dataType: string
+		lineageTag: 0da8084e-a00e-4bea-9a73-6b4552892824
+		summarizeBy: none
+		sourceColumn: Format_code_nv
+
+		annotation SummarizationSetBy = Automatic
+
+	column HTML_Nhan_Vien =
+			
+			VAR _name_gap = 3
+			VAR _ten = TRIM ( Org_Chung[OCD] )
+			VAR _tt  = TRIM ( Org_Chung[Tình Trạng] )
+			VAR _gc  = TRIM ( Org_Chung[Ghi chú] )
+			VAR _tt_fmt = IF ( LEN ( _tt ) > 1, " (" & _tt & ")", "" )
+			VAR _gc_fmt = IF ( LEN ( _gc ) > 1, " " & _gc, "" )
+			VAR _line   = TRIM ( _ten & _tt_fmt & _gc_fmt )
+			RETURN
+			    "<span style='display:block;margin:0 0 " & _name_gap & "px 0;padding:0'>" &
+			        IF ( _line = "", "(Trống)", _line ) &
+			    "</span>"
+		lineageTag: 6efb9ee3-9de2-4bf8-a642-e8c8f5d01260
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Is_Khong_Ton_Tai =
+			
+			IF ( LOWER ( TRIM ( Org_Chung[Ghi chú] ) ) = "không tồn tại"|| CONTAINSSTRING(LOWER(Org_Chung[Ghi chú]),"không hoạt động") , 1, 0 )
+		formatString: 0
+		lineageTag: 79912126-2cbe-4575-9be7-0801049e2e61
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Org_Chung = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://novaland.sharepoint.com/sites/DataTeam/Shared%20Documents/General/D%E1%BB%B1%20%C3%A1n/GMC/Data_structure_v1.xlsx"), null, true),
+				    #"NS chung_Sheet" = Source{[Item="NS chung",Kind="Sheet"]}[Data],
+				    #"Promoted Headers1" = Table.PromoteHeaders(#"NS chung_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers1",{{"Mã dự án", type text}, {"Mã nhân viên", type text}, {"Mã OC", type text}, {"Name OC", type text}, {"Chức danh", type text}, {"Tình Trạng", type text}, {"Ghi chú", type text}}),
+				    #"Added Custom Column" = Table.AddColumn(#"Changed Type", "Format_code_nv", each Text.PadStart([Mã nhân viên], 5, "0"), type text),
+				    #"Sorted Rows" = Table.Sort(#"Added Custom Column",{{"Mã OC", Order.Ascending}}),
+				    #"Removed Duplicates" = Table.Distinct(#"Sorted Rows"),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Removed Duplicates",{{"Thứ tự", Int64.Type}})
+				in
+				    #"Changed Type2"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

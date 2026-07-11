@@ -1,0 +1,380 @@
+table Head_Count
+	lineageTag: 4e982d00-8ac6-4ca1-a783-3bf70576b12d
+
+	measure Dynamic_Title = "Tổng headcount Tháng " & MONTH(TODAY())
+		lineageTag: 5713acee-f111-4336-bf06-6b5ebc3ba950
+
+	measure PLP = [PLP_DLV] + [PLP_DT]
+		formatString: 0
+		lineageTag: 23f73226-70d4-4fbe-93c8-1120e875a174
+
+	measure DMD = [DMD_dLV] + [DMD_DT]
+		formatString: 0
+		lineageTag: e6d5b3bb-9242-4bc6-8602-4dc982fb04e0
+
+	measure PCD = [PCD_DLV] + [PCD_DT]
+		formatString: 0
+		lineageTag: 3361190a-7a07-4c30-b8c3-6ab12c17ecb7
+
+	measure PMD = [PMD_DLV] + [PMD_DT]
+		formatString: 0
+		lineageTag: 99313d09-b03c-4e4e-b251-f4d3f5681679
+
+	measure PM = [PM_DLV] + [PM_DT]
+		formatString: 0
+		lineageTag: 528ed44e-cc03-43b5-89f8-15210a81bec3
+
+	measure DMD_dLV = CALCULATE([SL Dang Lam Viec], Org[Sort_Phong_Ban] = "4.2 PHÒNG QUẢN LÝ THIẾT KẾ")
+		formatString: 0
+		lineageTag: f06896fc-f273-466e-9965-2d278b0aa4c1
+
+	measure PLP_DLV = CALCULATE([SL Dang Lam Viec], LEFT(Org[Sort_Phong_Ban],3) = "4.1")
+		formatString: 0
+		lineageTag: 3bac2cb1-bd0b-457f-b530-afe122f5307d
+
+	measure PCD_DLV = CALCULATE([SL Dang Lam Viec], LEFT(Org[Sort_Phong_Ban],3) = "4.3")
+		formatString: 0
+		lineageTag: b9e68a99-895f-40a2-b4f9-56eb1f752989
+
+	measure PM_DLV = CALCULATE([SL Dang Lam Viec], LEFT(Org[Sort_Phong_Ban],3) = "4.4")
+		formatString: 0
+		lineageTag: faa83378-7471-4229-931d-f629802a37c8
+
+	measure PMD_DLV = CALCULATE([SL Dang Lam Viec], LEFT(Org[Sort_Phong_Ban],3) = "4.0")
+		formatString: 0
+		lineageTag: 23c97e19-cafc-48b7-ab0f-cf01df552453
+
+	measure 'Cac Vi tri Sap' =
+			
+			SWITCH( TRUE(),
+			    -- Đang ở cấp 4 (nếu có): Chỉ hiện của cấp 4
+			    ISINSCOPE(Head_Count[Phòng ban]), MAX(Head_Count[Các vị trí sắp ONB & thời gian]),
+			
+			    -- Mặc định
+			    BLANK()
+			
+			)
+		lineageTag: a09c45aa-7e6d-40fd-bf9c-4702e436e37a
+
+	measure 'Ghi chú scope' =
+			
+			SWITCH( TRUE(),
+			    -- Đang ở cấp 4 (nếu có): Chỉ hiện của cấp 4
+			    ISINSCOPE(Head_Count[Phòng ban]), MAX(Head_Count[Ghi chú]),
+			
+			    -- Mặc định
+			    BLANK()
+			
+			)
+		lineageTag: f00f518f-9a9b-4b42-b665-a6373bfa6180
+
+	measure PMD_DT = CALCULATE([SL Tuyen], LEFT(Org[Sort_Phong_Ban],3) = "4.0")
+		formatString: 0
+		lineageTag: d43cfec3-4547-4fc7-b00e-409fb221ca4d
+
+	measure PLP_DT = CALCULATE([SL Tuyen], LEFT(Org[Sort_Phong_Ban],3) = "4.1")
+		formatString: 0
+		lineageTag: f298c162-fa4c-428e-add3-4a470ae23d10
+
+	measure DMD_DT = CALCULATE([SL Tuyen], Org[Sort_Phong_Ban] = "4.2 PHÒNG QUẢN LÝ THIẾT KẾ")
+		formatString: 0
+		lineageTag: 5e3f76d5-cbc1-4bfc-8878-4afa92414bb9
+
+	measure PCD_DT = CALCULATE([SL Tuyen], LEFT(Org[Sort_Phong_Ban],3) = "4.3")
+		formatString: 0
+		lineageTag: 82f2026a-3927-4dcb-9d00-ded77c45a275
+
+	measure PM_DT = CALCULATE([SL Tuyen], LEFT(Org[Sort_Phong_Ban],3) = "4.4")
+		formatString: 0
+		lineageTag: 6442ac30-4ad7-4b6a-a812-42e18ca940be
+
+	measure GMD = [GMD_DLV] + [GMD_DT]
+		formatString: 0
+		lineageTag: 7a3f9ee8-f8a1-4c8d-b1ca-366c5e3700eb
+
+	measure GMD_DLV = CALCULATE([SL Dang Lam Viec], LEFT(Org[Sort_Phong_Ban],3) = "1.0")
+		formatString: 0
+		lineageTag: 5d585136-779e-4234-98c0-169ead6ef86c
+
+	measure GMD_DT = CALCULATE([SL Tuyen], LEFT(Org[Sort_Phong_Ban],3) = "1.0")
+		formatString: 0
+		lineageTag: 25583270-7d9c-41dc-98fc-8289a7c0b809
+
+	measure Tổng_Headcount = [SL Tuyen] + [SL Dang Lam Viec]
+		formatString: 0
+		lineageTag: 4776a96d-2fed-40d7-bcbf-2b8c897f8abd
+
+	column STT
+		dataType: string
+		lineageTag: 2359524c-2dc7-4c17-bd82-e3e50e610a70
+		summarizeBy: none
+		sourceColumn: STT
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mã cụm'
+		dataType: string
+		lineageTag: 63e25794-91ba-403c-8c9b-afd640010986
+		summarizeBy: none
+		sourceColumn: Mã cụm
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tổng headcount 2026'
+		dataType: int64
+		formatString: 0
+		lineageTag: f23c3fae-81ab-4a62-943d-f0490717c65a
+		summarizeBy: sum
+		sourceColumn: Tổng headcount 2026
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SL Đang làm việc'
+		dataType: int64
+		formatString: 0
+		lineageTag: e8c89bb1-fae6-4ed0-95f5-c769c9aa9737
+		summarizeBy: sum
+		sourceColumn: SL Đang làm việc
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SL Đang tuyển'
+		dataType: int64
+		formatString: 0
+		lineageTag: 8fdcdaf9-9a9d-42ee-a6d4-106063c36992
+		summarizeBy: sum
+		sourceColumn: SL Đang tuyển
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SL Sắp ONB & Đ/c'
+		dataType: int64
+		formatString: 0
+		lineageTag: 8dfeb81a-20c1-4b30-ae51-9b2665aacd4a
+		summarizeBy: sum
+		sourceColumn: SL Sắp ONB & Đ/c
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Các vị trí sắp ONB & thời gian'
+		dataType: string
+		lineageTag: 91a706ad-7fe8-4c37-9e91-009f0cac48e3
+		summarizeBy: none
+		sourceColumn: Các vị trí sắp ONB & thời gian
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ghi chú'
+		dataType: string
+		lineageTag: 31672710-0124-4a50-a292-5e21c01a5585
+		summarizeBy: none
+		sourceColumn: Ghi chú
+
+		annotation SummarizationSetBy = Automatic
+
+	column refesh_time = UTCNOW() + 7/24
+		formatString: dd-mmm-yy hh:nn
+		lineageTag: fd03b567-2e1d-4366-92e8-aa5f9a517bd9
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 5f15347f-d45d-4646-aaef-782d745faaff
+			defaultHierarchy: LocalDateTable_9db38614-d137-44c6-adfb-2c3206ff04f0.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'Tổng headcount Tháng'
+		dataType: int64
+		formatString: 0
+		lineageTag: 8b8be376-2222-42ab-a546-3e7c0ee4a6f5
+		summarizeBy: sum
+		sourceColumn: Tổng headcount Tháng
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column11
+		dataType: string
+		lineageTag: e5203ad0-8ef8-497c-978a-299d54e02121
+		summarizeBy: none
+		sourceColumn: Column11
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column18
+		dataType: string
+		lineageTag: 26bbdfaa-5813-48a3-8055-40e87213f629
+		summarizeBy: none
+		sourceColumn: Column18
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column19
+		dataType: string
+		lineageTag: 6c8b89a0-3c67-40c7-b480-561cac6d01de
+		summarizeBy: none
+		sourceColumn: Column19
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column20
+		dataType: string
+		lineageTag: dbd16d51-ebee-4233-9ffb-85b3bd191643
+		summarizeBy: none
+		sourceColumn: Column20
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column21
+		dataType: string
+		lineageTag: 4d818705-38d2-4256-bd23-fd647801cfad
+		summarizeBy: none
+		sourceColumn: Column21
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column22
+		dataType: string
+		lineageTag: 8245ec70-4474-48aa-8730-f0687f9d8c0c
+		summarizeBy: none
+		sourceColumn: Column22
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column23
+		dataType: string
+		lineageTag: a4f56a27-caad-4d07-873a-c7e675f2707d
+		summarizeBy: none
+		sourceColumn: Column23
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column24
+		dataType: string
+		lineageTag: c329a661-0595-44b6-a93a-e36f5d3a8571
+		summarizeBy: none
+		sourceColumn: Column24
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column25
+		dataType: string
+		lineageTag: bbd6aed5-0960-4857-be6c-1affe0e593d4
+		summarizeBy: none
+		sourceColumn: Column25
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dự án/Phòng ban'
+		dataType: string
+		lineageTag: 8cf6dfb1-de0b-4331-846c-2b5658e28cd9
+		summarizeBy: none
+		sourceColumn: Dự án/Phòng ban
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Head (GM)'
+		dataType: string
+		lineageTag: 1a1a986f-121c-4d5e-ad2e-7d18c146a558
+		summarizeBy: none
+		sourceColumn: Head (GM)
+
+		annotation SummarizationSetBy = Automatic
+
+	column TAM
+		dataType: string
+		lineageTag: afa10648-4c4a-43e4-b896-b8f0d419cc36
+		summarizeBy: none
+		sourceColumn: TAM
+
+		annotation SummarizationSetBy = Automatic
+
+	column HRBP
+		dataType: string
+		lineageTag: 26c1ad1b-c77b-4bcd-b208-9f73a80af3ab
+		summarizeBy: none
+		sourceColumn: HRBP
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Phiếu YC'
+		dataType: string
+		lineageTag: 8510ccb1-4934-4073-820e-0190756ecc06
+		summarizeBy: none
+		sourceColumn: Phiếu YC
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TT nhân sự Đã nhận việc trong tuần'
+		dataType: string
+		lineageTag: b153f080-9401-42ce-b6e0-c2b058567e8f
+		summarizeBy: none
+		sourceColumn: TT nhân sự Đã nhận việc trong tuần
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ten Vung' = ```
+			
+			TRIM(
+			    SUBSTITUTE(
+			        [Mã cụm], 
+			        "Ban điều hành Dự án Vùng ", 
+			        ""
+			    )
+			)
+			```
+		lineageTag: 221d446e-849d-4f99-a715-9a0fe15c5ffa
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Phòng ban' =
+			
+			SWITCH(
+			    TRUE(),
+			    CONTAINSSTRING(Head_Count[Dự án/Phòng ban], "(PLP"), "4.1 PLP",
+			    CONTAINSSTRING(Head_Count[Dự án/Phòng ban], "(DMD"), "4.2 DMD",
+			    CONTAINSSTRING(Head_Count[Dự án/Phòng ban], "(PCD"), "4.3 PCD",
+			    CONTAINSSTRING(Head_Count[Dự án/Phòng ban], "(PMD"),"4.0 PMD",
+			    CONTAINSSTRING(Head_Count[Dự án/Phòng ban], "(PM"), "4.4 PM",
+			    CONTAINSSTRING(Head_Count[Dự án/Phòng ban], "(GMD")," GMD",
+			
+			    BLANK() -- (Tùy chọn) Trả về khoảng trắng nếu không thỏa mãn điều kiện nào ở trên
+			)
+		lineageTag: 09c97286-895a-4d20-9d11-29e94d7408a0
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Key Noted'
+		dataType: string
+		lineageTag: 99d2d487-4cd3-49ca-a3c6-19a2ccd5d0de
+		summarizeBy: none
+		sourceColumn: Key Noted
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Head_Count = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://novaland.sharepoint.com/sites/HRD2/Documents/HRC%202025/01.%20NovaGen-Ca%20nhan/01.%20OCD/04.%20HRBP/HRC.CG.P1.4.6.T.Vu/07.%20Cac%20nghiep%20vu(working%20file)/WORK2/DATA/BC%20Headcount%20-%20YCTD/BC%20Headcount%20ALL%20GMD.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"STT", type any}, {"Mã cụm", type text}, {"Tổng headcount 2026", type any}, {"SL Đang làm việc", type any}, {"SL Đang tuyển", type any}, {"SL Sắp ONB & Đ/c", type any}, {"Các vị trí sắp ONB#(lf) & thời gian", type text}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([STT] <> null and [STT] <> "STT" and [STT] <> " ")),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Filtered Rows",{{"SL Đang làm việc", Int64.Type}}),
+				    #"Changed Type3" = Table.TransformColumnTypes(#"Changed Type2",{{"SL Đang tuyển", Int64.Type}, {"SL Sắp ONB & Đ/c", Int64.Type}})
+				in
+				    #"Changed Type3"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

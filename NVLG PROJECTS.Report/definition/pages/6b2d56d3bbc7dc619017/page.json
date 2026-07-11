@@ -1,0 +1,181 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "6b2d56d3bbc7dc619017",
+  "displayName": "Duplicate of Duplicate of Dự án",
+  "displayOption": "ActualSize",
+  "height": 1500,
+  "width": 1800,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "1ca47ff5ae9631a0208a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DanhMucDauTu"
+              }
+            },
+            "Property": "BanDieuHanh"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "DanhMucDauTu",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "d"
+                          }
+                        },
+                        "Property": "BanDieuHanh"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Khu vực TP.HCM 1'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {}
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "6bba10c021e991aa6b28",
+    "type": "Default",
+    "parameters": []
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              }
+            }
+          },
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": 0
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode",
+  "visualInteractions": [
+    {
+      "source": "91fb00167030c0d8dda4",
+      "target": "6581156e020d4863a038",
+      "type": "NoFilter"
+    },
+    {
+      "source": "91fb00167030c0d8dda4",
+      "target": "c4c954904d8222998cca",
+      "type": "NoFilter"
+    },
+    {
+      "source": "91fb00167030c0d8dda4",
+      "target": "4ef5576caa9560d69e6e",
+      "type": "NoFilter"
+    },
+    {
+      "source": "91fb00167030c0d8dda4",
+      "target": "f1c7fc24c9483c3d2b7c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "91fb00167030c0d8dda4",
+      "target": "19f125859d6d1054d798",
+      "type": "NoFilter"
+    },
+    {
+      "source": "91fb00167030c0d8dda4",
+      "target": "5478266e9a76cb9d795a",
+      "type": "NoFilter"
+    },
+    {
+      "source": "91fb00167030c0d8dda4",
+      "target": "15f04a4bd3296aa73837",
+      "type": "NoFilter"
+    },
+    {
+      "source": "91fb00167030c0d8dda4",
+      "target": "f482b0ef2d323de062c7",
+      "type": "NoFilter"
+    },
+    {
+      "source": "91fb00167030c0d8dda4",
+      "target": "264542988772ce23ba78",
+      "type": "NoFilter"
+    },
+    {
+      "source": "91fb00167030c0d8dda4",
+      "target": "c472f284ebe6d3b80a52",
+      "type": "NoFilter"
+    },
+    {
+      "source": "91fb00167030c0d8dda4",
+      "target": "e271eb40bac7d1632125",
+      "type": "NoFilter"
+    }
+  ]
+}

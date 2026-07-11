@@ -1,0 +1,901 @@
+table DanhMucMoi
+	lineageTag: 66d39346-60bc-4f84-8a33-38f52d333cdb
+
+	column id
+		dataType: string
+		lineageTag: 40e8810d-9585-4eea-946e-fbedcab3263e
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column code
+		dataType: string
+		lineageTag: c136bb1a-40b3-4a38-8274-59917c26f4eb
+		summarizeBy: none
+		sourceColumn: code
+
+		annotation SummarizationSetBy = Automatic
+
+	column realEstateProjectTypeId
+		dataType: string
+		lineageTag: 38f482d0-12be-4148-b93d-4a8698bb3bde
+		summarizeBy: none
+		sourceColumn: realEstateProjectTypeId
+
+		annotation SummarizationSetBy = Automatic
+
+	column novagroupIndicatorId
+		dataType: string
+		lineageTag: 590365d3-069a-417e-9c2d-e4efc48495ac
+		summarizeBy: none
+		sourceColumn: novagroupIndicatorId
+
+		annotation SummarizationSetBy = Automatic
+
+	column novalandGroupIndicatorId
+		dataType: string
+		lineageTag: 3e1b7bba-f52c-4d80-a4df-2da9cdff4c7c
+		summarizeBy: none
+		sourceColumn: novalandGroupIndicatorId
+
+		annotation SummarizationSetBy = Automatic
+
+	column novaserviceGroupIndicatorId
+		dataType: string
+		lineageTag: cb89c933-a81b-4be3-a61d-2083ca26a72c
+		summarizeBy: none
+		sourceColumn: novaserviceGroupIndicatorId
+
+		annotation SummarizationSetBy = Automatic
+
+	column createdAt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 52705c0f-a19d-40fa-88fd-b503967d3549
+		summarizeBy: none
+		sourceColumn: createdAt
+
+		variation Variation
+			isDefault
+			relationship: 2a2d8aae-dfd1-41ba-91e9-4f5e681010b5
+			defaultHierarchy: LocalDateTable_5bd199fe-fe1e-4833-beb7-d4d82efd049b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column updatedAt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 28dca72c-a196-41dd-9ac6-dc95c62e332b
+		summarizeBy: none
+		sourceColumn: updatedAt
+
+		variation Variation
+			isDefault
+			relationship: ad24760d-1254-4155-91ee-59fe36845993
+			defaultHierarchy: LocalDateTable_14e4378c-ce03-48e9-b6a9-0406f5f3ec43.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column deletedAt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c7ab8d01-2148-492f-bb88-d6c25bfe182d
+		summarizeBy: none
+		sourceColumn: deletedAt
+
+		variation Variation
+			isDefault
+			relationship: 87f5b941-0e2f-4e4c-bca7-23f8f14a6c51
+			defaultHierarchy: LocalDateTable_0d175ab8-a270-48ab-a1a2-50a7d26bca6a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column isDeactivated
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: da852c7a-e465-4519-ab3c-92b86e6075f6
+		summarizeBy: none
+		sourceColumn: isDeactivated
+
+		annotation SummarizationSetBy = Automatic
+
+	column createdById
+		dataType: string
+		lineageTag: df720de2-6570-4b43-ba3a-32e01d781591
+		summarizeBy: none
+		sourceColumn: createdById
+
+		annotation SummarizationSetBy = Automatic
+
+	column updatedById
+		dataType: string
+		lineageTag: 2bfa323a-4d87-41f6-a499-4e6a5abd39b4
+		summarizeBy: none
+		sourceColumn: updatedById
+
+		annotation SummarizationSetBy = Automatic
+
+	column deletedById
+		dataType: string
+		lineageTag: b2917863-1cde-41e5-bdcb-51f038079d74
+		summarizeBy: none
+		sourceColumn: deletedById
+
+		annotation SummarizationSetBy = Automatic
+
+	column project_id
+		dataType: string
+		lineageTag: 29d4a295-92e8-4926-9111-da6e373134a3
+		summarizeBy: none
+		sourceColumn: project_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tên Dự Án'
+		dataType: string
+		lineageTag: 4bbae4f6-3338-4bed-b81c-43e499c814de
+		summarizeBy: none
+		sourceColumn: Tên Dự Án
+
+		annotation SummarizationSetBy = Automatic
+
+	column project_status_code
+		dataType: string
+		lineageTag: 1c3882f7-b77b-445c-a4d3-3f0dc7ff54ff
+		summarizeBy: none
+		sourceColumn: project_status_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Hiện trạng đầu tư'
+		dataType: string
+		lineageTag: c3bdda7f-4e85-4071-8c31-c034ac429a85
+		summarizeBy: none
+		sourceColumn: Hiện trạng đầu tư
+
+		annotation SummarizationSetBy = Automatic
+
+	column subdivision_projectId
+		dataType: string
+		lineageTag: f5dee789-a92e-473d-bf37-69058d237563
+		summarizeBy: none
+		sourceColumn: subdivision_projectId
+
+		annotation SummarizationSetBy = Automatic
+
+	column project_type_id
+		dataType: string
+		lineageTag: 30696407-767d-4ed5-8f43-baaf765b01c2
+		summarizeBy: none
+		sourceColumn: project_type_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column priority_level_id
+		dataType: string
+		lineageTag: 5441cba0-cf15-4b00-af08-33d9f73fe80f
+		summarizeBy: none
+		sourceColumn: priority_level_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column scale
+		dataType: double
+		lineageTag: 59090670-4509-4a0d-a79b-ce42e0b97f46
+		summarizeBy: sum
+		sourceColumn: scale
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Link dự án'
+		dataType: string
+		lineageTag: d2733d04-61b8-4ccd-baad-875bafca41c5
+		summarizeBy: none
+		sourceColumn: Link dự án
+
+		annotation SummarizationSetBy = Automatic
+
+	column id2
+		dataType: string
+		lineageTag: c58902ba-46fb-43ff-85b4-dfdae05a430d
+		summarizeBy: none
+		sourceColumn: id2
+
+		annotation SummarizationSetBy = Automatic
+
+	column npv
+		dataType: double
+		lineageTag: 2af2287c-f6a7-453e-9e5e-9542b994cd24
+		summarizeBy: sum
+		sourceColumn: npv
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column npvUnitId
+		dataType: string
+		lineageTag: d81fcf81-0d9c-4253-a95d-1683c6fee9b0
+		summarizeBy: none
+		sourceColumn: npvUnitId
+
+		annotation SummarizationSetBy = Automatic
+
+	column irr
+		dataType: double
+		lineageTag: e15e99cf-3525-49ef-84ec-56080fc1348c
+		summarizeBy: sum
+		sourceColumn: irr
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mnaGpmbCost
+		dataType: double
+		lineageTag: a573f284-62bc-4dfc-a8a2-d23e1aaab1f4
+		summarizeBy: sum
+		sourceColumn: mnaGpmbCost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mnaGpmbCostUnitId
+		dataType: string
+		lineageTag: 5a7fd456-7bae-4710-929f-880943c66f6b
+		summarizeBy: none
+		sourceColumn: mnaGpmbCostUnitId
+
+		annotation SummarizationSetBy = Automatic
+
+	column mnaPaidCost
+		dataType: double
+		lineageTag: 12a31fb2-f67d-445e-965a-3f461cacf972
+		summarizeBy: sum
+		sourceColumn: mnaPaidCost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mnaPaidCostUnitId
+		dataType: string
+		lineageTag: dda1e502-9be5-4103-a27d-823f362f7eb7
+		summarizeBy: none
+		sourceColumn: mnaPaidCostUnitId
+
+		annotation SummarizationSetBy = Automatic
+
+	column landUseFee
+		dataType: double
+		lineageTag: 7066d357-2e6a-4907-9d0c-c26e6e76fc5a
+		summarizeBy: sum
+		sourceColumn: landUseFee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column landUseFeeUnitId
+		dataType: string
+		lineageTag: 709389e1-3baf-467d-983b-fd11021dc79c
+		summarizeBy: none
+		sourceColumn: landUseFeeUnitId
+
+		annotation SummarizationSetBy = Automatic
+
+	column landUseFeePaid
+		dataType: double
+		lineageTag: 9fc80266-464e-48cb-b5ba-e044279da96d
+		summarizeBy: sum
+		sourceColumn: landUseFeePaid
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column landUseFeePaidUnitId
+		dataType: string
+		lineageTag: 1dd3c05e-4810-44f5-85bc-93a81bc3cd3b
+		summarizeBy: none
+		sourceColumn: landUseFeePaidUnitId
+
+		annotation SummarizationSetBy = Automatic
+
+	column developmentCost
+		dataType: double
+		lineageTag: 0177117e-bf06-42aa-a7ce-9c85d210e366
+		summarizeBy: sum
+		sourceColumn: developmentCost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column developmentCostUnitId
+		dataType: string
+		lineageTag: 40b70428-bb6c-4d72-be4c-56f5acd8b20e
+		summarizeBy: none
+		sourceColumn: developmentCostUnitId
+
+		annotation SummarizationSetBy = Automatic
+
+	column developmentCostPaid
+		dataType: double
+		lineageTag: f2c6711f-d1ea-4210-be26-dea7abe91124
+		summarizeBy: sum
+		sourceColumn: developmentCostPaid
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column developmentCostPaidUnitId
+		dataType: string
+		lineageTag: c4a2303c-794d-4401-b5ec-545c3c966864
+		summarizeBy: none
+		sourceColumn: developmentCostPaidUnitId
+
+		annotation SummarizationSetBy = Automatic
+
+	column isDeactivated2
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c741cc06-bd3d-4d2f-b195-d0320602970c
+		summarizeBy: none
+		sourceColumn: isDeactivated2
+
+		annotation SummarizationSetBy = Automatic
+
+	column createdAt2
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 678b32a8-04b1-4f72-ad35-f78b9c5950c0
+		summarizeBy: none
+		sourceColumn: createdAt2
+
+		variation Variation
+			isDefault
+			relationship: 2b04fdf4-c66f-4b8c-8be4-21fdf503f5ae
+			defaultHierarchy: LocalDateTable_c34fd131-dc90-4365-b438-ffd5706aba6a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column updatedAt2
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e975335c-98b6-40a7-8fbc-38749375911c
+		summarizeBy: none
+		sourceColumn: updatedAt2
+
+		variation Variation
+			isDefault
+			relationship: dcd14cc1-dc5c-4cbd-aa17-71712dc47838
+			defaultHierarchy: LocalDateTable_e65dbc03-8c5c-4f64-b48c-f92790f43ee1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column deletedAt2
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b0461082-a749-4a88-9dbb-9a533e8a452d
+		summarizeBy: none
+		sourceColumn: deletedAt2
+
+		variation Variation
+			isDefault
+			relationship: 5fa7f87e-0718-41ab-b9f4-17c6407f4925
+			defaultHierarchy: LocalDateTable_171caaad-c85d-48a6-bc3f-1651a402b527.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column createdBy
+		dataType: string
+		lineageTag: ef4f122d-d41c-44a2-aa32-18b3039bdf67
+		summarizeBy: none
+		sourceColumn: createdBy
+
+		annotation SummarizationSetBy = Automatic
+
+	column updatedBy
+		dataType: string
+		lineageTag: fe0ba618-139b-420d-ab78-97c19cf77859
+		summarizeBy: none
+		sourceColumn: updatedBy
+
+		annotation SummarizationSetBy = Automatic
+
+	column paybackPeriod
+		dataType: double
+		lineageTag: 82f25001-f513-42b0-8206-8d59d50b89cb
+		summarizeBy: sum
+		sourceColumn: paybackPeriod
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column deletedById2
+		dataType: string
+		lineageTag: e620b05b-ec72-44ee-86ea-3d57789f6372
+		summarizeBy: none
+		sourceColumn: deletedById2
+
+		annotation SummarizationSetBy = Automatic
+
+	column createdById2
+		dataType: string
+		lineageTag: c02db358-46d3-4304-b96c-56c556f38ff2
+		summarizeBy: none
+		sourceColumn: createdById2
+
+		annotation SummarizationSetBy = Automatic
+
+	column updatedById2
+		dataType: string
+		lineageTag: a3fddefd-fe28-496c-8275-4ac31181095c
+		summarizeBy: none
+		sourceColumn: updatedById2
+
+		annotation SummarizationSetBy = Automatic
+
+	column unit_common_label
+		dataType: string
+		lineageTag: 42f2d08b-ebc2-4c07-81b5-41dacb293b6e
+		summarizeBy: none
+		sourceColumn: unit_common_label
+
+		annotation SummarizationSetBy = Automatic
+
+	column common_paybackPeriod
+		dataType: double
+		lineageTag: 0db9a604-d605-448b-97d9-7454936e069d
+		summarizeBy: sum
+		sourceColumn: common_paybackPeriod
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column id3
+		dataType: string
+		lineageTag: 894cc9aa-01f7-4215-aa7a-bc75cc1eb859
+		summarizeBy: none
+		sourceColumn: id3
+
+		annotation SummarizationSetBy = Automatic
+
+	column lowRiseLandArea
+		dataType: double
+		lineageTag: e96715cf-ee1b-4508-a297-b2ee4dab22c5
+		summarizeBy: sum
+		sourceColumn: lowRiseLandArea
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column highRiseLandArea
+		dataType: double
+		lineageTag: 803f5feb-3dc1-41f8-8f1c-69c8fc575fa9
+		summarizeBy: sum
+		sourceColumn: highRiseLandArea
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column landAreaNote
+		dataType: string
+		lineageTag: 513df0ac-4afa-4c4f-b51d-30f72c663960
+		summarizeBy: none
+		sourceColumn: landAreaNote
+
+		annotation SummarizationSetBy = Automatic
+
+	column totalRevenue
+		dataType: double
+		lineageTag: 634c3db9-796c-46bd-b53a-f49884abee90
+		summarizeBy: sum
+		sourceColumn: totalRevenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column totalRevenueUnitId
+		dataType: string
+		lineageTag: 18313db3-4563-4e23-9c16-1db1383e5f51
+		summarizeBy: none
+		sourceColumn: totalRevenueUnitId
+
+		annotation SummarizationSetBy = Automatic
+
+	column netProfit
+		dataType: double
+		lineageTag: 0a8d64c7-f200-44cd-bc32-9333fdb72b40
+		summarizeBy: sum
+		sourceColumn: netProfit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column netProfitUnitId
+		dataType: string
+		lineageTag: 1981eb42-c4c4-4b88-91d9-5680f0adbe75
+		summarizeBy: none
+		sourceColumn: netProfitUnitId
+
+		annotation SummarizationSetBy = Automatic
+
+	column netProfitMargin
+		dataType: double
+		lineageTag: 553430c2-72e3-4be1-9e3f-ce631d94f2e4
+		summarizeBy: sum
+		sourceColumn: netProfitMargin
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column isDeactivated3
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 0dfa45b8-dac9-410f-9f91-aecaa37384fd
+		summarizeBy: none
+		sourceColumn: isDeactivated3
+
+		annotation SummarizationSetBy = Automatic
+
+	column createdAt3
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4bdb4ca2-dee6-4ec6-a39a-7d553c7a0b58
+		summarizeBy: none
+		sourceColumn: createdAt3
+
+		variation Variation
+			isDefault
+			relationship: 89c5dedd-e453-4da3-b984-3de164483323
+			defaultHierarchy: LocalDateTable_3e27f053-1dc1-47a7-a52a-e61a830e835a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column updatedAt3
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 95c1f575-3a03-4efd-a6d1-1f57a6e04fd1
+		summarizeBy: none
+		sourceColumn: updatedAt3
+
+		variation Variation
+			isDefault
+			relationship: ab4c4242-4444-49e2-a560-0952ab85463f
+			defaultHierarchy: LocalDateTable_d70ec03e-fb81-418d-a49f-d9227ce8a640.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column deletedAt3
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 131da48b-3003-46f0-9d2a-bcf33bc74672
+		summarizeBy: none
+		sourceColumn: deletedAt3
+
+		variation Variation
+			isDefault
+			relationship: 75244707-48c1-4994-a1e0-977939adb8fb
+			defaultHierarchy: LocalDateTable_b69de616-fc41-4bc3-93f8-78ccc188cb1f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column createdBy2
+		dataType: string
+		lineageTag: f1bc3be7-201b-4c8f-aedb-d6c5f4a5d283
+		summarizeBy: none
+		sourceColumn: createdBy2
+
+		annotation SummarizationSetBy = Automatic
+
+	column updatedBy2
+		dataType: string
+		lineageTag: 6ce30849-bfc2-4e6e-84ac-3d8059cb6739
+		summarizeBy: none
+		sourceColumn: updatedBy2
+
+		annotation SummarizationSetBy = Automatic
+
+	column deletedById3
+		dataType: string
+		lineageTag: adf4d431-9723-4fac-873a-3bc4929a8a9f
+		summarizeBy: none
+		sourceColumn: deletedById3
+
+		annotation SummarizationSetBy = Automatic
+
+	column createdById3
+		dataType: string
+		lineageTag: 00bc969d-7095-4213-84a8-682efe408879
+		summarizeBy: none
+		sourceColumn: createdById3
+
+		annotation SummarizationSetBy = Automatic
+
+	column updatedById3
+		dataType: string
+		lineageTag: 8893ee10-3983-456c-ac66-73d8496f75ae
+		summarizeBy: none
+		sourceColumn: updatedById3
+
+		annotation SummarizationSetBy = Automatic
+
+	column unit_nvl_label
+		dataType: string
+		lineageTag: e0bdb00c-c2f6-45a2-8fbe-eea60e63a6f0
+		summarizeBy: none
+		sourceColumn: unit_nvl_label
+
+		annotation SummarizationSetBy = Automatic
+
+	column id4
+		dataType: string
+		lineageTag: d56316f8-6370-446b-b1be-f273766a5eea
+		summarizeBy: none
+		sourceColumn: id4
+
+		annotation SummarizationSetBy = Automatic
+
+	column breakEvenPoint
+		dataType: int64
+		formatString: 0
+		lineageTag: 3f75bf61-20bd-49df-99cc-b1d826ec1ffc
+		summarizeBy: sum
+		sourceColumn: breakEvenPoint
+
+		annotation SummarizationSetBy = Automatic
+
+	column grossProfitMargin
+		dataType: double
+		lineageTag: 937f969d-f0ef-4ba9-8713-9e6ef3f2d437
+		summarizeBy: sum
+		sourceColumn: grossProfitMargin
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column baseEbitdaMargin
+		dataType: double
+		lineageTag: f18ddbf7-045b-4fc4-b57d-9fc2fe1abbb6
+		summarizeBy: sum
+		sourceColumn: baseEbitdaMargin
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ebitdaAfterHoAllocationMargin
+		dataType: double
+		lineageTag: 7e1fcd2f-3ff9-413e-8adb-a000a60df8ee
+		summarizeBy: sum
+		sourceColumn: ebitdaAfterHoAllocationMargin
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column isDeactivated4
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 76134bbb-5fa2-4970-9f94-02bba7133fdd
+		summarizeBy: none
+		sourceColumn: isDeactivated4
+
+		annotation SummarizationSetBy = Automatic
+
+	column createdAt4
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 33862d9f-7e2c-4d39-bb6f-59426a8364de
+		summarizeBy: none
+		sourceColumn: createdAt4
+
+		variation Variation
+			isDefault
+			relationship: 6528e9f5-f3d0-43f6-8bf1-3fccc57dc39e
+			defaultHierarchy: LocalDateTable_1bbe5206-9977-42a0-b83d-4697db2d3864.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column updatedAt4
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ed0355e1-7c7f-4085-8ade-b96d67ea69a9
+		summarizeBy: none
+		sourceColumn: updatedAt4
+
+		variation Variation
+			isDefault
+			relationship: 28e16ba6-a3e2-4bd8-8a44-1b2c36f97214
+			defaultHierarchy: LocalDateTable_b31a99ac-5252-4ac4-a163-3962d09056c7.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column deletedAt4
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 68969a4b-a443-47d3-ac3e-cab56a3dfffa
+		summarizeBy: none
+		sourceColumn: deletedAt4
+
+		variation Variation
+			isDefault
+			relationship: 720a9502-bd6d-40b9-a772-129bf72ba9c9
+			defaultHierarchy: LocalDateTable_94372784-ce93-484a-a6b1-9a5418310086.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column createdBy3
+		dataType: string
+		lineageTag: c4403090-3bb1-473c-8bc3-84a486cad2c4
+		summarizeBy: none
+		sourceColumn: createdBy3
+
+		annotation SummarizationSetBy = Automatic
+
+	column updatedBy3
+		dataType: string
+		lineageTag: 3031d41d-f3aa-4aba-8790-9c96c5b21ca4
+		summarizeBy: none
+		sourceColumn: updatedBy3
+
+		annotation SummarizationSetBy = Automatic
+
+	column deletedById4
+		dataType: string
+		lineageTag: e7381d1a-7b6a-4816-8c35-26fa91e2b7f2
+		summarizeBy: none
+		sourceColumn: deletedById4
+
+		annotation SummarizationSetBy = Automatic
+
+	column createdById4
+		dataType: string
+		lineageTag: f1c5d15d-423b-418f-bd0d-33617195c9cd
+		summarizeBy: none
+		sourceColumn: createdById4
+
+		annotation SummarizationSetBy = Automatic
+
+	column updatedById4
+		dataType: string
+		lineageTag: 789762bf-5eba-467c-9095-9aa172723b07
+		summarizeBy: none
+		sourceColumn: updatedById4
+
+		annotation SummarizationSetBy = Automatic
+
+	column pioritylevel
+		dataType: string
+		lineageTag: 84cc64fb-f299-46f7-93a5-fbb5651defdf
+		summarizeBy: none
+		sourceColumn: pioritylevel
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: 9ef1de95-f489-46b7-b799-5b72e086b161
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ban điều hành dự án'
+		dataType: string
+		lineageTag: e6c51373-b9f3-4511-b15f-f41350291267
+		summarizeBy: none
+		sourceColumn: Ban điều hành dự án
+
+		annotation SummarizationSetBy = Automatic
+
+	column city
+		dataType: string
+		lineageTag: 5afc6b5c-552a-453b-bf62-df196cf56b90
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = Automatic
+
+	column ward
+		dataType: string
+		lineageTag: fed62a52-59e1-4ca6-a90d-50e9cf7a09b1
+		summarizeBy: none
+		sourceColumn: ward
+
+		annotation SummarizationSetBy = Automatic
+
+	column address
+		dataType: string
+		lineageTag: 61b2808b-2657-4d4b-b8a3-aed4075170ef
+		summarizeBy: none
+		sourceColumn: address
+
+		annotation SummarizationSetBy = Automatic
+
+	column isKeyProject
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: d12945b4-3b7c-4d7d-a208-8c4bdf010bd5
+		summarizeBy: none
+		sourceColumn: isKeyProject
+
+		annotation SummarizationSetBy = Automatic
+
+	column project_owner
+		dataType: string
+		lineageTag: b118df95-7160-4c94-93ff-459704d65598
+		summarizeBy: none
+		sourceColumn: project_owner
+
+		annotation SummarizationSetBy = Automatic
+
+	column partner
+		dataType: string
+		lineageTag: c85fc8c9-73c3-434a-b7ad-514c72941145
+		summarizeBy: none
+		sourceColumn: partner
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tổng công ty'
+		dataType: string
+		lineageTag: e5c0c269-76be-4b31-8aa5-a3c7a51d43a4
+		summarizeBy: none
+		sourceColumn: Tổng công ty
+
+		annotation SummarizationSetBy = Automatic
+
+	column picGmdId
+		dataType: string
+		lineageTag: dd22254b-3900-4927-8808-5d18c137ba5d
+		summarizeBy: none
+		sourceColumn: picGmdId
+
+		annotation SummarizationSetBy = Automatic
+
+	column picId
+		dataType: string
+		lineageTag: 5727aad2-c180-4424-855f-026c569f206f
+		summarizeBy: none
+		sourceColumn: picId
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nhóm Dự án'
+		dataType: string
+		lineageTag: 4cc66530-06fa-41b9-a8b5-2ff10c7ede54
+		summarizeBy: none
+		sourceColumn: Nhóm Dự án
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DanhMucMoi = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("10.16.19.14", "investment_report", [Query="SELECT #(lf)      A.[id]#(lf)     ,A.[code]#(lf)     ,A.[realEstateProjectTypeId]#(lf)     ,A.[novagroupIndicatorId]#(lf)     ,A.[novalandGroupIndicatorId]#(lf)     ,A.[novaserviceGroupIndicatorId]#(lf)     ,A.[createdAt]#(lf)     ,A.[updatedAt]#(lf)     ,A.[deletedAt]#(lf)     ,A.[isDeactivated]#(lf)     ,A.[createdById]#(lf)     ,A.[updatedById]#(lf)     ,A.[deletedById]#(lf)     ,B.projectId AS project_id#(lf)     ,H.name as project_name#(lf)     ,K.subdivisionStatusId AS project_status_code#(lf)     ,J.label AS project_status#(lf)     ,K.projectId AS subdivision_projectId#(lf)     ,B.projectTypeId AS project_type_id#(lf)     ,B.priorityLevelId AS priority_level_id#(lf)     ,B.scale#(lf)     ,B.code AS code_eo#(lf)     ,C.*#(lf)     ,F.label AS unit_common_label#(lf)     ,C.paybackPeriod AS common_paybackPeriod#(lf)     ,D.*#(lf)     ,G.label AS unit_nvl_label#(lf)     ,E.*#(lf)     ,L.label as pioritylevel#(lf)     ,M.label as type#(lf)     ,N.name as region#(lf)     ,CT.name as city#(lf)     ,W.name as ward#(lf)     ,H.address AS address#(lf)     ,H.isKeyProject#(lf)     ,Z.name AS project_owner#(lf)     ,PN.name AS partner#(lf)     ,CA.label AS group_name #(lf)     ,H.picGmdId#(lf)     ,H.picId#(lf)     ,CASE K.subdivisionStatusId#(lf)        WHEN 'c69f7c22-1e39-5190-b6a5-9f8d7709ecd5' THEN N'Nhóm 1'#(lf)        WHEN 'dcd170d8-a3e0-5336-96d3-f5e4d1a03bad' THEN N'Nhóm 2'#(lf)        WHEN 'd2e18e52-9999-5ecf-b2fe-73b9e71b8934' THEN N'Nhóm 3'#(lf)        WHEN 'c80ead9b-590b-5e27-9d4a-836d27b17a12' THEN N'Nhóm 4'#(lf)        WHEN '0f2956fb-445a-5086-bb13-c195a43b1f4a' THEN N'Nhóm 5'#(lf)        ELSE '' #(lf)      END AS Nhom_Du_An#(lf)FROM mr_real_estate_project_type B#(lf)-- JOIN bảng A vào bảng gốc B#(lf)LEFT JOIN [investment_report].[dbo].[investment_management] A ON B.id = A.realEstateProjectTypeId#(lf)#(lf)-- Các bảng phụ thuộc vào A#(lf)LEFT JOIN novagroup_indicator C ON A.novagroupIndicatorId = C.id#(lf)LEFT JOIN novaland_group_indicator D ON A.novalandGroupIndicatorId = D.id#(lf)LEFT JOIN novaservice_group_indicator E ON A.novaserviceGroupIndicatorId = E.id#(lf)LEFT JOIN dropdown_option F ON C.npvUnitId = F.id#(lf)LEFT JOIN dropdown_option G ON D.totalRevenueUnitId = G.id#(lf)#(lf)-- Các bảng phụ thuộc vào B#(lf)LEFT JOIN mr_subdivision K ON B.subdivisionId = K.id#(lf)LEFT JOIN dropdown_option L ON B.priorityLevelId = L.id#(lf)LEFT JOIN dropdown_option M ON B.projectTypeId = M.id#(lf)#(lf)-- Các bảng phụ thuộc vào K (mr_subdivision)#(lf)LEFT JOIN mr_project H ON K.projectId = H.id#(lf)LEFT JOIN dropdown_option J ON K.subdivisionStatusId = J.id#(lf)#(lf)-- Các bảng phụ thuộc vào H (mr_project)#(lf)LEFT JOIN mr_area N ON H.areaId = N.id#(lf)LEFT JOIN city CT ON H.cityId = CT.id#(lf)LEFT JOIN ward W ON H.wardId = W.id#(lf)LEFT JOIN mr_leading_companies Z ON H.leadingCompanyId = Z.id#(lf)LEFT JOIN mr_leading_companies PN ON H.partnerGroupId = PN.id#(lf)LEFT JOIN dropdown_option CA ON H.projectCategoryId = CA.id#(lf)#(lf)WHERE B.status = 'APPROVED' #(lf)  AND B.[isDeactivated] = 0 #(lf)  AND H.code like 'IND%' "]),
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([group_name] = "NVLG")),
+				    #"Renamed Columns" = Table.RenameColumns(#"Filtered Rows",{{"group_name", "Tổng công ty"}, {"Nhom_Du_An", "Nhóm Dự án"}, {"project_name", "Tên Dự Án"}, {"project_status", "Hiện trạng đầu tư"}, {"code_eo", "Link dự án"}, {"region", "Ban điều hành dự án"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

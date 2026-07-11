@@ -1,0 +1,35 @@
+table Sheet1
+	lineageTag: 9e5d2790-03b9-41e4-ab83-d8fff441424e
+
+	column perNumber
+		dataType: string
+		lineageTag: 3360b4d7-187b-41df-8b10-d221415eea75
+		summarizeBy: none
+		sourceColumn: perNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column fullName
+		dataType: string
+		lineageTag: dafb44f0-2467-4784-83bf-e541a25a9e58
+		summarizeBy: none
+		sourceColumn: fullName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Sheet1 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Python\ket_qua_xuat.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"_id", type text}, {"source", type text}, {"perNumber", type text}, {"__v", Int64.Type}, {"birthDate", Int64.Type}, {"createdAt", type number}, {"email", type text}, {"fullName", type text}, {"gender", type text}, {"hireDate", Int64.Type}, {"marStatus", type text}, {"national", type text}, {"phone", Int64.Type}, {"seniDate", Int64.Type}, {"status", Int64.Type}, {"termDate", Int64.Type}, {"updatedAt", type number}, {"group1Name", type text}, {"group2Name", type text}, {"nationalId", type text}, {"blacklist", Int64.Type}, {"blacklistReason", type text}, {"positionId", Int64.Type}, {"departmentId", type any}, {"divisionId", type any}, {"jobTitleId", type any}, {"domain", type any}}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Changed Type",{"perNumber", "fullName"})
+				in
+				    #"Removed Other Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

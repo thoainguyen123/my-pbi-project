@@ -1,0 +1,54 @@
+table PQ_Du_An
+	lineageTag: b23443de-96e2-400a-9aa2-f79d5121e261
+
+	column 'Mã dự án - Phân khu'
+		dataType: string
+		lineageTag: 47f6d791-a113-48b3-b5df-a00bc2e197a2
+		summarizeBy: none
+		sourceColumn: Mã dự án - Phân khu
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mã dự án - Tiểu khu'
+		dataType: string
+		lineageTag: 8c29eff0-fbe5-4aeb-915b-52be8c4e6b01
+		summarizeBy: none
+		sourceColumn: Mã dự án - Tiểu khu
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tên dự án'
+		dataType: string
+		lineageTag: 169b47d3-1657-44f4-9397-87e4793af45a
+		summarizeBy: none
+		sourceColumn: Tên dự án
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Email (*)'
+		dataType: string
+		lineageTag: 618ced35-aec3-4df3-a4a5-6ce18d235ae3
+		summarizeBy: none
+		sourceColumn: Email (*)
+
+		annotation SummarizationSetBy = Automatic
+
+	partition PQ_Du_An = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://novaland.sharepoint.com/sites/DataTeam/Shared%20Documents/General/D%E1%BB%B1%20%C3%A1n/GMC/B%E1%BA%A3ng%20ph%C3%A2n%20quy%E1%BB%81n.xlsx"), null, true),
+				    #"Dự án_Sheet" = Source{[Item="Dự án",Kind="Sheet"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(#"Dự án_Sheet",{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Mã dự án - Phân khu", type text}, {"Mã dự án - Tiểu khu", type text}, {"Tên dự án", type text}, {"Email (*)", type text}}),
+				    #"Split Column by Delimiter" = Table.ExpandListColumn(Table.TransformColumns(#"Changed Type1", {{"Email (*)", Splitter.SplitTextByDelimiter(",", QuoteStyle.Csv), let itemType = (type nullable text) meta [Serialized.Text = true] in type {itemType}}}), "Email (*)"),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"Email (*)", type text}}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Changed Type2",{{"Email (*)", Text.Trim, type text}})
+				in
+				    #"Trimmed Text"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

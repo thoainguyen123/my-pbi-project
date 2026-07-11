@@ -1,0 +1,75 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "dd806e11b765fc132a21",
+  "position": {
+    "x": 601.848002527481,
+    "y": 90.948241112963061,
+    "z": 3000,
+    "height": 100.89224433768015,
+    "width": 271.79135209334248,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "BAN TỔNG GIÁM ĐỐC:",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#00255a"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "center"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Tổng Giám Đốc",
+                    "textStyle": {
+                      "color": "#00255a"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "center"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Phó TGĐ ĐH Dự Án",
+                    "textStyle": {
+                      "color": "#00255a"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "center"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

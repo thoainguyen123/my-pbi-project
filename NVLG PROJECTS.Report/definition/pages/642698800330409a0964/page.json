@@ -1,0 +1,48 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "642698800330409a0964",
+  "displayName": "4.3 Quản lý Xây dựng An toàn và Môi trường",
+  "displayOption": "FitToWidth",
+  "height": 720,
+  "width": 1080,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "9bd00ec8dd088d19640a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DanhMucDauTu"
+              }
+            },
+            "Property": "TenDuAn_CoSTT"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "a3b7b0e62b33a806bc06",
+    "type": "Drillthrough",
+    "parameters": [
+      {
+        "name": "4b364a0eb3010cb0a1b5",
+        "boundFilter": "9bd00ec8dd088d19640a",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DanhMucDauTu"
+              }
+            },
+            "Property": "TenDuAn_CoSTT"
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode"
+}

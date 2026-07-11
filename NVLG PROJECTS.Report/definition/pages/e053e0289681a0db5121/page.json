@@ -1,0 +1,161 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "e053e0289681a0db5121",
+  "displayName": "Duplicate of Dự án",
+  "displayOption": "ActualSize",
+  "height": 1700,
+  "width": 1800,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "1ca47ff5ae9631a0208a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DanhMucDauTu"
+              }
+            },
+            "Property": "BanDieuHanh"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "DanhMucDauTu",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "d"
+                          }
+                        },
+                        "Property": "BanDieuHanh"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Ban điều hành Dự án Vùng Đà Lạt 1'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {}
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "4f240a682b3bc76e4533",
+    "type": "Default",
+    "parameters": []
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              }
+            }
+          },
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": 0
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode",
+  "visualInteractions": [
+    {
+      "source": "83168412197875cdb603",
+      "target": "96fff614bf14c5d26f2a",
+      "type": "NoFilter"
+    },
+    {
+      "source": "83168412197875cdb603",
+      "target": "6c8904c1cc2ce59504ae",
+      "type": "NoFilter"
+    },
+    {
+      "source": "83168412197875cdb603",
+      "target": "a02b83b5b279adb31966",
+      "type": "NoFilter"
+    },
+    {
+      "source": "83168412197875cdb603",
+      "target": "33a090e99eb17f925abc",
+      "type": "NoFilter"
+    },
+    {
+      "source": "83168412197875cdb603",
+      "target": "7c3cfc68748fa44e80b6",
+      "type": "NoFilter"
+    },
+    {
+      "source": "83168412197875cdb603",
+      "target": "d061e2b2f909e16bac02",
+      "type": "NoFilter"
+    },
+    {
+      "source": "83168412197875cdb603",
+      "target": "e7dbadc7a0786bb19d6d",
+      "type": "NoFilter"
+    }
+  ]
+}

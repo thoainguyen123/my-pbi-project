@@ -1,0 +1,55 @@
+table PQ_Khu_Vuc
+	lineageTag: d5222841-675f-4bd5-be73-18654793ebfd
+
+	column 'Khu vực'
+		dataType: string
+		lineageTag: c1235eb9-745f-4e2f-912f-1c9824f04182
+		summarizeBy: none
+		sourceColumn: Khu vực
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Email (*)'
+		dataType: string
+		lineageTag: 7f3e4b58-fdf0-499e-86f3-f61416fe3269
+		summarizeBy: none
+		sourceColumn: Email (*)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Họ và Tên'
+		dataType: string
+		lineageTag: 7a3105ee-4452-41a0-b00d-35ad7d0673db
+		summarizeBy: none
+		sourceColumn: Họ và Tên
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column4
+		dataType: string
+		lineageTag: 255d669f-d469-49b1-9cc2-5abe4712b966
+		summarizeBy: none
+		sourceColumn: Column4
+
+		annotation SummarizationSetBy = Automatic
+
+	partition PQ_Khu_Vuc = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://novaland.sharepoint.com/sites/DataTeam/Shared%20Documents/General/D%E1%BB%B1%20%C3%A1n/GMC/B%E1%BA%A3ng%20ph%C3%A2n%20quy%E1%BB%81n.xlsx"), null, true),
+				    #"Khu vực_Sheet" = Source{[Item="Khu vực",Kind="Sheet"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(#"Khu vực_Sheet",{{"Column1", type text}, {"Column2", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Khu vực", type text}, {"Email (*)", type text}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Changed Type1"," ","",Replacer.ReplaceText,{"Email (*)"}),
+				    #"Split Column by Delimiter" = Table.ExpandListColumn(Table.TransformColumns(#"Replaced Value", {{"Email (*)", Splitter.SplitTextByDelimiter(",", QuoteStyle.Csv), let itemType = (type nullable text) meta [Serialized.Text = true] in type {itemType}}}), "Email (*)"),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"Email (*)", type text}}),
+				    #"Removed Blank Rows" = Table.SelectRows(#"Changed Type2", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null})))
+				in
+				    #"Removed Blank Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

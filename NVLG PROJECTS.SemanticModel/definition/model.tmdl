@@ -1,0 +1,70 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		fastCombine
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["Org","db_novahub_pro employeeorg1offices","Eoffice_TD","Table","Project","Dự án","DanhMucDauTu","PQ_Du_An","PQ_Khu_Vuc","Sheet1","DanhMucMoi","NV_HR","Head_Count","Org_Chung","headcount_gmd"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DaxQueryView_Desktop","DevMode"]
+
+ref table Org
+ref table 'db_novahub_pro employeeorg1offices'
+ref table Eoffice_TD
+ref table Table
+ref table Project
+ref table 'Dự án'
+ref table DanhMucDauTu
+ref table PQ_Du_An
+ref table PQ_Khu_Vuc
+ref table KhuVuc_Layout
+ref table DuAn_By_KhuVuc
+ref table Sheet1
+ref table DanhMucMoi
+ref table DateTableTemplate_0b0fec7c-f727-4814-9951-ac562628f305
+ref table LocalDateTable_5bd199fe-fe1e-4833-beb7-d4d82efd049b
+ref table LocalDateTable_14e4378c-ce03-48e9-b6a9-0406f5f3ec43
+ref table LocalDateTable_0d175ab8-a270-48ab-a1a2-50a7d26bca6a
+ref table LocalDateTable_c34fd131-dc90-4365-b438-ffd5706aba6a
+ref table LocalDateTable_e65dbc03-8c5c-4f64-b48c-f92790f43ee1
+ref table LocalDateTable_171caaad-c85d-48a6-bc3f-1651a402b527
+ref table LocalDateTable_3e27f053-1dc1-47a7-a52a-e61a830e835a
+ref table LocalDateTable_d70ec03e-fb81-418d-a49f-d9227ce8a640
+ref table LocalDateTable_b69de616-fc41-4bc3-93f8-78ccc188cb1f
+ref table LocalDateTable_1bbe5206-9977-42a0-b83d-4697db2d3864
+ref table LocalDateTable_b31a99ac-5252-4ac4-a163-3962d09056c7
+ref table LocalDateTable_94372784-ce93-484a-a6b1-9a5418310086
+ref table LocalDateTable_03e0c47e-1a18-490a-b26d-9dcb5aed5555
+ref table LocalDateTable_1765c1be-2d17-4455-b086-3acc217e1916
+ref table LocalDateTable_1f6115ca-65d6-4ac2-b8b6-f7fb222bd3b3
+ref table LocalDateTable_5b187bb8-30a6-4ed7-893c-9359fb7a5cef
+ref table LocalDateTable_b3ffdfb0-c3d8-4972-a9c2-c35e9d89e77d
+ref table LocalDateTable_1df6bd73-08c8-4547-b0f0-476f79e16534
+ref table LocalDateTable_db28eeca-f806-4167-8f15-c96ed5870865
+ref table LocalDateTable_66f5870f-3782-4ceb-9f4f-a5042b9f8878
+ref table LocalDateTable_f4d67706-ce1f-4a1d-84ff-3fdaec45a309
+ref table LocalDateTable_bd34729c-ae1d-4ccb-a2ac-09c29ca5a644
+ref table LocalDateTable_35bab40c-0a67-46a2-9f27-10a9790125f8
+ref table LocalDateTable_1114630c-bf37-45d3-a79b-9add9657df57
+ref table NV_HR
+ref table Head_Count
+ref table LocalDateTable_40b1f763-88ce-4da3-a37d-e4cc8e5ca58d
+ref table LocalDateTable_bb984931-8082-4e42-82f7-cd44a19440b6
+ref table LocalDateTable_84dc2871-0e77-47e8-b4e4-d5f2776756ea
+ref table LocalDateTable_57ebb263-ed9f-4e0c-94d3-61eae2f98dd6
+ref table LocalDateTable_9db38614-d137-44c6-adfb-2c3206ff04f0
+ref table Org_Chung
+ref table headcount_gmd
+ref table LocalDateTable_6e877ef4-1951-4e97-9e47-8848b6d42526
+
+ref role PQ_KhuVuc
+ref role All
+ref role PQ_DuAn
+
+ref cultureInfo en-US
+

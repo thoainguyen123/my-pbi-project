@@ -1,0 +1,192 @@
+relationship 11a067e0-c055-403a-12cb-434ade20a031
+	crossFilteringBehavior: bothDirections
+	fromColumn: DanhMucDauTu.'Link dự án'
+	toColumn: Project.code
+
+relationship 9f91ec60-7e3a-b8e0-bb9c-61b7014a7420
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: DanhMucDauTu.Mapping_Hr
+	toColumn: Org.'Mã dự án'
+
+relationship 99b51e72-b16d-6731-389c-fc6e7da14259
+	crossFilteringBehavior: bothDirections
+	securityFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: DanhMucDauTu.'Link dự án'
+	toColumn: Eoffice_TD.project_code
+
+relationship c1863dd4-7eb8-2f7d-1965-67afde0de2ff
+	toCardinality: many
+	fromColumn: DanhMucDauTu.BanDieuHanh
+	toColumn: PQ_Khu_Vuc.'Khu vực'
+
+relationship 3360f44d-5f64-d6c3-d674-77a51999c7e3
+	toCardinality: many
+	fromColumn: DanhMucDauTu.'Link dự án'
+	toColumn: PQ_Du_An.'Mã dự án - Phân khu'
+
+relationship 2a2d8aae-dfd1-41ba-91e9-4f5e681010b5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DanhMucMoi.createdAt
+	toColumn: LocalDateTable_5bd199fe-fe1e-4833-beb7-d4d82efd049b.Date
+
+relationship ad24760d-1254-4155-91ee-59fe36845993
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DanhMucMoi.updatedAt
+	toColumn: LocalDateTable_14e4378c-ce03-48e9-b6a9-0406f5f3ec43.Date
+
+relationship 87f5b941-0e2f-4e4c-bca7-23f8f14a6c51
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DanhMucMoi.deletedAt
+	toColumn: LocalDateTable_0d175ab8-a270-48ab-a1a2-50a7d26bca6a.Date
+
+relationship 2b04fdf4-c66f-4b8c-8be4-21fdf503f5ae
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DanhMucMoi.createdAt2
+	toColumn: LocalDateTable_c34fd131-dc90-4365-b438-ffd5706aba6a.Date
+
+relationship dcd14cc1-dc5c-4cbd-aa17-71712dc47838
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DanhMucMoi.updatedAt2
+	toColumn: LocalDateTable_e65dbc03-8c5c-4f64-b48c-f92790f43ee1.Date
+
+relationship 5fa7f87e-0718-41ab-b9f4-17c6407f4925
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DanhMucMoi.deletedAt2
+	toColumn: LocalDateTable_171caaad-c85d-48a6-bc3f-1651a402b527.Date
+
+relationship 89c5dedd-e453-4da3-b984-3de164483323
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DanhMucMoi.createdAt3
+	toColumn: LocalDateTable_3e27f053-1dc1-47a7-a52a-e61a830e835a.Date
+
+relationship ab4c4242-4444-49e2-a560-0952ab85463f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DanhMucMoi.updatedAt3
+	toColumn: LocalDateTable_d70ec03e-fb81-418d-a49f-d9227ce8a640.Date
+
+relationship 75244707-48c1-4994-a1e0-977939adb8fb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DanhMucMoi.deletedAt3
+	toColumn: LocalDateTable_b69de616-fc41-4bc3-93f8-78ccc188cb1f.Date
+
+relationship 6528e9f5-f3d0-43f6-8bf1-3fccc57dc39e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DanhMucMoi.createdAt4
+	toColumn: LocalDateTable_1bbe5206-9977-42a0-b83d-4697db2d3864.Date
+
+relationship 28e16ba6-a3e2-4bd8-8a44-1b2c36f97214
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DanhMucMoi.updatedAt4
+	toColumn: LocalDateTable_b31a99ac-5252-4ac4-a163-3962d09056c7.Date
+
+relationship 720a9502-bd6d-40b9-a772-129bf72ba9c9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DanhMucMoi.deletedAt4
+	toColumn: LocalDateTable_94372784-ce93-484a-a6b1-9a5418310086.Date
+
+relationship 1b9083d4-f555-4185-a2e0-ac7e05bc9a77
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DanhMucDauTu.createdAt
+	toColumn: LocalDateTable_03e0c47e-1a18-490a-b26d-9dcb5aed5555.Date
+
+relationship 9c4d1f0a-d307-40a6-bbfc-543382dd3a8f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DanhMucDauTu.updatedAt
+	toColumn: LocalDateTable_1765c1be-2d17-4455-b086-3acc217e1916.Date
+
+relationship 5565dc79-3bae-4d09-927f-0beb1d3ccb0f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DanhMucDauTu.deletedAt
+	toColumn: LocalDateTable_1f6115ca-65d6-4ac2-b8b6-f7fb222bd3b3.Date
+
+relationship 615b57e4-c2be-4bc0-aa58-9b731cf6a819
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DanhMucDauTu.createdAt2
+	toColumn: LocalDateTable_5b187bb8-30a6-4ed7-893c-9359fb7a5cef.Date
+
+relationship 44e8d7ed-3106-4d65-a09b-a27766caeb4b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DanhMucDauTu.updatedAt2
+	toColumn: LocalDateTable_b3ffdfb0-c3d8-4972-a9c2-c35e9d89e77d.Date
+
+relationship 9f301338-528f-45f2-9b7f-bd51f448d71c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DanhMucDauTu.deletedAt2
+	toColumn: LocalDateTable_1df6bd73-08c8-4547-b0f0-476f79e16534.Date
+
+relationship fb6a4a1d-3ad9-4e7f-a350-c11f2d859057
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DanhMucDauTu.createdAt3
+	toColumn: LocalDateTable_db28eeca-f806-4167-8f15-c96ed5870865.Date
+
+relationship f0e34552-162a-4d51-ad1a-51de28ec9d98
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DanhMucDauTu.updatedAt3
+	toColumn: LocalDateTable_66f5870f-3782-4ceb-9f4f-a5042b9f8878.Date
+
+relationship bcbe681a-dbf8-4fd6-bf85-4919184f8cca
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DanhMucDauTu.deletedAt3
+	toColumn: LocalDateTable_f4d67706-ce1f-4a1d-84ff-3fdaec45a309.Date
+
+relationship d4b13710-c079-4b08-9651-61279da1f8c8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DanhMucDauTu.createdAt4
+	toColumn: LocalDateTable_bd34729c-ae1d-4ccb-a2ac-09c29ca5a644.Date
+
+relationship d37f972d-b16a-4b62-93b6-27c1be366517
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DanhMucDauTu.updatedAt4
+	toColumn: LocalDateTable_35bab40c-0a67-46a2-9f27-10a9790125f8.Date
+
+relationship 11f37a44-aa72-49b0-9a75-0304db48db19
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DanhMucDauTu.deletedAt4
+	toColumn: LocalDateTable_1114630c-bf37-45d3-a79b-9add9657df57.Date
+
+relationship AutoDetected_6246aa72-c14b-495b-95c0-35765d0ea26b
+	fromColumn: DanhMucDauTu.project_id
+	toColumn: DanhMucMoi.project_id
+
+relationship e9d5254a-3939-6531-a422-696cd022403f
+	toCardinality: many
+	fromColumn: Head_Count.'Mã cụm'
+	toColumn: DanhMucDauTu.BanDieuHanh
+
+relationship c553807b-eea2-49be-a41c-6d21dc875143
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Project.date_start
+	toColumn: LocalDateTable_40b1f763-88ce-4da3-a37d-e4cc8e5ca58d.Date
+
+relationship 741f7aa8-a824-4183-9a65-bc538f2dca86
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Project.date_end
+	toColumn: LocalDateTable_bb984931-8082-4e42-82f7-cd44a19440b6.Date
+
+relationship 5a0dd8d1-c6c4-4cfd-ad34-f25ba7b85f73
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Eoffice_TD.end_plan
+	toColumn: LocalDateTable_84dc2871-0e77-47e8-b4e4-d5f2776756ea.Date
+
+relationship d2adecce-de3a-4fee-8365-2ba949c1b438
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Eoffice_TD.start_plan
+	toColumn: LocalDateTable_57ebb263-ed9f-4e0c-94d3-61eae2f98dd6.Date
+
+relationship 5f15347f-d45d-4646-aaef-782d745faaff
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Head_Count.refesh_time
+	toColumn: LocalDateTable_9db38614-d137-44c6-adfb-2c3206ff04f0.Date
+
+relationship 612f9fdd-5ffe-48fe-9bc7-f5325a7df64e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: headcount_gmd.import_date
+	toColumn: LocalDateTable_6e877ef4-1951-4e97-9e47-8848b6d42526.Date
+
+relationship 59d519dd-d969-030c-ea72-81448ef0a52e
+	toCardinality: many
+	fromColumn: headcount_gmd.'Mã cụm'
+	toColumn: DanhMucDauTu.BanDieuHanh
+

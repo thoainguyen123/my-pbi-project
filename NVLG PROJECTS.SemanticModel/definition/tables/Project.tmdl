@@ -1,0 +1,256 @@
+table Project
+	lineageTag: f2906898-a088-4f83-976b-41bd4875bce8
+
+	measure Link_project_ = ```
+			
+			VAR _link = SELECTEDVALUE(Project[Link_project])
+			RETURN
+			IF(
+			    NOT ISBLANK(_link),
+			    "<a href='" & _link & "' target='_blank' " &
+			    "style='text-decoration:underline;color:#1a73e8;display:inline-block;'>" &
+			    "Link</a>",
+			    BLANK()
+			)
+			
+			```
+		lineageTag: 5dcdc4ac-30d6-44e6-9fcb-a613f49759cd
+
+	column ID
+		dataType: string
+		lineageTag: a98071bf-829d-44a6-a07f-6f10908d0504
+		summarizeBy: none
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column code
+		dataType: string
+		lineageTag: fab5641b-e726-428c-b7f1-109a427757dd
+		summarizeBy: none
+		sourceColumn: code
+
+		annotation SummarizationSetBy = Automatic
+
+	column title
+		dataType: string
+		lineageTag: a026f8cb-05f8-49c2-8c7d-6ddba43ebc34
+		summarizeBy: none
+		sourceColumn: title
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_start
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e3e54ca9-b177-4ce9-900a-1f10257f9c14
+		summarizeBy: none
+		sourceColumn: date_start
+
+		variation Variation
+			isDefault
+			relationship: c553807b-eea2-49be-a41c-6d21dc875143
+			defaultHierarchy: LocalDateTable_40b1f763-88ce-4da3-a37d-e4cc8e5ca58d.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column date_end
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6b076f76-55e1-499a-97e4-9c0c4dbdc88f
+		summarizeBy: none
+		sourceColumn: date_end
+
+		variation Variation
+			isDefault
+			relationship: 741f7aa8-a824-4183-9a65-bc538f2dca86
+			defaultHierarchy: LocalDateTable_bb984931-8082-4e42-82f7-cd44a19440b6.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column status
+		dataType: string
+		lineageTag: 29082d5f-0f2c-42c0-b180-b2c64266fcd7
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column num_task
+		dataType: string
+		lineageTag: cbf41c11-f13f-4452-be07-742b9e1ca918
+		summarizeBy: none
+		sourceColumn: num_task
+
+		annotation SummarizationSetBy = Automatic
+
+	column owner_ids
+		dataType: string
+		lineageTag: f69eaa72-ad7d-4b22-a4de-9cca06713528
+		summarizeBy: none
+		sourceColumn: owner_ids
+
+		annotation SummarizationSetBy = Automatic
+
+	column desc
+		dataType: string
+		lineageTag: 955df7aa-6fcd-4936-8382-53c5bf259590
+		summarizeBy: none
+		sourceColumn: desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column progress
+		dataType: double
+		formatString: 0%;-0%;0%
+		lineageTag: 35ffbccf-6ec9-49b8-bbff-01aca7e9acee
+		summarizeBy: sum
+		sourceColumn: progress
+
+		annotation SummarizationSetBy = Automatic
+
+	column progress_type
+		dataType: string
+		lineageTag: e0a83a84-6b7f-43c7-aaa3-8da966f5f6cc
+		summarizeBy: none
+		sourceColumn: progress_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column project_type_id
+		dataType: string
+		lineageTag: 297c0e71-7b52-4da3-a877-92daa5308eca
+		summarizeBy: none
+		sourceColumn: project_type_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column tasklist
+		dataType: string
+		lineageTag: 8718f1d8-ef84-4bb3-bcc4-4b6e723488ba
+		summarizeBy: none
+		sourceColumn: tasklist
+
+		annotation SummarizationSetBy = Automatic
+
+	column cf1
+		dataType: string
+		lineageTag: d17c0955-3ca8-4e58-b3df-2cc60f8cf841
+		summarizeBy: none
+		sourceColumn: cf1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Link_project = "https://eoffice.novagroup.vn/work-project-project/view?ID="&Project[ID]&"&name=visual-work&tab=work"
+		lineageTag: 6014aaf1-f1d1-4a42-ac61-cc12ea84b40b
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'tag_ids.1'
+		dataType: string
+		lineageTag: b2fdcb0d-4d67-47dc-a817-d904ea6e2ab9
+		summarizeBy: none
+		sourceColumn: tag_ids.1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'tag_ids.2'
+		dataType: string
+		lineageTag: 5884a7a0-57be-442b-953e-15e680059bc2
+		summarizeBy: none
+		sourceColumn: tag_ids.2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'tag_ids.3'
+		dataType: string
+		lineageTag: c78acbf0-6f85-4d6b-ae1c-802534429451
+		summarizeBy: none
+		sourceColumn: tag_ids.3
+
+		annotation SummarizationSetBy = Automatic
+
+	column timeline_KH = DATEDIFF(Project[date_start],Project[date_end],DAY) + 1
+		formatString: 0
+		lineageTag: 459c7fa3-925d-4166-844f-1a90bc0dacbc
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column time_actual = DATEDIFF(Project[date_start],NOW(),DAY)
+		formatString: 0
+		lineageTag: b734d85d-b234-4a1c-99ac-dc8408c2268d
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column KH = IF(Project[time_actual]/Project[timeline_KH]>1,1,Project[time_actual]/Project[timeline_KH])
+		formatString: 0%;-0%;0%
+		lineageTag: fc03720d-8b87-444f-8d04-175a723b74b2
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Project = m
+		mode: import
+		source = ```
+				let
+				    // 1. Hàm lấy từng trang (Đã sửa để fix lỗi Dynamic Data Source)
+				    GetPage = (PageNumber as number) =>
+				        let
+				            // URL Gốc (Cố định, không được sửa dòng này)
+				            BaseUrl = "https://eoffice.novagroup.vn/api/work/project/gets/",
+				            
+				            // Các tham số thay đổi (page, limit, token) đưa vào đây
+				            Options = [
+				                Query = [
+				                    access_token = "11869677726889ca3399560771094974",
+				                    limit = "100",
+				                    page = Number.ToText(PageNumber)
+				                ]
+				            ],
+				            
+				            // Gọi Web.Contents với cấu trúc chuẩn: Link gốc + Tham số
+				            Source = Json.Document(Web.Contents(BaseUrl, Options)),
+				            
+				            // Lấy dữ liệu
+				            DataList = Source[data]
+				        in
+				            DataList,
+				
+				    // 2. Vòng lặp (Giữ nguyên)
+				    SourceList = List.Generate(
+				        () => [Result = GetPage(1), Page = 1],
+				        each not List.IsEmpty([Result]),
+				        each [Result = GetPage([Page] + 1), Page = [Page] + 1],
+				        each [Result]
+				    ),
+				
+				    // 3. Gom dữ liệu (Giữ nguyên)
+				    #"Combined List" = List.Combine(SourceList),
+				
+				    // 4. Chuyển thành bảng và xử lý (Giữ nguyên code của bạn)
+				    #"Converted to Table" = Table.FromList(#"Combined List", Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+				    #"Expanded Column1" = Table.ExpandRecordColumn(#"Converted to Table", "Column1", 
+				        {"ID", "code", "title", "date_start", "date_end", "status", "num_task", "owner_ids", "desc", "progress", "progress_type", "project_type_id", "tasklist", "tag_ids", "cf1"}, 
+				        {"ID", "code", "title", "date_start", "date_end", "status", "num_task", "owner_ids", "desc", "progress", "progress_type", "project_type_id", "tasklist", "tag_ids", "cf1"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Column1",{{"progress", Percentage.Type}}),
+				    #"Split Column by Delimiter" = Table.SplitColumn(#"Changed Type", "tag_ids", Splitter.SplitTextByDelimiter(",", QuoteStyle.Csv), {"tag_ids.1", "tag_ids.2", "tag_ids.3"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"tag_ids.1", type text}, {"tag_ids.2", type text}, {"tag_ids.3", type text}}),
+				    #"Removed Blank Rows" = Table.SelectRows(#"Changed Type1", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null}))),
+				    #"Removed Errors" = Table.RemoveRowsWithErrors(#"Removed Blank Rows", {"code"}),
+				    #"Filtered Rows" = Table.SelectRows(#"Removed Errors", each ([code] <> null)),
+				    #"Changed Type with Locale" = Table.TransformColumnTypes(#"Filtered Rows", {{"date_start", type date},{"date_end", type date}}, "en-DE")
+				in
+				    #"Changed Type with Locale"
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

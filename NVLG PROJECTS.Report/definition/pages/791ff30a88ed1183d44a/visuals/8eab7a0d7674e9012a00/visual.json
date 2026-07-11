@@ -1,0 +1,80 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "8eab7a0d7674e9012a00",
+  "position": {
+    "x": 162.26600985221674,
+    "y": 223.44827586206895,
+    "z": 2000,
+    "height": 229.65517241379311,
+    "width": 808.66995073891621,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PQ_Khu_Vuc"
+                    }
+                  },
+                  "Property": "Họ và Tên"
+                }
+              },
+              "queryRef": "PQ_Khu_Vuc.Họ và Tên",
+              "nativeQueryRef": "Họ và Tên"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PQ_Khu_Vuc"
+                    }
+                  },
+                  "Property": "Khu vực"
+                }
+              },
+              "queryRef": "PQ_Khu_Vuc.Khu vực",
+              "nativeQueryRef": "Khu vực"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PQ_Khu_Vuc"
+                    }
+                  },
+                  "Property": "Email (*)"
+                }
+              },
+              "queryRef": "PQ_Khu_Vuc.Email (*)",
+              "nativeQueryRef": "Email (*)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DanhMucDauTu"
+                    }
+                  },
+                  "Property": "Tên Dự Án"
+                }
+              },
+              "queryRef": "DanhMucDauTu.Tên Dự Án",
+              "nativeQueryRef": "Tên Dự Án"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

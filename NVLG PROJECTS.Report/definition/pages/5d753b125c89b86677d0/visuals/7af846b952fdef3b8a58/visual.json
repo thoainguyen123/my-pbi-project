@@ -1,0 +1,53 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "7af846b952fdef3b8a58",
+  "position": {
+    "x": 276.25,
+    "y": 1930,
+    "z": 54000,
+    "height": 767.5,
+    "width": 135,
+    "tabOrder": 54000
+  },
+  "visual": {
+    "visualType": "htmlContent443BE3AD55E043BF878BED274D3A6865",
+    "query": {
+      "queryState": {
+        "content": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Org"
+                    }
+                  },
+                  "Property": "OrgChart_Support_Dept_Vertical_Scroll"
+                }
+              },
+              "queryRef": "Org.OrgChart_Support_Dept_Vertical_2",
+              "nativeQueryRef": "OrgChart_Support_Dept_Vertical_Scroll"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

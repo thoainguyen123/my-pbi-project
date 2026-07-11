@@ -1,0 +1,7 @@
+role PQ_KhuVuc
+	modelPermission: read
+
+	tablePermission PQ_Khu_Vuc = [Email (*)] == USERPRINCIPALNAME()
+
+	annotation PBI_Id = 94928ac92f224bb29e0eeeb2c8a95431
+

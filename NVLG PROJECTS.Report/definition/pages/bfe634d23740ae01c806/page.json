@@ -1,0 +1,48 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "bfe634d23740ae01c806",
+  "displayName": "4.2 Quản lý Thiết kế",
+  "displayOption": "FitToWidth",
+  "height": 720,
+  "width": 1080,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "b254cab8bede2d80447a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DanhMucDauTu"
+              }
+            },
+            "Property": "TenDuAn_CoSTT"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "88728dc4e0074de5d302",
+    "type": "Drillthrough",
+    "parameters": [
+      {
+        "name": "99e2fd63d47bb30d7caa",
+        "boundFilter": "b254cab8bede2d80447a",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DanhMucDauTu"
+              }
+            },
+            "Property": "TenDuAn_CoSTT"
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode"
+}

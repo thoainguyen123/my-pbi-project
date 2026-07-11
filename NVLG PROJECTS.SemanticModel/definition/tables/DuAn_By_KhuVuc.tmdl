@@ -1,0 +1,52 @@
+table DuAn_By_KhuVuc
+	lineageTag: d98bb2d1-c03d-4d8a-9e2e-3fdb455f0bb7
+
+	column BanDieuHanh
+		lineageTag: 2e57b0d3-1093-4dc9-a962-36637e952da5
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [BanDieuHanh]
+
+		annotation SummarizationSetBy = Automatic
+
+	column TenDuAn
+		lineageTag: 0b6a81ce-525f-44b6-b171-d52d25bbf317
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [TenDuAn]
+
+		annotation SummarizationSetBy = Automatic
+
+	column NhomDuAn
+		lineageTag: 036126f0-156d-4965-82b1-b113098dd820
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [NhomDuAn]
+
+		annotation SummarizationSetBy = Automatic
+
+	column isDelete
+		formatString: 0
+		lineageTag: 2cfb5dde-43a1-4d72-98c6-d86849c78763
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [isDelete]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DuAn_By_KhuVuc = calculated
+		mode: import
+		source = ```
+				
+				SELECTCOLUMNS (
+				    'DanhMucDauTu',
+				    "BanDieuHanh", 'DanhMucDauTu'[BanDieuHanh],
+				    "TenDuAn",     'DanhMucDauTu'[Tên Dự Án],
+				    "NhomDuAn",    'DanhMucDauTu'[Nhóm Dự án],
+				    "isDelete", DanhMucDauTu[is_delete]
+				)
+				
+				```
+
+	annotation PBI_Id = 3ba4fc7ba46a4e42961cab2d3338d368
+

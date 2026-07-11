@@ -1,0 +1,117 @@
+table headcount_gmd
+	lineageTag: 2561f0f7-bf58-4426-86bb-23088a576d2a
+
+	column STT
+		dataType: string
+		lineageTag: 2a10932f-de62-4f09-b33f-742dd43f48c6
+		summarizeBy: none
+		sourceColumn: STT
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mã cụm'
+		dataType: string
+		lineageTag: e6f2df69-8205-4897-b0f7-56e90ffe2747
+		summarizeBy: none
+		sourceColumn: Mã cụm
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dự án/Phòng ban'
+		dataType: string
+		lineageTag: a1f65d34-aaf0-4bb4-946d-a5671f01ff67
+		summarizeBy: none
+		sourceColumn: Dự án/Phòng ban
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tổng headcount 2026'
+		dataType: string
+		lineageTag: 9adc625d-958c-4170-a92d-02cdfd6faabb
+		summarizeBy: none
+		sourceColumn: Tổng headcount 2026
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SL Đang làm việc'
+		dataType: int64
+		formatString: 0
+		lineageTag: 27dcf8d7-ee5e-4ebd-aa26-f49b11e6ecb2
+		summarizeBy: sum
+		sourceColumn: SL Đang làm việc
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SL Đang tuyển'
+		dataType: string
+		lineageTag: 59130e6c-c362-4d9b-b664-fd1204d8030b
+		summarizeBy: none
+		sourceColumn: SL Đang tuyển
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SL Sắp ONB & Đ/c'
+		dataType: string
+		lineageTag: 02c80005-fe8c-4efb-a7b2-90392869e5d5
+		summarizeBy: none
+		sourceColumn: SL Sắp ONB & Đ/c
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Các vị trí sắp ONB & thời gian'
+		dataType: string
+		lineageTag: a9212158-628b-4fe6-93c6-b817a231a1d7
+		summarizeBy: none
+		sourceColumn: Các vị trí sắp ONB & thời gian
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ghi chú'
+		dataType: string
+		lineageTag: 7418c865-a1c7-407f-bdad-5399109bc9ea
+		summarizeBy: none
+		sourceColumn: Ghi chú
+
+		annotation SummarizationSetBy = Automatic
+
+	column import_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b9f515ee-34e4-4684-8767-13b33d8a5d6d
+		summarizeBy: none
+		sourceColumn: import_date
+
+		variation Variation
+			isDefault
+			relationship: 612f9fdd-5ffe-48fe-9bc7-f5325a7df64e
+			defaultHierarchy: LocalDateTable_6e877ef4-1951-4e97-9e47-8848b6d42526.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Tổng headcount Tháng'
+		dataType: string
+		lineageTag: b8522d66-95b4-4845-92f0-b9a5ac94bbdc
+		summarizeBy: none
+		sourceColumn: Tổng headcount Tháng
+
+		annotation SummarizationSetBy = Automatic
+
+	partition headcount_gmd = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("192.168.97.4", "ics_poc"),
+				    dbo_headcount_gmd = Source{[Schema="dbo",Item="headcount_gmd"]}[Data],
+				    #"Filtered Rows" = Table.SelectRows(dbo_headcount_gmd, each ([STT] <> null and [STT] <> "STT" and [STT] <> " ") and ([Mã cụm] <> null)),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Filtered Rows",{{"import_date", type date}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

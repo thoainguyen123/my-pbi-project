@@ -1,0 +1,1 @@
+EVALUATE ROW("LastTime", MAX(Head_Count[refesh_time]))

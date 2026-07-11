@@ -1,0 +1,41 @@
+table KhuVuc_Layout
+	lineageTag: 4780af18-2293-4ee7-b753-f873397495a2
+
+	column 'Khu vực'
+		lineageTag: b54a0922-9422-4d09-858d-62358d755b79
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: PQ_Khu_Vuc[Khu vực]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Email (*)'
+		lineageTag: 1f472570-15b3-422b-8c5c-19c4197d745d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: PQ_Khu_Vuc[Email (*)]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Họ và Tên'
+		lineageTag: 69a6fbb7-9bda-4f0e-aa77-5dee32232c2d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: PQ_Khu_Vuc[Họ và Tên]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column4
+		lineageTag: 3f3fb784-6d70-4078-92c5-0fda6277fa29
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: PQ_Khu_Vuc[Column4]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition KhuVuc_Layout = calculated
+		mode: import
+		source = PQ_Khu_Vuc
+
+	annotation PBI_Id = 5defc38a34304eea98b9a542d0c6a16d
+

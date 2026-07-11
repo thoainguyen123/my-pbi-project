@@ -1,0 +1,238 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 383.8235294117647,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 943.48530781879185,
+            "y": 1062.0340722048309
+          },
+          "nodeIndex": "db_novahub_pro employeeorg1offices",
+          "nodeLineageTag": "26d7e958-b407-4e6b-aa09-a9e6911233c3",
+          "size": {
+            "height": 513.89984826142972,
+            "width": 234
+          },
+          "zIndex": 14
+        },
+        {
+          "location": {
+            "x": 1125.4518825868324,
+            "y": 751.73329609450275
+          },
+          "nodeIndex": "Org",
+          "nodeLineageTag": "c0bc12c9-4914-461a-b0cd-04b1c421db1e",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 15
+        },
+        {
+          "location": {
+            "x": 738.9630224816101,
+            "y": 522.26948484583738
+          },
+          "nodeIndex": "Eoffice_TD",
+          "nodeLineageTag": "dfa78093-9074-468b-bbd8-1d8f37664f5a",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 16
+        },
+        {
+          "location": {
+            "x": 1369.1560666156136,
+            "y": 1064.940317707204
+          },
+          "nodeIndex": "Table",
+          "nodeLineageTag": "07bf366b-2b52-49da-904c-957d23b77ab4",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 18
+        },
+        {
+          "location": {
+            "x": 85.54723463360267,
+            "y": 916.02721099107578
+          },
+          "nodeIndex": "Project",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 268.27677765132694,
+            "y": 462.90538041575019
+          },
+          "nodeIndex": "Dự án",
+          "nodeLineageTag": "d0cfd250-2bc0-4ae2-a972-34aa91ecff6d",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 458.75816855788344,
+            "y": 849.06776770041483
+          },
+          "nodeIndex": "DanhMucDauTu",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 689.46389585751285
+          },
+          "nodeIndex": "PQ_Du_An",
+          "nodeLineageTag": "b23443de-96e2-400a-9aa2-f79d5121e261",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 197.28541094464731,
+            "y": 1244.3566248048965
+          },
+          "nodeIndex": "PQ_Khu_Vuc",
+          "nodeLineageTag": "d5222841-675f-4bd5-be73-18654793ebfd",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1571.8481711912393,
+            "y": 857.616683758577
+          },
+          "nodeIndex": "KhuVuc_Layout",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 1855.8481711912393,
+            "y": 857.616683758577
+          },
+          "nodeIndex": "DuAn_By_KhuVuc",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 1741.2800563658759,
+            "y": 1163.0487293805224
+          },
+          "nodeIndex": "Sheet1",
+          "nodeLineageTag": "9e5d2790-03b9-41e4-ab83-d8fff441424e",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 17
+        },
+        {
+          "location": {
+            "x": 2423.8481711912391,
+            "y": 839.30299799325246
+          },
+          "nodeIndex": "DanhMucMoi",
+          "nodeLineageTag": "66d39346-60bc-4f84-8a33-38f52d333cdb",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 2707.8481711912391,
+            "y": 894.70673897507265
+          },
+          "nodeIndex": "NV_HR",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 662.61610815181655,
+            "y": 1179.3575429475477
+          },
+          "nodeIndex": "Head_Count",
+          "nodeLineageTag": "4e982d00-8ac6-4ca1-a783-3bf70576b12d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 13
+        },
+        {
+          "location": {
+            "x": 2991.8481711912391,
+            "y": 661.39183116020331
+          },
+          "nodeIndex": "Org_Chung",
+          "nodeLineageTag": "c00d29b4-d4a9-415a-ab39-7959f243c32e",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1259.671700603004,
+            "y": 1183.8688180401464
+          },
+          "nodeIndex": "headcount_gmd",
+          "nodeLineageTag": "2561f0f7-bf58-4426-86bb-23088a576d2a",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 68,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

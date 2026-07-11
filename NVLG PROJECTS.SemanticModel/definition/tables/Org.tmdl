@@ -1,0 +1,2116 @@
+table Org
+	lineageTag: c0bc12c9-4914-461a-b0cd-04b1c421db1e
+
+	measure 'OrgCard HTML Optimize' = ```
+			
+			VAR _oc        = SELECTEDVALUE ( Org[Mã OC] )
+			VAR _gap       = 6 
+			VAR _role_gap  = 4 
+			VAR _min_h =
+			    SWITCH( TRUE(),
+			        CONTAINSSTRING(_oc, "3."), 120,
+			        CONTAINSSTRING(_oc, "4."), 210,
+			        CONTAINSSTRING(_oc, "2."), 196,
+			        CONTAINSSTRING(_oc, "1."), 150,
+			        CONTAINSSTRING(_oc, "PLP2"), 185,
+			        128
+			    )
+			
+			-- 1. Lấy data gốc
+			VAR _RawData = 
+			    CALCULATETABLE (
+			        Org,
+			        Org[Mã OC] = _oc,
+			        REMOVEFILTERS( Org )
+			    )
+			
+			-- 2. TẠO BẢNG HIỂN THỊ (Loại trùng nội dung ngay từ đầu)
+			VAR _DisplayData = 
+			    SUMMARIZE(
+			        _RawData,
+			        Org[Chức danh],
+			        Org[HTML_Nhan_Vien]
+			    )
+			
+			-- 3. ĐẾM ĐỊNH BIÊN
+			VAR _Rows_Valid = 
+			    FILTER( 
+			        _RawData, 
+			        Org[Ghi chú] <> "không tồn tại" && 
+			        Org[Ghi chú] <> "không hoạt động" 
+			    )
+			VAR _Total_Plan = COUNTROWS( _Rows_Valid ) + 0
+			VAR _Total_Current = COUNTX( _Rows_Valid, Org[Tên nhân viên] ) + 0
+			
+			VAR _Header_Dinh_Bien = 
+			    IF(
+			        _Total_Plan > 0, 
+			        "<div style='margin-bottom:" & _gap & "px; padding-bottom:4px; border-bottom:1px dashed #ccc; font-size: 11px;'>" & 
+			            "<span style='color:#666;'>Định biên: </span>" & 
+			            "<span style='font-weight:bold; color:#005c99;'>" & _Total_Current & "/" & _Total_Plan & "</span>" &
+			        "</div>",
+			        ""
+			    )
+			
+			-- Xác định thẻ có chứa trạng thái "không tồn tại" hay không
+			VAR _has_khong_ton_tai = SUMX( _RawData, Org[Is_Khong_Ton_Tai] ) > 0
+			
+			-- 4. PHẦN DANH SÁCH NHÂN VIÊN
+			VAR _roles =
+			    SUMMARIZE (
+			        _RawData,
+			        Org[Chức danh],
+			        "RoleOrder", MIN ( Org[Thứ tự] )
+			    )
+			
+			VAR _body_content =
+			    CONCATENATEX (
+			        _roles,
+			        VAR _role = [Chức danh]
+			        
+			        VAR _names_html = 
+			            CONCATENATEX(
+			                FILTER( _DisplayData, Org[Chức danh] = _role ),
+			                Org[HTML_Nhan_Vien], 
+			                ""
+			            )
+			
+			        RETURN
+			            "<div style='margin:0 0 " & _gap & "px 0;padding:0'>" &
+			                "<span style='display:block;margin:0 0 " & _role_gap & "px 0;padding:0;font-weight:600;'>" & _role & "</span>" &
+			                IF (
+			                    _has_khong_ton_tai,
+			                    -- Nếu có trạng thái không tồn tại thì ép hiển thị Không tuyển
+			                    "<span style='display:block;margin:0;padding:0;color:#777;font-style:italic'>Không tuyển</span>",
+			                    -- Nếu bình thường thì chạy logic cũ
+			                    IF (
+			                        LEN ( _names_html ) = 0,
+			                        "<span style='display:block;margin:0;padding:0;color:#999;font-style:italic'>(Trống)</span>",
+			                        _names_html
+			                    )
+			                ) &
+			            "</div>",
+			        "",
+			        [RoleOrder], ASC
+			    )
+			
+			VAR _final_body = _Header_Dinh_Bien & _body_content
+			
+			-- 5. STYLE CARD
+			VAR _card_style =
+			    "display:block;width:100%;height:100%;box-sizing:border-box;" &
+			    "margin:0;line-height:1.2;" & 
+			    IF (
+			        _has_khong_ton_tai,
+			        "background:#e6e6e6;color:#777;opacity:1.1;" &
+			        "padding:8px 10px;" &
+			        "border-radius: 28px;" & 
+			        "min-height:" & _min_h & "px;",
+			        "padding:0;"
+			    )
+			
+			RETURN
+			    "<div style='" & _card_style & "'>" & _final_body & "</div>"
+			```
+		lineageTag: 113b0597-10dc-4cfc-b0ff-6ab5adb38cc7
+
+	measure 'TCKT link' = ```
+			
+			VAR Link = "https://app.powerbi.com/groups/1bc73c10-682f-4ec0-b653-542ec85e77b5/reports/69ff69d4-9853-4c6f-b0f5-0e63267222cf/8ee8adb13c4b5128e0e8?experience=power-bi&clientSideAuth=0"
+			VAR Ten  = Org[OrgCard HTML Optimize]
+			RETURN
+			    "<a href=""" 
+			        & Link 
+			        & """ target=""_blank"" style=""text-decoration:none;"">"
+			        & Ten
+			        & "</a>"
+			
+			```
+		lineageTag: 113fb80a-5e04-4237-b11c-683de7c2afa0
+
+	measure OC_IsNotExist = ```
+			
+			VAR _oc = SELECTEDVALUE(Org[Mã OC])
+			RETURN
+			IF(
+			    CALCULATE(
+			        COUNTROWS(Org),
+			        FILTER(
+			            ALL(Org),
+			            Org[Mã OC] = _oc &&
+			            LOWER(TRIM(COALESCE(Org[Ghi chú],""))) = "không tồn tại"
+			        )
+			    ) > 0,
+			    1, 0
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 464ca93a-93f0-467e-ada6-38efea665247
+
+	measure 'Link_dự án' = ```
+			
+			VAR _link = MAX(Eoffice_TD[Link])
+			RETURN
+			IF(
+			    NOT ISBLANK(_link),
+			    "<a href='" & _link & "' target='_blank' " &
+			    "style='text-decoration:underline;color:#1a73e8;display:inline-block;'>" &
+			    "Link</a>",
+			    BLANK()
+			)
+			
+			```
+		lineageTag: 12be6e6a-9529-49e4-be15-df852db1821c
+
+	measure Org_ChungChart_Fixed_Offset_Left = ```
+			
+			-- ==========================================================================================
+			-- PHẦN 1: CẤU HÌNH DỊCH CHUYỂN (Chỉnh số này để nhích qua lại)
+			-- ==========================================================================================
+			VAR _Offset_X = -6  -- Số âm là dịch sang TRÁI, số dương là dịch sang PHẢI
+			
+			-- ==========================================================================================
+			-- PHẦN 2: BẢN ĐỒ TOẠ ĐỘ GỐC (Giữ nguyên như cũ)
+			-- ==========================================================================================
+			VAR _Layout_Map = DATATABLE (
+			    "Ma_OC", STRING, "Left_PX", INTEGER, "Top_PX", INTEGER,
+			    {
+			        { "HRC",    5,    0 },
+			        { "FAC",    140,  0 },
+			        { "SAC",    276,  0 },
+			        { "MAC",    414,  0 },
+			        { "PTC",    550,  0 },
+			        { "QSB",    688,  0 },
+			        { "SED",    824,  0 },
+			        { "IDD",    962,  0 },
+			        { "CSC",    1100, 0 } 
+			    }
+			)
+			
+			-- ==========================================================================================
+			-- PHẦN 3: RENDER
+			-- ==========================================================================================
+			VAR _All_Cards = 
+			    CONCATENATEX(
+			        _Layout_Map,
+			        VAR _Current_OC = [Ma_OC]
+			        -- Áp dụng độ lệch toạ độ tại đây
+			        VAR _Left       = [Left_PX] + _Offset_X
+			        VAR _Top        = [Top_PX]
+			
+			        -- 1. Lấy danh sách Chức danh
+			        VAR _Titles_In_OC = 
+			            CALCULATETABLE(
+			                VALUES(Org_Chung[Chức danh]),
+			                Org_Chung[Mã OC] = _Current_OC,
+			                REMOVEFILTERS(Org_Chung) 
+			            )
+			
+			        VAR _Has_Data = NOT ISEMPTY(_Titles_In_OC)
+			
+			        -- 2. Tạo nội dung Text
+			        VAR _Content_HTML = 
+			            IF( 
+			                _Has_Data,
+			                CONCATENATEX(
+			                    _Titles_In_OC, 
+			                    VAR _Role = Org_Chung[Chức danh]
+			                    VAR _Names = 
+			                        CALCULATE(
+			                            CONCATENATEX(Org_Chung, Org_Chung[HTML_Nhan_Vien], "", Org_Chung[Thứ tự], ASC),
+			                            Org_Chung[Chức danh] = _Role,
+			                            Org_Chung[Mã OC] = _Current_OC
+			                        )
+			                    RETURN 
+			                        IF( 
+			                            _Names <> BLANK(),
+			                            "<div style='margin-bottom:3px; width: 100%;'>" & 
+			                                -- Tiêu đề: Đen, Đậm, Size 8px
+			                                "<div style='color:black; font-weight:600; font-size:10px; margin-bottom:2px; line-height:1.1;'>" & 
+			                                    _Role & 
+			                                "</div>" & 
+			                                -- Tên nhân viên
+			                                "<div style='font-size:10px; line-height:1.1;'>" &
+			                                    _Names & 
+			                                "</div>" &
+			                            "</div>",
+			                            ""
+			                        ),
+			                    "",
+			                    CALCULATE( MIN( Org_Chung[Thứ tự] ) ), ASC 
+			                ),
+			                "<div style='color:#999; font-style:italic; font-size:8px'>(Trống)</div>"
+			            )
+			
+			        -- 3. Style cho khung chứa
+			        VAR _Card_Style = 
+			            "position: absolute; " & 
+			            "top: " & _Top & "px; " & 
+			            "left: " & _Left & "px; " & 
+			            "width: 133px; " &             
+			            "height: 100px; " &            
+			            "font-size: 10px; " &           
+			            
+			            -- Căn chỉnh nội dung
+			            "text-align: center; " &       
+			            "white-space: normal; " &      
+			            "word-wrap: break-word; " &    
+			            "box-sizing: border-box; " &   
+			            "padding: 3px; " &             
+			            "display: flex; " &            
+			            "flex-direction: column; " &   
+			            "align-items: center; " &      
+			            "justify-content: flex-start;" 
+			
+			        RETURN 
+			            "<div style='" & _Card_Style & "'>" & 
+			                _Content_HTML & 
+			            "</div>"
+			    )
+			
+			RETURN
+			    -- Canvas Tổng
+			    "<div style='position:relative; width:100%; height:100px; font-family: Segoe UI;'>" & 
+			        _All_Cards & 
+			    "</div>"
+			```
+		lineageTag: 87c29d9b-3f9d-4384-968b-250950e29171
+
+	measure OrgChart_Support_Dept_All_White = ```
+			
+			-- ==========================================================================================
+			-- PHẦN 1: CẤU HÌNH DỊCH CHUYỂN
+			-- ==========================================================================================
+			VAR _Offset_X = -5 
+			
+			-- ==========================================================================================
+			-- PHẦN 2: BẢN ĐỒ TOẠ ĐỘ GỐC
+			-- ==========================================================================================
+			VAR _Layout_Map = DATATABLE (
+			    "Ma_OC", STRING, "Left_PX", INTEGER, "Top_PX", INTEGER,
+			    {
+			        { "INC",    0,    0 },
+			        { "LEC",    129,  0 },
+			        { "ITD",    261,  0 },
+			        { "PSMD",   393,  0 },
+			        { "CQI",    522,  0 },
+			        { "PRD",    655,  0 },
+			        { "RPC",    788,  0 }
+			    }
+			)
+			
+			-- ==========================================================================================
+			-- PHẦN 3: RENDER
+			-- ==========================================================================================
+			VAR _All_Cards = 
+			    CONCATENATEX(
+			        _Layout_Map,
+			        VAR _Current_OC = [Ma_OC]
+			        VAR _Left       = [Left_PX] + _Offset_X
+			        VAR _Top        = [Top_PX]
+			
+			        -- 1. Lấy danh sách Chức danh
+			        VAR _Titles_In_OC = 
+			            CALCULATETABLE(
+			                VALUES(Org[Chức danh]),
+			                Org[Mã OC] = _Current_OC,
+			                REMOVEFILTERS(Org) 
+			            )
+			
+			        VAR _Has_Data = NOT ISEMPTY(_Titles_In_OC)
+			
+			        -- 2. Tạo nội dung Text
+			        VAR _Content_HTML = 
+			            IF( 
+			                _Has_Data,
+			                CONCATENATEX(
+			                    _Titles_In_OC, 
+			                    VAR _Role = Org[Chức danh]
+			                    VAR _Names = 
+			                        CALCULATE(
+			                            CONCATENATEX(Org, Org[HTML_Nhan_Vien], "", Org[Thứ tự], ASC),
+			                            Org[Chức danh] = _Role,
+			                            Org[Mã OC] = _Current_OC
+			                        )
+			                    RETURN 
+			                        IF( 
+			                            _Names <> BLANK(),
+			                            "<div style='margin-bottom:3px; width: 100%;'>" & 
+			                                -- Tiêu đề: MÀU TRẮNG
+			                                "<div style='color:white; font-weight:bold; font-size:9px; margin-bottom:2px; line-height:1.1;'>" & 
+			                                    _Role & 
+			                                "</div>" & 
+			                                -- Tên nhân viên: MÀU TRẮNG
+			                                "<div style='color:white; font-size:9px; line-height:1.1;'>" &
+			                                    _Names & 
+			                                "</div>" &
+			                            "</div>",
+			                            ""
+			                        ),
+			                    "",
+			                    CALCULATE( MIN( Org[Thứ tự] ) ), ASC 
+			                ),
+			                -- Chữ trống: MÀU TRẮNG
+			                "<div style='color:white; font-style:italic; font-size:8px'>(Trống)</div>"
+			            )
+			
+			        -- 3. Style cho khung chứa
+			        VAR _Card_Style = 
+			            "position: absolute; " & 
+			            "top: " & _Top & "px; " & 
+			            "left: " & _Left & "px; " & 
+			            "width: 120px; " &             
+			            "height: 90px; " &            
+			            "font-size: 8px; " &           
+			            "color: white; " &  -- Thiết lập màu trắng mặc định cho toàn bộ khung
+			            
+			            -- Căn chỉnh nội dung
+			            "text-align: center; " &       
+			            "white-space: normal; " &      
+			            "word-wrap: break-word; " &    
+			            "box-sizing: border-box; " &   
+			            "padding: 3px; " &             
+			            "display: flex; " &            
+			            "flex-direction: column; " &   
+			            "align-items: center; " &      
+			            "justify-content: flex-start;" 
+			
+			        RETURN 
+			            "<div style='" & _Card_Style & "'>" & 
+			                _Content_HTML & 
+			            "</div>"
+			    )
+			
+			RETURN
+			    -- Canvas Tổng
+			    "<div style='position:relative; width:100%; height:90px; font-family: Segoe UI;'>" & 
+			        _All_Cards & 
+			    "</div>"
+			```
+		lineageTag: 6f71d1f1-1d27-4e8e-8bd0-bd61ef9a729b
+
+	measure OrgChart_Support_Dept_Black = ```
+			
+			-- ==========================================================================================
+			-- PHẦN 1: CẤU HÌNH DỊCH CHUYỂN
+			-- ==========================================================================================
+			VAR _Offset_X = -6  -- Số âm là dịch sang TRÁI
+			
+			-- ==========================================================================================
+			-- PHẦN 2: BẢN ĐỒ TOẠ ĐỘ (Support Dept gốc)
+			-- ==========================================================================================
+			VAR _Layout_Map = DATATABLE (
+			    "Ma_OC", STRING, "Left_PX", INTEGER, "Top_PX", INTEGER,
+			    {
+			        { "BCS",    3,    0 },
+			        { "MPM",    142,  0 },
+			        { "PRO",    278,  0 },
+			        { "QSB1",   412,  0 },
+			        { "SED1",   550,  0 },
+			        { "IDD1",   686,  0 },
+			        { "CSC",    822,  0 }
+			    }
+			)
+			
+			-- ==========================================================================================
+			-- PHẦN 3: RENDER
+			-- ==========================================================================================
+			VAR _All_Cards = 
+			    CONCATENATEX(
+			        _Layout_Map,
+			        VAR _Current_OC = [Ma_OC]
+			        VAR _Left       = [Left_PX] + _Offset_X
+			        VAR _Top        = [Top_PX]
+			
+			        -- A. Lấy bảng dữ liệu thuộc Mã OC hiện tại
+			        VAR _OC_Data = 
+			            CALCULATETABLE(
+			                Org,
+			                Org[Mã OC] = _Current_OC,
+			                REMOVEFILTERS(Org)
+			            )
+			
+			        -- B. KIỂM TRA TRẠNG THÁI "KHÔNG TỒN TẠI" CỦA CARD HIỆN TẠI
+			        VAR _Is_Card_Disabled = CALCULATE( SUMX( Org, Org[Is_Khong_Ton_Tai] ), Org[Mã OC] = _Current_OC, REMOVEFILTERS(Org) ) > 0
+			
+			        -- 1. Lấy danh sách Chức danh duy nhất dưới dạng bảng ảo
+			        VAR _Titles_In_OC = SUMMARIZE( _OC_Data, Org[Chức danh] )
+			        VAR _Has_Data = NOT ISEMPTY(_Titles_In_OC)
+			
+			        -- 2. Tạo nội dung Text bên trong Card
+			        VAR _Content_HTML = 
+			            IF( 
+			                _Has_Data,
+			                CONCATENATEX(
+			                    _Titles_In_OC, 
+			                    VAR _Role = Org[Chức danh] -- Lấy trực tiếp từ bảng ảo _Titles_In_OC
+			                    VAR _Names = 
+			                        CALCULATE(
+			                            CONCATENATEX(Org, Org[HTML_Nhan_Vien], "", Org[Thứ tự], ASC),
+			                            Org[Chức danh] = _Role,
+			                            Org[Mã OC] = _Current_OC,
+			                            REMOVEFILTERS(Org)
+			                        )
+			                    
+			                    -- Xác định màu chữ dựa vào trạng thái Card
+			                    VAR _Text_Color = IF( _Is_Card_Disabled, "#777", "black" )
+			                    
+			                    RETURN 
+			                        "<div style='margin-bottom:3px; width: 100%;'>" & 
+			                            -- Tiêu đề Chức danh
+			                            "<div style='color:" & _Text_Color & "; font-weight:600; font-size:10px; margin-bottom:2px; line-height:1.1;'>" & 
+			                                _Role & 
+			                            "</div>" & 
+			                            -- Nội dung Nhân viên / Trống / Không tuyển
+			                            "<div style='color:" & _Text_Color & "; font-size:10px; line-height:1.1;'>" &
+			                                SWITCH(
+			                                    TRUE(),
+			                                    _Is_Card_Disabled, "<span style='font-style:italic;'></span>",
+			                                    ISBLANK(_Names) || LEN(TRIM(_Names)) = 0, "<span style='font-style:italic; color:#999;'>(Trống)</span>",
+			                                    _Names
+			                                ) & 
+			                            "</div>" & 
+			                        "</div>",
+			                    "",
+			                    -- Sắp xếp bằng EARLIER chuẩn hóa
+			                    CALCULATE( MIN( Org[Thứ tự] ), Org[Chức danh] = EARLIER(Org[Chức danh]), Org[Mã OC] = _Current_OC, REMOVEFILTERS(Org) ), ASC 
+			                ),
+			                -- Nếu hoàn toàn không có data dòng nào
+			                "<div style='color:" & IF(_Is_Card_Disabled, "#777", "black") & "; font-style:italic; font-size:10px;'>" & 
+			                    IF(_Is_Card_Disabled, "", "(Trống)") & 
+			                "</div>"
+			            )
+			
+			        -- 3. Style cho khung chứa (Bôi xám động)
+			        VAR _Background_Style = 
+			            IF( 
+			                _Is_Card_Disabled, 
+			                "background: #e6e6e6; color: #777; border-radius: 12px; border: 1px solid #ccc;", 
+			                "background: transparent; color: black;" 
+			            )
+			
+			        VAR _Card_Style = 
+			            "position: absolute; " & 
+			            "top: " & _Top & "px; " & 
+			            "left: " & _Left & "px; " & 
+			            "width: 130px; " & -- Giữ nguyên chiều rộng 130px theo layout gốc của measure này             
+			            "height: 110px; " &            
+			            "font-size: 10px; " & 
+			            _Background_Style & " " & 
+			            
+			            "text-align: center; " &       
+			            "white-space: normal; " &      
+			            "word-wrap: break-word; " &    
+			            "box-sizing: border-box; " &   
+			            "padding: 5px 6px; " &             
+			            "display: flex; " &            
+			            "flex-direction: column; " &   
+			            "align-items: center; " &      
+			            "justify-content: flex-start;" 
+			
+			        RETURN 
+			            "<div style='" & _Card_Style & "'>" & 
+			                _Content_HTML & 
+			            "</div>"
+			    )
+			
+			RETURN
+			    -- Canvas Tổng
+			    "<div style='position:relative; width:100%; height:115px; font-family: Segoe UI;'>" & 
+			        _All_Cards & 
+			    "</div>"
+			```
+		lineageTag: 7287e5fa-af79-4244-a631-9d88ac5789e0
+
+	measure OrgChart_Support_Dept_Black_1 = ```
+			
+			-- ==========================================================================================
+			-- PHẦN 1: CẤU HÌNH DỊCH CHUYỂN
+			-- ==========================================================================================
+			VAR _Offset_X = -6  -- Số âm là dịch sang TRÁI
+			
+			-- ==========================================================================================
+			-- PHẦN 2: BẢN ĐỒ TOẠ ĐỘ (Support Dept 1)
+			-- ==========================================================================================
+			VAR _Layout_Map = DATATABLE (
+			    "Ma_OC", STRING, "Left_PX", INTEGER, "Top_PX", INTEGER,
+			    {
+			        { "OCS",    0,    0 },
+			        { "DCM",    138,  0 },
+			        { "BMD",    272,  0 },
+			        { "QSB2",   410,  0 },
+			        { "SED2",   546,  0 },
+			        { "IDD2",   682,  0 }
+			    }
+			)
+			
+			-- ==========================================================================================
+			-- PHẦN 3: RENDER
+			-- ==========================================================================================
+			VAR _All_Cards = 
+			    CONCATENATEX(
+			        _Layout_Map,
+			        VAR _Current_OC = [Ma_OC]
+			        VAR _Left       = [Left_PX] + _Offset_X
+			        VAR _Top        = [Top_PX]
+			
+			        -- A. Lấy bảng dữ liệu thuộc Mã OC hiện tại
+			        VAR _OC_Data = 
+			            CALCULATETABLE(
+			                Org,
+			                Org[Mã OC] = _Current_OC,
+			                REMOVEFILTERS(Org)
+			            )
+			
+			        -- B. KIỂM TRA TRẠNG THÁI "KHÔNG TỒN TẠI" CỦA CARD HIỆN TẠI
+			        VAR _Is_Card_Disabled = CALCULATE( SUMX( Org, Org[Is_Khong_Ton_Tai] ), Org[Mã OC] = _Current_OC, REMOVEFILTERS(Org) ) > 0
+			
+			        -- 1. Lấy danh sách Chức danh duy nhất dưới dạng bảng ảo
+			        VAR _Titles_In_OC = SUMMARIZE( _OC_Data, Org[Chức danh] )
+			        VAR _Has_Data = NOT ISEMPTY(_Titles_In_OC)
+			
+			        -- 2. Tạo nội dung Text bên trong Card
+			        VAR _Content_HTML = 
+			            IF( 
+			                _Has_Data,
+			                CONCATENATEX(
+			                    _Titles_In_OC, 
+			                    VAR _Role = Org[Chức danh] -- Lấy trực tiếp từ bảng ảo _Titles_In_OC
+			                    VAR _Names = 
+			                        CALCULATE(
+			                            CONCATENATEX(Org, Org[HTML_Nhan_Vien], "", Org[Thứ tự], ASC),
+			                            Org[Chức danh] = _Role,
+			                            Org[Mã OC] = _Current_OC,
+			                            REMOVEFILTERS(Org)
+			                        )
+			                    
+			                    -- Xác định màu chữ dựa vào trạng thái Card
+			                    VAR _Text_Color = IF( _Is_Card_Disabled, "#777", "black" )
+			                    
+			                    RETURN 
+			                        "<div style='margin-bottom:3px; width: 100%;'>" & 
+			                            -- Tiêu đề Chức danh
+			                            "<div style='color:" & _Text_Color & "; font-weight:600; font-size:10px; margin-bottom:2px; line-height:1.1;'>" & 
+			                                _Role & 
+			                            "</div>" & 
+			                            -- Nội dung Nhân viên / Trống / Không tuyển
+			                            "<div style='color:" & _Text_Color & "; font-size:10px; line-height:1.1;'>" &
+			                                SWITCH(
+			                                    TRUE(),
+			                                    _Is_Card_Disabled, "<span style='font-style:italic;'></span>",
+			                                    ISBLANK(_Names) || LEN(TRIM(_Names)) = 0, "<span style='font-style:italic; color:#999;'>(Trống)</span>",
+			                                    _Names
+			                                ) & 
+			                            "</div>" & 
+			                        "</div>",
+			                    "",
+			                    -- Sắp xếp chuẩn hóa bằng EARLIER không lo lỗi cột Chức danh
+			                    CALCULATE( MIN( Org[Thứ tự] ), Org[Chức danh] = EARLIER(Org[Chức danh]), Org[Mã OC] = _Current_OC, REMOVEFILTERS(Org) ), ASC 
+			                ),
+			                -- Nếu hoàn toàn không có data dòng nào
+			                "<div style='color:" & IF(_Is_Card_Disabled, "#777", "black") & "; font-style:italic; font-size:10px;'>" & 
+			                    IF(_Is_Card_Disabled, "Không tuyển", "(Trống)") & 
+			                "</div>"
+			            )
+			
+			        -- 3. Style cho khung chứa (Bôi xám động)
+			        VAR _Background_Style = 
+			            IF( 
+			                _Is_Card_Disabled, 
+			                "background: #e6e6e6; color: #777; border-radius: 12px; border: 1px solid #ccc;", 
+			                "background: transparent; color: black;" 
+			            )
+			
+			        VAR _Card_Style = 
+			            "position: absolute; " & 
+			            "top: " & _Top & "px; " & 
+			            "left: " & _Left & "px; " & 
+			            "width: 133px; " &              
+			            "height: 110px; " &            
+			            "font-size: 10px; " & 
+			            _Background_Style & " " & 
+			            
+			            "text-align: center; " &       
+			            "white-space: normal; " &      
+			            "word-wrap: break-word; " &    
+			            "box-sizing: border-box; " &   
+			            "padding: 5px 6px; " &             
+			            "display: flex; " &            
+			            "flex-direction: column; " &   
+			            "align-items: center; " &      
+			            "justify-content: flex-start;" 
+			
+			        RETURN 
+			            "<div style='" & _Card_Style & "'>" & 
+			                _Content_HTML & 
+			            "</div>"
+			    )
+			
+			RETURN
+			    -- Canvas Tổng
+			    "<div style='position:relative; width:100%; height:115px; font-family: Segoe UI;'>" & 
+			        _All_Cards & 
+			    "</div>"
+			```
+		lineageTag: 45fc1109-6905-4df4-9c24-b7a9742206ed
+
+	measure OrgChart_Support_Dept_Black_2 = ```
+			
+			-- ==========================================================================================
+			-- PHẦN 1: CẤU HÌNH DỊCH CHUYỂN
+			-- ==========================================================================================
+			VAR _Offset_X = -6  -- Số âm là dịch sang TRÁI
+			
+			-- ==========================================================================================
+			-- PHẦN 2: BẢN ĐỒ TOẠ ĐỘ (Support Dept)
+			-- ==========================================================================================
+			VAR _Layout_Map = DATATABLE (
+			    "Ma_OC", STRING, "Left_PX", INTEGER, "Top_PX", INTEGER,
+			    {
+			        { "ACS",    0,    0 },
+			        { "SMPC",   138,  0 },
+			        { "PAS",    270,  0 },
+			        { "SED3",   542,  0 },
+			        { "IDD3",   680,  0 }  
+			    }
+			)
+			
+			-- ==========================================================================================
+			-- PHẦN 3: RENDER
+			-- ==========================================================================================
+			VAR _All_Cards = 
+			    CONCATENATEX(
+			        _Layout_Map,
+			        VAR _Current_OC = [Ma_OC]
+			        VAR _Left       = [Left_PX] + _Offset_X
+			        VAR _Top        = [Top_PX]
+			
+			        -- A. Lấy bảng dữ liệu thuộc Mã OC hiện tại
+			        VAR _OC_Data = 
+			            CALCULATETABLE(
+			                Org,
+			                Org[Mã OC] = _Current_OC,
+			                REMOVEFILTERS(Org)
+			            )
+			
+			        -- B. KIỂM TRA TRẠNG THÁI "KHÔNG TỒN TẠI" CỦA CARD HIỆN TẠI
+			        VAR _Is_Card_Disabled = CALCULATE( SUMX( Org, Org[Is_Khong_Ton_Tai] ), Org[Mã OC] = _Current_OC, REMOVEFILTERS(Org) ) > 0
+			
+			        -- 1. Lấy danh sách Chức danh duy nhất dưới dạng bảng ảo
+			        VAR _Titles_In_OC = SUMMARIZE( _OC_Data, Org[Chức danh] )
+			        VAR _Has_Data = NOT ISEMPTY(_Titles_In_OC)
+			
+			        -- 2. Tạo nội dung Text bên trong Card
+			        VAR _Content_HTML = 
+			            IF( 
+			                _Has_Data,
+			                CONCATENATEX(
+			                    _Titles_In_OC, 
+			                    VAR _Role = Org[Chức danh] -- Lấy trực tiếp từ bảng ảo _Titles_In_OC
+			                    VAR _Names = 
+			                        CALCULATE(
+			                            CONCATENATEX(Org, Org[HTML_Nhan_Vien], "", Org[Thứ tự], ASC),
+			                            Org[Chức danh] = _Role,
+			                            Org[Mã OC] = _Current_OC,
+			                            REMOVEFILTERS(Org)
+			                        )
+			                    
+			                    -- Xác định màu chữ dựa vào trạng thái Card
+			                    VAR _Text_Color = IF( _Is_Card_Disabled, "#777", "black" )
+			                    
+			                    RETURN 
+			                        "<div style='margin-bottom:3px; width: 100%;'>" & 
+			                            -- Tiêu đề Chức danh
+			                            "<div style='color:" & _Text_Color & "; font-weight:600; font-size:10px; margin-bottom:2px; line-height:1.1;'>" & 
+			                                _Role & 
+			                            "</div>" & 
+			                            -- Nội dung Nhân viên / Trống / Không tuyển
+			                            "<div style='color:" & _Text_Color & "; font-size:10px; line-height:1.1;'>" &
+			                                SWITCH(
+			                                    TRUE(),
+			                                    _Is_Card_Disabled, "<span style='font-style:italic;'></span>",
+			                                    ISBLANK(_Names) || LEN(TRIM(_Names)) = 0, "<span style='font-style:italic; color:#999;'>(Trống)</span>",
+			                                    _Names
+			                                ) & 
+			                            "</div>" & 
+			                        "</div>",
+			                    "",
+			                    -- SỬA LỖI DÒNG 82: Gọi trực tiếp cột của bảng ảo đang chạy trong CONCATENATEX
+			                    CALCULATE( MIN( Org[Thứ tự] ), Org[Chức danh] = EARLIER(Org[Chức danh]), Org[Mã OC] = _Current_OC, REMOVEFILTERS(Org) ), ASC 
+			                ),
+			                -- Nếu hoàn toàn không có data dòng nào
+			                "<div style='color:" & IF(_Is_Card_Disabled, "#777", "black") & "; font-style:italic; font-size:10px;'>" & 
+			                    IF(_Is_Card_Disabled, "Không tuyển", "(Trống)") & 
+			                "</div>"
+			            )
+			
+			        -- 3. Style cho khung chứa
+			        VAR _Background_Style = 
+			            IF( 
+			                _Is_Card_Disabled, 
+			                "background: #e6e6e6; color: #777; border-radius: 12px; border: 1px solid #ccc;", 
+			                "background: transparent; color: black;" 
+			            )
+			
+			        VAR _Card_Style = 
+			            "position: absolute; " & 
+			            "top: " & _Top & "px; " & 
+			            "left: " & _Left & "px; " & 
+			            "width: 125px; " &              
+			            "height: 110px; " &            
+			            "font-size: 10px; " & 
+			            _Background_Style & " " & 
+			            
+			            "text-align: center; " &       
+			            "white-space: normal; " &      
+			            "word-wrap: break-word; " &    
+			            "box-sizing: border-box; " &   
+			            "padding: 5px 6px; " &             
+			            "display: flex; " &            
+			            "flex-direction: column; " &   
+			            "align-items: center; " &      
+			            "justify-content: flex-start;" 
+			
+			        RETURN 
+			            "<div style='" & _Card_Style & "'>" & 
+			                _Content_HTML & 
+			            "</div>"
+			    )
+			
+			RETURN
+			    -- Canvas Tổng
+			    "<div style='position:relative; width:100%; height:115px; font-family: Segoe UI;'>" & 
+			        _All_Cards & 
+			    "</div>"
+			```
+		lineageTag: cb1e712c-83c1-4a72-9584-e7c6bbab66f1
+
+	measure OrgChart_Support_Dept_Vertical_Fixed = ```
+			
+			-- ==========================================================================================
+			-- PHẦN 1: CẤU HÌNH DỊCH CHUYỂN TOÀN BỘ CỘT
+			-- ==========================================================================================
+			VAR _Offset_X = 0 
+			VAR _Offset_Y = 0 
+			
+			-- ==========================================================================================
+			-- PHẦN 2: BẢN ĐỒ TOẠ ĐỘ (CHUYỂN SANG DỌC)
+			-- ==========================================================================================
+			VAR _Layout_Map = DATATABLE (
+			    "Ma_OC", STRING, "Left_PX", INTEGER, "Top_PX", INTEGER,
+			    {
+			        { "CCS",    0,    0   }, 
+			        { "SOD",    3,    160 }, 
+			        { "CSD",    3,    305 }, 
+			        { "NRO",    3,    450 } 
+			    }
+			)
+			
+			-- ==========================================================================================
+			-- PHẦN 3: RENDER
+			-- ==========================================================================================
+			VAR _All_Cards = 
+			    CONCATENATEX(
+			        _Layout_Map,
+			        VAR _Current_OC = [Ma_OC]
+			        VAR _Left       = [Left_PX] + _Offset_X
+			        VAR _Top        = [Top_PX] + _Offset_Y
+			
+			        -- A. Lấy bảng dữ liệu thuộc Mã OC hiện tại
+			        VAR _OC_Data = 
+			            CALCULATETABLE(
+			                Org,
+			                Org[Mã OC] = _Current_OC,
+			                REMOVEFILTERS(Org)
+			            )
+			
+			        -- B. KIỂM TRA TRẠNG THÁI "KHÔNG TỒN TẠI" CỦA CARD HIỆN TẠI
+			        VAR _Is_Card_Disabled = CALCULATE( SUMX( Org, Org[Is_Khong_Ton_Tai] ), Org[Mã OC] = _Current_OC, REMOVEFILTERS(Org) ) > 0
+			
+			        -- 1. Lấy danh sách Chức danh duy nhất dưới dạng bảng ảo
+			        VAR _Titles_In_OC = SUMMARIZE( _OC_Data, Org[Chức danh] )
+			        VAR _Has_Data = NOT ISEMPTY(_Titles_In_OC)
+			
+			        -- 2. Tạo nội dung Text bên trong Card
+			        VAR _Content_HTML = 
+			            IF( 
+			                _Has_Data,
+			                CONCATENATEX(
+			                    _Titles_In_OC, 
+			                    VAR _Role = Org[Chức danh] -- Lấy trực tiếp từ bảng ảo _Titles_In_OC
+			                    VAR _Names = 
+			                        CALCULATE(
+			                            CONCATENATEX(Org, Org[HTML_Nhan_Vien], "", Org[Thứ tự], ASC),
+			                            Org[Chức danh] = _Role,
+			                            Org[Mã OC] = _Current_OC,
+			                            REMOVEFILTERS(Org)
+			                        )
+			                    
+			                    -- Xác định màu chữ dựa vào trạng thái Card
+			                    VAR _Text_Color = IF( _Is_Card_Disabled, "#777", "black" )
+			                    
+			                    RETURN 
+			                        "<div style='margin-bottom:3px; width: 100%;'>" & 
+			                            -- Tiêu đề Chức danh
+			                            "<div style='color:" & _Text_Color & "; font-weight:600; font-size:10px; margin-bottom:2px; line-height:1.1;'>" & 
+			                                _Role & 
+			                            "</div>" & 
+			                            -- Nội dung Nhân viên / Trống / Không tuyển
+			                            "<div style='color:" & _Text_Color & "; font-size:10px; line-height:1.1;'>" &
+			                                SWITCH(
+			                                    TRUE(),
+			                                    _Is_Card_Disabled, "<span style='font-style:italic;'></span>",
+			                                    ISBLANK(_Names) || LEN(TRIM(_Names)) = 0, "<span style='font-style:italic; color:#999;'>(Trống)</span>",
+			                                    _Names
+			                                ) & 
+			                            "</div>" & 
+			                        "</div>",
+			                    "",
+			                    -- SỬA LỖI DÒNG SẮP XẾP: Gọi trực tiếp cột của bảng ảo đang chạy trong CONCATENATEX
+			                    CALCULATE( MIN( Org[Thứ tự] ), Org[Chức danh] = EARLIER(Org[Chức danh]), Org[Mã OC] = _Current_OC, REMOVEFILTERS(Org) ), ASC 
+			                ),
+			                -- Nếu hoàn toàn không có data dòng nào
+			                "<div style='color:" & IF(_Is_Card_Disabled, "#777", "black") & "; font-style:italic; font-size:10px; width:100%; height:100%; display:flex; justify-content:center; align-items:center;'>" & 
+			                    IF(_Is_Card_Disabled, "Không tuyển", "(Trống)") & 
+			                "</div>"
+			            )
+			
+			        -- 3. Style cho khung chứa
+			        VAR _Background_Style = 
+			            IF( 
+			                _Is_Card_Disabled, 
+			                "background: #e6e6e6; color: #777; border-radius: 12px; border: 1px solid #ccc;", 
+			                "background: transparent; color: black;" 
+			            )
+			
+			        VAR _Card_Style = 
+			            "position: absolute; " & 
+			            "top: " & _Top & "px; " & 
+			            "left: " & _Left & "px; " & 
+			            "width: 120px; " &            
+			            "height: 110px; " &            
+			            "font-size: 10px; " & 
+			            _Background_Style & " " & 
+			            
+			            "text-align: center; " &       
+			            "white-space: normal; " &      
+			            "word-wrap: break-word; " &    
+			            "box-sizing: border-box; " &   
+			            "padding: 5px 6px; " &             
+			            "display: flex; " &            
+			            "flex-direction: column; " &   
+			            "align-items: center; " &      
+			            "justify-content: flex-start;" 
+			
+			        RETURN 
+			            "<div style='" & _Card_Style & "'>" & 
+			                _Content_HTML & 
+			            "</div>"
+			    )
+			
+			RETURN
+			    -- Canvas Tổng (Chiều cao tăng lên 600px để vừa vặn trục dọc)
+			    "<div style='position:relative; width:100%; height:600px; font-family: Segoe UI;'>" & 
+			        _All_Cards & 
+			    "</div>"
+			```
+		lineageTag: 2716a242-14d3-4a3d-947e-51c1cabd9e7b
+
+	measure OrgChart_PM_Dept_Black = ```
+			
+			-- ==========================================================================================
+			-- PHẦN 1: CẤU HÌNH DỊCH CHUYỂN
+			-- ==========================================================================================
+			VAR _Offset_X = -6  -- Số âm là dịch sang TRÁI
+			
+			-- ==========================================================================================
+			-- PHẦN 2: BẢN ĐỒ TOẠ ĐỘ (Support Dept)
+			-- ==========================================================================================
+			VAR _Layout_Map = DATATABLE (
+			    "Ma_OC", STRING, "Left_PX", INTEGER, "Top_PX", INTEGER,
+			    {
+			        { "GMS.PLP",    0,    0 },
+			        { "GMS.DMD",    360,  0 },
+			        { "GMS.PCD",    908,  0 },
+			        { "GMS.PMD",   1802,  0 },
+			        { "GMS.PM",    2524,  0 }
+			    }
+			)
+			
+			-- ==========================================================================================
+			-- PHẦN 3: RENDER
+			-- ==========================================================================================
+			VAR _All_Cards = 
+			    CONCATENATEX(
+			        _Layout_Map,
+			        VAR _Current_OC = [Ma_OC]
+			        VAR _Left       = [Left_PX] + _Offset_X
+			        VAR _Top        = [Top_PX]
+			
+			        -- 1. Lấy danh sách Chức danh
+			        VAR _Titles_In_OC = 
+			            CALCULATETABLE(
+			                VALUES(Org[Chức danh]),
+			                Org[Mã OC] = _Current_OC,
+			                REMOVEFILTERS(Org) 
+			            )
+			
+			        VAR _Has_Data = NOT ISEMPTY(_Titles_In_OC)
+			
+			        -- 2. Tạo nội dung Text
+			        VAR _Content_HTML = 
+			            IF( 
+			                _Has_Data,
+			                CONCATENATEX(
+			                    _Titles_In_OC, 
+			                    VAR _Role = Org[Chức danh]
+			                    VAR _Names = 
+			                        CALCULATE(
+			                            CONCATENATEX(Org, Org[HTML_Nhan_Vien], "", Org[Thứ tự], ASC),
+			                            Org[Chức danh] = _Role,
+			                            Org[Mã OC] = _Current_OC
+			                        )
+			                    RETURN 
+			                        IF( 
+			                            _Names <> BLANK(),
+			                            "<div style='margin-bottom:3px; width: 100%;'>" & 
+			                                -- Tiêu đề: MÀU ĐEN
+			                                "<div style='color:black; font-weight:600; font-size:12px; margin-bottom:2px; line-height:1.1;'>" & 
+			                                    _Role & 
+			                                "</div>" & 
+			                                -- Tên nhân viên: MÀU ĐEN
+			                                "<div style='color:black; font-size:12px; line-height:1.1;'>" &
+			                                    _Names & 
+			                                "</div>" &
+			                            "</div>",
+			                            ""
+			                        ),
+			                    "",
+			                    CALCULATE( MIN( Org[Thứ tự] ) ), ASC 
+			                ),
+			                -- Chữ trống: MÀU ĐEN (hoặc xám đậm tuỳ bạn, ở đây tôi để đen cho đồng bộ)
+			                "<div style='color:black; font-style:italic; font-size:13px'>(Trống)</div>"
+			            )
+			
+			        -- 3. Style cho khung chứa
+			        VAR _Card_Style = 
+			            "position: absolute; " & 
+			            "top: " & _Top & "px; " & 
+			            "left: " & _Left & "px; " & 
+			            "width: 255px; " &             
+			            "height: 150px; " &            
+			            "font-size: 12px; " &           
+			            "color: black; " &   -- Thiết lập màu đen mặc định
+			            
+			            -- Căn chỉnh nội dung
+			            "text-align: center; " &       
+			            "white-space: normal; " &      
+			            "word-wrap: break-word; " &    
+			            "box-sizing: border-box; " &   
+			            "padding: 3px; " &             
+			            "display: flex; " &            
+			            "flex-direction: column; " &   
+			            "align-items: center; " &      
+			            "justify-content: flex-start;" 
+			
+			        RETURN 
+			            "<div style='" & _Card_Style & "'>" & 
+			                _Content_HTML & 
+			            "</div>"
+			    )
+			
+			RETURN
+			    -- Canvas Tổng
+			    "<div style='position:relative; width:100%; height:100px; font-family: Segoe UI;'>" & 
+			        _All_Cards & 
+			    "</div>"
+			```
+		lineageTag: 6fc9d6d9-12f5-4150-a853-84de1713c3f8
+
+	measure OrgChart_Support_Dept_Vertical_Scroll = ```
+			
+			-- ==========================================================================================
+			-- PHẦN 1: CẤU HÌNH DỊCH CHUYỂN
+			-- ==========================================================================================
+			VAR _Offset_X = 3
+			VAR _Offset_Y = 0 
+			
+			-- ==========================================================================================
+			-- PHẦN 2: BẢN ĐỒ TOẠ ĐỘ (CỐ ĐỊNH KHOẢNG CÁCH)
+			-- ==========================================================================================
+			VAR _Layout_Map = DATATABLE (
+			    "Ma_OC", STRING, "Left_PX", INTEGER, "Top_PX", INTEGER,
+			    {
+			        { "FPA",    0,    0   },
+			        { "PFD",    0,    185 },
+			        { "CMD",    0,    412 },
+			        { "ACC",    0,    600 }
+			    }
+			)
+			
+			-- ==========================================================================================
+			-- PHẦN 3: RENDER
+			-- ==========================================================================================
+			VAR _All_Cards = 
+			    CONCATENATEX(
+			        _Layout_Map,
+			        VAR _Current_OC = [Ma_OC]
+			        VAR _Left       = [Left_PX] + _Offset_X
+			        VAR _Top        = [Top_PX] + _Offset_Y
+			
+			        -- A. Lấy bảng dữ liệu thuộc Mã OC hiện tại
+			        VAR _OC_Data = 
+			            CALCULATETABLE(
+			                Org,
+			                Org[Mã OC] = _Current_OC,
+			                REMOVEFILTERS(Org)
+			            )
+			
+			        -- B. KIỂM TRA TRẠNG THÁI "KHÔNG TỒN TẠI" CỦA CARD HIỆN TẠI
+			        VAR _Is_Card_Disabled = CALCULATE( SUMX( Org, Org[Is_Khong_Ton_Tai] ), Org[Mã OC] = _Current_OC, REMOVEFILTERS(Org) ) > 0
+			
+			        -- 1. Lấy danh sách Chức danh duy nhất dưới dạng bảng ảo
+			        VAR _Titles_In_OC = SUMMARIZE( _OC_Data, Org[Chức danh] )
+			        VAR _Has_Data = NOT ISEMPTY(_Titles_In_OC)
+			
+			        -- 2. Tạo nội dung Text bên trong Card
+			        VAR _Content_HTML = 
+			            IF( 
+			                _Has_Data,
+			                CONCATENATEX(
+			                    _Titles_In_OC, 
+			                    VAR _Role = Org[Chức danh] -- Lấy trực tiếp từ bảng ảo _Titles_In_OC
+			                    VAR _Names = 
+			                        CALCULATE(
+			                            CONCATENATEX(Org, Org[HTML_Nhan_Vien], "", Org[Thứ tự], ASC),
+			                            Org[Chức danh] = _Role,
+			                            Org[Mã OC] = _Current_OC,
+			                            REMOVEFILTERS(Org)
+			                        )
+			                    
+			                    -- Xác định màu chữ dựa vào trạng thái Card
+			                    VAR _Text_Color = IF( _Is_Card_Disabled, "#777", "black" )
+			                    
+			                    RETURN 
+			                        "<div style='margin-bottom:3px; width: 100%;'>" & 
+			                            -- Tiêu đề Chức danh
+			                            "<div style='color:" & _Text_Color & "; font-weight:600; font-size:10px; margin-bottom:1px; line-height:1.0;'>" & 
+			                                _Role & 
+			                            "</div>" & 
+			                            -- Nội dung Nhân viên / Trống / Không tuyển
+			                            "<div style='color:" & _Text_Color & "; font-size:10px; line-height:1.0;'>" &
+			                                SWITCH(
+			                                    TRUE(),
+			                                    _Is_Card_Disabled, "<span style='font-style:italic;'>Không tuyển</span>",
+			                                    ISBLANK(_Names) || LEN(TRIM(_Names)) = 0, "<span style='font-style:italic; color:#999;'>(Trống)</span>",
+			                                    _Names
+			                                ) & 
+			                            "</div>" & 
+			                        "</div>",
+			                    "",
+			                    -- Sắp xếp bằng EARLIER chuẩn hóa bảo vệ cấu trúc layout
+			                    CALCULATE( MIN( Org[Thứ tự] ), Org[Chức danh] = EARLIER(Org[Chức danh]), Org[Mã OC] = _Current_OC, REMOVEFILTERS(Org) ), ASC 
+			                ),
+			                -- Nếu hoàn toàn không có data dòng nào
+			                "<div style='color:" & IF(_Is_Card_Disabled, "#777", "black") & "; font-style:italic; font-size:10px; width:100%; height:100%; display:flex; justify-content:center; align-items:center;'>" & 
+			                    IF(_Is_Card_Disabled, "Không tuyển", "(Trống)") & 
+			                "</div>"
+			            )
+			
+			        -- 3. Style cho khung chứa (Bôi xám động nhưng giữ nguyên overflow-y để trượt dọc)
+			        VAR _Background_Style = 
+			            IF( 
+			                _Is_Card_Disabled, 
+			                "background: #e6e6e6; color: #777; border-radius: 12px; border: 1px solid #ccc;", 
+			                "background: transparent; color: black;" 
+			            )
+			
+			        VAR _Card_Style = 
+			            "position: absolute; " & 
+			            "top: " & _Top & "px; " & 
+			            "left: " & _Left & "px; " & 
+			            "width: 120px; " &            
+			            "height: 120px; " & 
+			            "font-size: 10px; " & 
+			            _Background_Style & " " & 
+			            
+			            -- Giữ nguyên cấu trúc hỗ trợ scroll bar từ thiết kế gốc của bạn
+			            "overflow-y: auto; " &        
+			            "overflow-x: hidden; " &      
+			            "text-align: center; " &      
+			            "white-space: normal; " &     
+			            "word-wrap: break-word; " &   
+			            "box-sizing: border-box; " &  
+			            "padding: 5px 4px 5px 4px; " & 
+			            "display: block; " 
+			
+			        RETURN 
+			            "<div class='scroll-card' style='" & _Card_Style & "'>" & 
+			                "<div style='display:flex; flex-direction:column; align-items:center; min-height:100%; justify-content:flex-start;'>" &
+			                    _Content_HTML & 
+			                "</div>" &
+			            "</div>"
+			    )
+			
+			-- CSS TÙY CHỈNH THANH CUỘN (Làm thanh cuộn nhỏ đẹp)
+			VAR _Custom_Scrollbar_CSS = 
+			    "<style>" &
+			    ".scroll-card::-webkit-scrollbar { width: 4px; }" &  
+			    ".scroll-card::-webkit-scrollbar-track { background: #f1f1f1; }" & 
+			    ".scroll-card::-webkit-scrollbar-thumb { background: #ccc; border-radius: 2px; }" & 
+			    ".scroll-card::-webkit-scrollbar-thumb:hover { background: #888; }" & 
+			    "</style>"
+			
+			RETURN
+			    -- Canvas Tổng
+			    _Custom_Scrollbar_CSS & 
+			    "<div style='position:relative; width:100%; height:750px; font-family: Segoe UI;'>" & 
+			        _All_Cards & 
+			    "</div>"
+			```
+		lineageTag: fb8fcd3a-c360-47b2-9b3c-96c37df1744c
+
+	measure OrgChart_Support_Dept_Vertical_3 = ```
+			
+			-- ==========================================================================================
+			-- PHẦN 1: CẤU HÌNH DỊCH CHUYỂN TOÀN BỘ CỘT
+			-- ==========================================================================================
+			VAR _Offset_X = 0 
+			VAR _Offset_Y = 0 
+			
+			-- ==========================================================================================
+			-- PHẦN 2: BẢN ĐỒ TOẠ ĐỘ (CHUYỂN SANG DỌC)
+			-- ==========================================================================================
+			VAR _Layout_Map = DATATABLE (
+			    "Ma_OC", STRING, "Left_PX", INTEGER, "Top_PX", INTEGER,
+			    {
+			        { "OCD",    0,    0   }, 
+			        { "HRA",    0,    160 }
+			    }
+			)
+			
+			-- ==========================================================================================
+			-- PHẦN 3: RENDER
+			-- ==========================================================================================
+			VAR _All_Cards = 
+			    CONCATENATEX(
+			        _Layout_Map,
+			        VAR _Current_OC = [Ma_OC]
+			        VAR _Left       = [Left_PX] + _Offset_X
+			        VAR _Top        = [Top_PX] + _Offset_Y
+			
+			        -- 1. Lấy danh sách Chức danh
+			        VAR _Titles_In_OC = 
+			            CALCULATETABLE(
+			                VALUES(Org[Chức danh]),
+			                Org[Mã OC] = _Current_OC,
+			                REMOVEFILTERS(Org) 
+			            )
+			
+			        VAR _Has_Data = NOT ISEMPTY(_Titles_In_OC)
+			
+			        -- 2. Tạo nội dung Text
+			        VAR _Content_HTML = 
+			            IF( 
+			                _Has_Data,
+			                CONCATENATEX(
+			                    _Titles_In_OC, 
+			                    VAR _Role = Org[Chức danh]
+			                    VAR _Names = 
+			                        CALCULATE(
+			                            CONCATENATEX(Org, Org[HTML_Nhan_Vien], "", Org[Thứ tự], ASC),
+			                            Org[Chức danh] = _Role,
+			                            Org[Mã OC] = _Current_OC
+			                        )
+			                    RETURN 
+			                        IF( 
+			                            _Names <> BLANK(),
+			                            "<div style='margin-bottom:3px; width: 100%;'>" & 
+			                                "<div style='color:black; font-weight:600; font-size:10px; margin-bottom:2px; line-height:1.1;'>" & 
+			                                    _Role & 
+			                                "</div>" & 
+			                                "<div style='color:black; font-size:10px; line-height:1.1;'>" &
+			                                    _Names & 
+			                                "</div>" &
+			                            "</div>",
+			                            ""
+			                        ),
+			                    "",
+			                    CALCULATE( MIN( Org[Thứ tự] ) ), ASC 
+			                ),
+			                -- SỬA TẠI ĐÂY: Thêm flex center và height 100% để chữ nằm chính giữa ô
+			                "<div style='color:black; font-style:italic; font-size:10px; width:100%; height:100%; display:flex; justify-content:center; align-items:center;'>(Trống)</div>"
+			            )
+			
+			        -- 3. Style cho khung chứa
+			        VAR _Card_Style = 
+			            "position: absolute; " & 
+			            "top: " & _Top & "px; " & 
+			            "left: " & _Left & "px; " & 
+			            "width: 120px; " &            -- Đã thêm 'px' vào sau 120
+			            "height: 130px; " &           
+			            "font-size: 10px; " &          
+			            "color: black; " &   
+			            
+			            -- Căn chỉnh nội dung
+			            "text-align: center; " &      
+			            "white-space: normal; " &     
+			            "word-wrap: break-word; " &   
+			            "box-sizing: border-box; " &  
+			            "padding: 3px; " &            
+			            "display: flex; " &           
+			            "flex-direction: column; " &  
+			            "align-items: center; " &     
+			            "justify-content: flex-start;" 
+			
+			        RETURN 
+			            "<div style='" & _Card_Style & "'>" & 
+			                _Content_HTML & 
+			            "</div>"
+			    )
+			
+			RETURN
+			    -- Canvas Tổng
+			    "<div style='position:relative; width:100%; height:300px; font-family: Segoe UI;'>" & 
+			        _All_Cards & 
+			    "</div>"
+			```
+		lineageTag: 8162f358-4c1a-4fab-b408-a6b0b9ce1d51
+
+	measure 'Text tiến độ' = "Tiến độ: " & FORMAT(AVERAGE(Eoffice_TD[percent]), "0%")
+		lineageTag: 1a272726-314b-489e-92e2-0d61a9f3be2b
+
+	measure 'Total NS' = "Nhân sự:"&" "&CALCULATE(Count(Org[Mã OC]),Org[Mã OC] in {"PLP2","PLP1","PLP","PLP4","DMD","DMD1","DMD2","PCD","PCD2.1","PCD2.2","PCD2,3","PCD2.4","PCD4.1","PCD4.2","PCD4.3","PCD4.4","PMD1","PM1.1","PM","PM1.2","PM1.3","PM1.4","PM3.1","PM3.2","PM3.3","PM3.4","PM3.5","PM4.1","PM4.2","PM4.3","PM4.4","PM4.5","GMD4"} && ISBLANK(Org[Tên nhân viên]) = FALSE()) &"/"&CALCULATE(Count(Org[Mã OC]),Org[Mã OC] in {"PLP2","PLP1","PLP","PLP4","DMD","DMD1","DMD2","PCD","PCD2.1","PCD2.2","PCD2,3","PCD2.4","PCD4.1","PCD4.2","PCD4.3","PCD4.4","PMD1","PM1.1","PM","PM1.2","PM1.3","PM1.4","PM3.1","PM3.2","PM3.3","PM3.4","PM3.5","PM4.1","PM4.2","PM4.3","PM4.4","PM4.5","GMD4"} )
+		lineageTag: cf59869e-16cc-4c6c-aae6-edf97e30d4bb
+
+	measure 'Total NS PLP' = "Nhân sự:"&" "&CALCULATE(Count(Org[Mã OC]),Org[Mã OC] in {"PLP2","PLP1","PLP","PLP4"} && ISBLANK(Org[Tên nhân viên]) = FALSE() ) &"/"&CALCULATE(Count(Org[Mã OC]),Org[Mã OC] in {"PLP2","PLP1","PLP","PLP4"})
+		lineageTag: 3cf40bcc-e2e0-4c55-8590-69017b517f28
+
+	measure 'Total NS DMD' = "Nhân sự:"&" "&CALCULATE(Count(Org[Mã OC]),Org[Mã OC] in {"DMD","DMD1","DMD2"} && ISBLANK(Org[Tên nhân viên]) = FALSE() ) &"/"&CALCULATE(Count(Org[Mã OC]),Org[Mã OC] in {"DMD","DMD1","DMD2"})
+		lineageTag: 47d83f8a-4830-4b5b-832b-70d00b1eefb6
+
+	measure OrgChart_PM_Dept_Black_2 = ```
+			
+			-- ==========================================================================================
+			-- PHẦN 1: CẤU HÌNH DỊCH CHUYỂN
+			-- ==========================================================================================
+			VAR _Offset_X = -6  -- Số âm là dịch sang TRÁI
+			
+			-- ==========================================================================================
+			-- PHẦN 2: BẢN ĐỒ TOẠ ĐỘ (Support Dept)
+			-- ==========================================================================================
+			VAR _Layout_Map = DATATABLE (
+			    "Ma_OC", STRING, "Left_PX", INTEGER, "Top_PX", INTEGER,
+			    {
+			        { "PLP",   45,    0 },
+			        { "DMD",    395,  0 },
+			        { "PCD",    980,  0 },
+			        { "PM",    2580,  0 }
+			    }
+			)
+			
+			-- ==========================================================================================
+			-- PHẦN 3: RENDER
+			-- ==========================================================================================
+			VAR _All_Cards = 
+			    CONCATENATEX(
+			        _Layout_Map,
+			        VAR _Current_OC = [Ma_OC]
+			        VAR _Left       = [Left_PX] + _Offset_X
+			        VAR _Top        = [Top_PX]
+			
+			        -- 1. Lấy danh sách Chức danh
+			        VAR _Titles_In_OC = 
+			            CALCULATETABLE(
+			                VALUES(Org[Chức danh]),
+			                Org[Mã OC] = _Current_OC,
+			                REMOVEFILTERS(Org) 
+			            )
+			
+			        VAR _Has_Data = NOT ISEMPTY(_Titles_In_OC)
+			
+			        -- 2. Tạo nội dung Text
+			        VAR _Content_HTML = 
+			            IF( 
+			                _Has_Data,
+			                CONCATENATEX(
+			                    _Titles_In_OC, 
+			                    VAR _Role = Org[Chức danh]
+			                    VAR _Names = 
+			                        CALCULATE(
+			                            CONCATENATEX(Org, Org[HTML_Nhan_Vien], "", Org[Thứ tự], ASC),
+			                            Org[Chức danh] = _Role,
+			                            Org[Mã OC] = _Current_OC
+			                        )
+			                    RETURN 
+			                        IF( 
+			                            _Names <> BLANK(),
+			                            "<div style='margin-bottom:3px; width: 100%;'>" & 
+			                                -- Tiêu đề: MÀU ĐEN
+			                                "<div style='color:black; font-weight:600; font-size:14px; margin-bottom:2px; line-height:1.1;'>" & 
+			                                    _Role & 
+			                                "</div>" & 
+			                                -- Tên nhân viên: MÀU ĐEN
+			                                "<div style='color:black; font-size:14px; line-height:1.1;'>" &
+			                                    _Names & 
+			                                "</div>" &
+			                            "</div>",
+			                            ""
+			                        ),
+			                    "",
+			                    CALCULATE( MIN( Org[Thứ tự] ) ), ASC 
+			                ),
+			                -- Chữ trống: MÀU ĐEN (hoặc xám đậm tuỳ bạn, ở đây tôi để đen cho đồng bộ)
+			                "<div style='color:black; font-style:italic; font-size:14px'>(Trống)</div>"
+			            )
+			
+			        -- 3. Style cho khung chứa
+			        VAR _Card_Style = 
+			            "position: absolute; " & 
+			            "top: " & _Top & "px; " & 
+			            "left: " & _Left & "px; " & 
+			            "width: 260px; " &             
+			            "height: 85px; " &            
+			            "font-size: 14px; " &           
+			            "color: black; " &   -- Thiết lập màu đen mặc định
+			            
+			            -- Căn chỉnh nội dung
+			            "text-align: center; " &       
+			            "white-space: normal; " &      
+			            "word-wrap: break-word; " &    
+			            "box-sizing: border-box; " &   
+			            "padding: 3px; " &             
+			            "display: flex; " &            
+			            "flex-direction: column; " &   
+			            "align-items: center; " &      
+			            "justify-content: flex-start;" 
+			
+			        RETURN 
+			            "<div style='" & _Card_Style & "'>" & 
+			                _Content_HTML & 
+			            "</div>"
+			    )
+			
+			RETURN
+			    -- Canvas Tổng
+			    "<div style='position:relative; width:100%; height:85px; font-family: Segoe UI;'>" & 
+			        _All_Cards & 
+			    "</div>"
+			```
+		lineageTag: 47bb0075-c788-41dc-9803-ce7afd15fcfa
+
+	measure 'Total NS PCD' = "Nhân sự:"&" "&CALCULATE(Count(Org[Mã OC]),Org[Mã OC] in {"PCD","PCD2.1","PCD2.2","PCD2,3","PCD2.4","PCD4.1","PCD4.2","PCD4.3","PCD4.4"} && ISBLANK(Org[Tên nhân viên]) = FALSE()) &"/"&CALCULATE(Count(Org[Mã OC]),Org[Mã OC] in  {"PCD","PCD2.1","PCD2.2","PCD2,3","PCD2.4","PCD4.1","PCD4.2","PCD4.3","PCD4.4"} )
+		lineageTag: 80e1ba94-3a14-4b22-98d4-77aeedea73dd
+
+	measure 'Total NS PM' = "Nhân sự:"&" "&CALCULATE(Count(Org[Mã OC]),Org[Mã OC] in {"PM1.1","PM","PM1.2","PM1.3","PM1.4","PM3.1","PM3.2","PM3.3","PM3.4","PM3.5","PM4.1","PM4.2","PM4.3","PM4.4","PM4.5"} && ISBLANK(Org[Tên nhân viên]) = FALSE()) &"/"&CALCULATE(Count(Org[Mã OC]),Org[Mã OC] in {"PM1.1","PM","PM1.2","PM1.3","PM1.4","PM3.1","PM3.2","PM3.3","PM3.4","PM3.5","PM4.1","PM4.2","PM4.3","PM4.4","PM4.5"} )
+		lineageTag: 66b156d9-b402-4c10-b59a-640959e7483d
+
+	measure OrgChart_Support_Dept_Vertical_4 = ```
+			
+			-- ==========================================================================================
+			-- PHẦN 1: CẤU HÌNH DỊCH CHUYỂN TOÀN BỘ CỘT
+			-- ==========================================================================================
+			VAR _Offset_X = 0 
+			VAR _Offset_Y = 0 
+			
+			-- ==========================================================================================
+			-- PHẦN 2: BẢN ĐỒ TOẠ ĐỘ (CHUYỂN SANG DỌC)
+			-- ==========================================================================================
+			VAR _Layout_Map = DATATABLE (
+			    "Ma_OC", STRING, "Left_PX", INTEGER, "Top_PX", INTEGER,
+			    {
+			        { "IDD4",    0,    0   }, 
+			        { "IDD5",    0,    180 }
+			    }
+			)
+			
+			-- ==========================================================================================
+			-- PHẦN 3: RENDER
+			-- ==========================================================================================
+			VAR _All_Cards = 
+			    CONCATENATEX(
+			        _Layout_Map,
+			        VAR _Current_OC = [Ma_OC]
+			        VAR _Left       = [Left_PX] + _Offset_X
+			        VAR _Top        = [Top_PX] + _Offset_Y
+			
+			        -- 1. Lấy danh sách Chức danh
+			        VAR _Titles_In_OC = 
+			            CALCULATETABLE(
+			                VALUES(Org[Chức danh]),
+			                Org[Mã OC] = _Current_OC,
+			                REMOVEFILTERS(Org) 
+			            )
+			
+			        VAR _Has_Data = NOT ISEMPTY(_Titles_In_OC)
+			
+			        -- 2. Tạo nội dung Text
+			        VAR _Content_HTML = 
+			            IF( 
+			                _Has_Data,
+			                CONCATENATEX(
+			                    _Titles_In_OC, 
+			                    VAR _Role = Org[Chức danh]
+			                    VAR _Names = 
+			                        CALCULATE(
+			                            CONCATENATEX(Org, Org[HTML_Nhan_Vien], "", Org[Thứ tự], ASC),
+			                            Org[Chức danh] = _Role,
+			                            Org[Mã OC] = _Current_OC
+			                        )
+			                    RETURN 
+			                        IF( 
+			                            _Names <> BLANK(),
+			                            "<div style='margin-bottom:3px; width: 100%;'>" & 
+			                                "<div style='color:black; font-weight:600; font-size:10px; margin-bottom:2px; line-height:1.1;'>" & 
+			                                    _Role & 
+			                                "</div>" & 
+			                                "<div style='color:black; font-size:10px; line-height:1.1;'>" &
+			                                    _Names & 
+			                                "</div>" &
+			                            "</div>",
+			                            ""
+			                        ),
+			                    "",
+			                    CALCULATE( MIN( Org[Thứ tự] ) ), ASC 
+			                ),
+			                -- SỬA TẠI ĐÂY: Thêm flex center và height 100% để chữ nằm chính giữa ô
+			                "<div style='color:black; font-style:italic; font-size:10px; width:100%; height:100%; display:flex; justify-content:center; align-items:center;'>(Trống)</div>"
+			            )
+			
+			        -- 3. Style cho khung chứa
+			        VAR _Card_Style = 
+			            "position: absolute; " & 
+			            "top: " & _Top & "px; " & 
+			            "left: " & _Left & "px; " & 
+			            "width: 120px; " &            -- Đã thêm 'px' vào sau 120
+			            "height: 130px; " &           
+			            "font-size: 10px; " &          
+			            "color: black; " &   
+			            
+			            -- Căn chỉnh nội dung
+			            "text-align: center; " &      
+			            "white-space: normal; " &     
+			            "word-wrap: break-word; " &   
+			            "box-sizing: border-box; " &  
+			            "padding: 3px; " &            
+			            "display: flex; " &           
+			            "flex-direction: column; " &  
+			            "align-items: center; " &     
+			            "justify-content: flex-start;" 
+			
+			        RETURN 
+			            "<div style='" & _Card_Style & "'>" & 
+			                _Content_HTML & 
+			            "</div>"
+			    )
+			
+			RETURN
+			    -- Canvas Tổng
+			    "<div style='position:relative; width:100%; height:300px; font-family: Segoe UI;'>" & 
+			        _All_Cards & 
+			    "</div>"
+			```
+		lineageTag: af5ab7ef-35a1-47c1-9007-ab05fb994b93
+
+	measure 'Số lượng nhân viên PLP' = CALCULATE(DISTINCTCOUNT(Org[Mã nhân viên]),Org[Mã OC] in {"PLP2","PLP1","PLP","PLP4"} && ISBLANK(Org[Tên nhân viên]) = FALSE() )
+		formatString: 0
+		lineageTag: 70b5a0d1-10ce-460c-8d19-2362ac188698
+
+	measure 'SL đang tuyển' = 75
+		formatString: 0
+		lineageTag: 3c2d6722-ff31-42f7-8c86-a780a357b38c
+
+	measure 'Sắp OB' = 10
+		formatString: 0
+		lineageTag: ba52346c-3ca5-4ccb-a854-d3d16e0f7a3e
+
+	measure 'Nghỉ trong tháng' = 720
+		formatString: 0
+		lineageTag: 031e3dc2-84b6-4084-b217-b5b9081a7e2e
+
+	measure 'OrgCard HTML Optimize _ 2' = ```
+			
+			VAR _oc        = SELECTEDVALUE ( Org[Mã OC] )
+			VAR _gap       = 6 
+			VAR _role_gap  = 4 
+			VAR _min_h =
+			    SWITCH( TRUE(),
+			        CONTAINSSTRING(_oc, "3."), 120,
+			        CONTAINSSTRING(_oc, "4."), 210,
+			        CONTAINSSTRING(_oc, "2."), 196,
+			        CONTAINSSTRING(_oc, "1."), 150,
+			        128
+			    )
+			
+			-- Lấy data
+			VAR _Data = 
+			    CALCULATETABLE (
+			        Org,
+			        Org[Mã OC] = _oc,
+			        REMOVEFILTERS( Org )
+			    )
+			
+			-- Check "Không tồn tại"
+			VAR _has_khong_ton_tai = SUMX( _Data, Org[Is_Khong_Ton_Tai] ) > 0
+			
+			
+			-- PHẦN DANH SÁCH NHÂN VIÊN
+			VAR _roles =
+			    SUMMARIZE (
+			        _Data,
+			        Org[Chức danh],
+			        "RoleOrder", MIN ( Org[Thứ tự] )
+			    )
+			
+			VAR _body_content =
+			    CONCATENATEX (
+			        _roles,
+			        VAR _role = [Chức danh]
+			        VAR _names_html = 
+			            CONCATENATEX(
+			                FILTER( _Data, Org[Chức danh] = _role ),
+			                Org[HTML_Nhan_Vien], 
+			                "",
+			                Org[Thứ tự], ASC
+			            )
+			
+			        RETURN
+			            "<div style='margin:0 0 " & _gap & "px 0;padding:0'>" &
+			                "<span style='display:block;margin:0 0 " & _role_gap & "px 0;padding:0;font-weight:600;'>" & _role & "</span>" &
+			                IF (
+			                    LEN ( _names_html ) = 0,
+			                    "<span style='display:block;margin:0;padding:0;color:#999;font-style:italic'>(Trống)</span>",
+			                    _names_html
+			                ) &
+			            "</div>",
+			        "",
+			        [RoleOrder], ASC
+			    )
+			
+			VAR _final_body = _body_content
+			
+			-- ==========================================================================================
+			-- SỬA PHẦN STYLE Ở ĐÂY
+			-- ==========================================================================================
+			VAR _card_style =
+			    "display:block;width:100%;height:100%;box-sizing:border-box;" &
+			    "margin:0;line-height:1.2;" & 
+			    IF (
+			        _has_khong_ton_tai,
+			        -- TRƯỜNG HỢP MÀU XÁM: Thêm border-radius vào đây
+			        "background:#e6e6e6;color:#777;opacity:1.1;" &
+			        "padding:8px 10px;" &
+			        "border-radius: 28px;" &  -- <--- Đã thêm bo góc (12px)
+			        "min-height:" & _min_h & "px;",
+			        
+			        -- TRƯỜNG HỢP BÌNH THƯỜNG: Không bo, không nền
+			        "padding:0;"
+			    )
+			
+			RETURN
+			    "<div style='" & _card_style & "'>" & _final_body & "</div>"
+			```
+		lineageTag: d646aac0-7b90-40b4-adfa-b4d405cc69c5
+
+	measure OrgChart_Fixed_Offset_Left_Group = ```
+			
+			-- ==========================================================================================
+			-- PHẦN 1: CẤU HÌNH DỊCH CHUYỂN
+			-- ==========================================================================================
+			VAR _Offset_X = -6  
+			
+			-- ==========================================================================================
+			-- PHẦN 2: BẢN ĐỒ TOẠ ĐỘ GỐC
+			-- ==========================================================================================
+			VAR _Layout_Map = DATATABLE (
+			    "Ma_OC", STRING, "Left_PX", INTEGER, "Top_PX", INTEGER,
+			    {
+			        { "HRSC",    5,    0 },
+			        { "FASC",    140,  0 },
+			        { "SSC",     274,  0 },
+			        { "MSC",     412,  0 },
+			        { "PTSC",    550,  0 },
+			        { "QSBS",    688,  0 },
+			        { "SESD",    825,  0 },
+			        { "IDSD",    962,  0 },
+			        { "CSSC",    1098, 0 } 
+			    }
+			)
+			
+			-- ==========================================================================================
+			-- PHẦN 3: RENDER
+			-- ==========================================================================================
+			VAR _All_Cards = 
+			    CONCATENATEX(
+			        _Layout_Map,
+			        VAR _Current_OC = [Ma_OC]
+			        VAR _Left       = [Left_PX] + _Offset_X
+			        VAR _Top        = [Top_PX]
+			
+			        -- 1. Lấy danh sách Chức danh DUY NHẤT kèm theo Thứ tự nhỏ nhất của chức danh đó
+			        VAR _Titles_In_OC = 
+			            SUMMARIZE(
+			                FILTER(ALL(Org_Chung), Org_Chung[Mã OC] = _Current_OC),
+			                Org_Chung[Chức danh],
+			                "MinOrder", MIN(Org_Chung[Thứ tự])
+			            )
+			
+			        VAR _Has_Data = NOT ISEMPTY(_Titles_In_OC)
+			
+			        -- 2. Tạo nội dung Text
+			        VAR _Content_HTML = 
+			            IF( 
+			                _Has_Data,
+			                CONCATENATEX(
+			                    _Titles_In_OC, 
+			                    VAR _Role = [Chức danh]
+			                    -- Lấy danh sách nhân viên trong chức danh, lọc bỏ trùng lặp và sắp xếp
+			                    VAR _Names = 
+			                        CALCULATE(
+			                            CONCATENATEX(
+			                                SUMMARIZE(Org_Chung, Org_Chung[OCD], Org_Chung[HTML_Nhan_Vien], Org_Chung[Thứ tự]),
+			                                Org_Chung[HTML_Nhan_Vien], 
+			                                "", 
+			                                Org_Chung[Thứ tự], ASC
+			                            ),
+			                            Org_Chung[Chức danh] = _Role,
+			                            Org_Chung[Mã OC] = _Current_OC
+			                        )
+			                    RETURN 
+			                        IF( 
+			                            _Names <> BLANK(),
+			                            "<div style='margin-bottom:3px; width: 100%;'>" & 
+			                                "<div style='color:black; font-weight:600; font-size:10px; margin-bottom:2px; line-height:1.1;'>" & 
+			                                    _Role & 
+			                                "</div>" & 
+			                                "<div style='font-size:10px; line-height:1.1;'>" &
+			                                    _Names & 
+			                                "</div>" &
+			                            "</div>",
+			                            ""
+			                        ),
+			                    "",
+			                    [MinOrder], ASC  -- Sắp xếp Chức danh theo Thứ tự đã lấy ở SUMMARIZE
+			                ),
+			                "<div style='color:#999; font-style:italic; font-size:8px'>(Trống)</div>"
+			            )
+			
+			        -- 3. Style cho khung chứa
+			        VAR _Card_Style = 
+			            "position: absolute; " & 
+			            "top: " & _Top & "px; " & 
+			            "left: " & _Left & "px; " & 
+			            "width: 133px; " &             
+			            "height: 100px; " &             
+			            "font-size: 10px; " &           
+			            "text-align: center; " &       
+			            "white-space: normal; " &      
+			            "word-wrap: break-word; " &    
+			            "box-sizing: border-box; " &   
+			            "padding: 3px; " &             
+			            "display: flex; " &            
+			            "flex-direction: column; " &   
+			            "align-items: center; " &      
+			            "justify-content: flex-start;" 
+			
+			        RETURN 
+			            "<div style='" & _Card_Style & "'>" & 
+			                _Content_HTML & 
+			            "</div>"
+			    )
+			
+			RETURN
+			    "<div style='position:relative; width:100%; height:100px; font-family: Segoe UI;'>" & 
+			        _All_Cards & 
+			    "</div>"
+			```
+		lineageTag: 7ff940ce-ace0-491b-8e11-6618b7e6e927
+
+	measure 'Org_ChungCard HTML Optimize No HC' = ```
+			
+			VAR _oc        = SELECTEDVALUE ( Org_Chung[Mã OC] )
+			VAR _gap       = 6 
+			VAR _role_gap  = 4 
+			VAR _min_h =
+			    SWITCH( TRUE(),
+			        CONTAINSSTRING(_oc, "3."), 120,
+			        CONTAINSSTRING(_oc, "4."), 210,
+			        CONTAINSSTRING(_oc, "2."), 196,
+			        CONTAINSSTRING(_oc, "1."), 150,
+			        128
+			    )
+			
+			-- Lấy data
+			VAR _Data = 
+			    CALCULATETABLE (
+			        Org_Chung,
+			        Org_Chung[Mã OC] = _oc,
+			        REMOVEFILTERS( Org_Chung )
+			    )
+			
+			-- Check "Không tồn tại"
+			VAR _has_khong_ton_tai = SUMX( _Data, Org_Chung[Is_Khong_Ton_Tai] ) > 0
+			
+			-- PHẦN DANH SÁCH NHÂN VIÊN
+			VAR _roles =
+			    SUMMARIZE (
+			        _Data,
+			        Org_Chung[Chức danh],
+			        "RoleOrder", MIN ( Org_Chung[Thứ tự] )
+			    )
+			
+			VAR _body_content =
+			    CONCATENATEX (
+			        _roles,
+			        VAR _role = [Chức danh]
+			        VAR _names_html = 
+			            CONCATENATEX(
+			                FILTER( _Data, Org_Chung[Chức danh] = _role ),
+			                Org_Chung[HTML_Nhan_Vien], 
+			                "",
+			                Org_Chung[Thứ tự], ASC
+			            )
+			
+			        RETURN
+			            "<div style='margin:0 0 " & _gap & "px 0;padding:0'>" &
+			                "<span style='display:block;margin:0 0 " & _role_gap & "px 0;padding:0;font-weight:600;'>" & _role & "</span>" &
+			                IF (
+			                    LEN ( _names_html ) = 0,
+			                    "<span style='display:block;margin:0;padding:0;color:#999;font-style:italic'>(Trống)</span>",
+			                    _names_html
+			                ) &
+			            "</div>",
+			        "",
+			        [RoleOrder], ASC
+			    )
+			
+			-- KIỂM TRA NẾU KHÔNG CÓ DATA THÌ TRẢ VỀ (Trống)
+			VAR _final_body = 
+			    IF (
+			        ISBLANK ( _body_content ) || LEN ( _body_content ) = 0,
+			        "<span style='display:block;color:#999;font-style:italic;'>(Trống)</span>",
+			        _body_content
+			    )
+			
+			-- ==========================================================================================
+			-- SỬA PHẦN STYLE Ở ĐÂY
+			-- ==========================================================================================
+			VAR _card_style =
+			    "display:block;width:100%;height:100%;box-sizing:border-box;" &
+			    "margin:0;line-height:1.2;" & 
+			    IF (
+			        _has_khong_ton_tai,
+			        -- TRƯỜNG HỢP MÀU XÁM: Thêm border-radius vào đây
+			        "background:#e6e6e6;color:#777;opacity:1.1;" &
+			        "padding:8px 10px;" &
+			        "border-radius: 28px;" &  -- <--- Đã thêm bo góc (12px)
+			        "min-height:" & _min_h & "px;",
+			        
+			        -- TRƯỜNG HỢP BÌNH THƯỜNG: Không bo, không nền
+			        "padding:0;"
+			    )
+			
+			RETURN
+			    "<div style='" & _card_style & "'>" & _final_body & "</div>"
+			```
+		lineageTag: 9397fb5f-b658-4abc-96d5-7243ec1426ee
+
+	measure 'OrgCard HTML Optimize 3' = ```
+			
+			VAR _oc        = SELECTEDVALUE ( Org[Mã OC] )
+			VAR _gap       = 6 
+			VAR _role_gap  = 4 
+			VAR _min_h =
+			    SWITCH( TRUE(),
+			        CONTAINSSTRING(_oc, "3."), 120,
+			        CONTAINSSTRING(_oc, "4."), 210,
+			        CONTAINSSTRING(_oc, "2."), 196,
+			        CONTAINSSTRING(_oc, "1."), 150,
+			        128
+			    )
+			
+			-- 1. Lấy bảng dữ liệu gốc
+			VAR _Data = 
+			    CALCULATETABLE (
+			        Org,
+			        Org[Mã OC] = _oc,
+			        REMOVEFILTERS( Org )
+			    )
+			
+			-- Check trạng thái "Không tồn tại"
+			VAR _has_khong_ton_tai = SUMX( _Data, Org[Is_Khong_Ton_Tai] ) > 0
+			
+			-- 2. PHẦN DANH SÁCH CHỨC DANH
+			VAR _roles =
+			    SUMMARIZE (
+			        _Data,
+			        Org[Chức danh],
+			        "MinRoleOrder", MIN ( Org[Thứ tự] )
+			    )
+			
+			VAR _body_content =
+			    CONCATENATEX (
+			        _roles,
+			        VAR _role = Org[Chức danh]
+			        
+			        -- 3. LẤY NHÂN VIÊN: Thêm điều kiện lọc tên khác Blank
+			        VAR _unique_staff = 
+			            SUMMARIZE(
+			                FILTER( 
+			                    _Data, 
+			                    Org[Chức danh] = _role && 
+			                    NOT ISBLANK(Org[Tên nhân viên]) &&   -- Lọc bỏ người không có tên
+			                    Org[Tên nhân viên] <> ""            -- Lọc bỏ chuỗi rỗng nếu có
+			                ),
+			                Org[Tên nhân viên],
+			                "StaffHTML", FIRSTNONBLANK(Org[HTML_Nhan_Vien], 1),
+			                "StaffOrder", MIN(Org[Thứ tự])
+			            )
+			
+			        VAR _names_html = 
+			            CONCATENATEX(
+			                _unique_staff,
+			                [StaffHTML], 
+			                "",
+			                [StaffOrder], ASC
+			            )
+			
+			        RETURN
+			            -- Chỉ hiển thị Chức danh nếu có nhân viên bên trong (đã lọc blank)
+			            IF ( 
+			                NOT ISBLANK(_names_html) && LEN(_names_html) > 0,
+			                "<div style='margin:0 0 " & _gap & "px 0;padding:0'>" &
+			                    "<span style='display:block;margin:0 0 " & _role_gap & "px 0;padding:0;font-weight:600;'>" & _role & "</span>" &
+			                    _names_html &
+			                "</div>",
+			                ""
+			            ),
+			        "",
+			        [MinRoleOrder], ASC
+			    )
+			
+			-- ==========================================================================================
+			-- STYLE VÀ RETURN
+			-- ==========================================================================================
+			VAR _card_style =
+			    "display:block;width:100%;height:100%;box-sizing:border-box;" &
+			    "margin:0;line-height:1.2;" & 
+			    IF (
+			        _has_khong_ton_tai,
+			        "background:#e6e6e6;color:#777;padding:8px 10px;border-radius: 28px;min-height:" & _min_h & "px;",
+			        "padding:0;"
+			    )
+			
+			RETURN
+			    "<div style='" & _card_style & "'>" & _body_content & "</div>"
+			```
+		lineageTag: efab438a-e07d-49b9-bec0-05a18c6f77e5
+
+	measure 'SL Dang Lam Viec' = CALCULATE(DISTINCTCOUNTNOBLANK(Org[Mã nhân viên]),NOT(Org[Tình Trạng] ="KN" || Org[Ghi chú] = "KN") && NOT(LOWER(Org[Mã nhân viên]) in {"không hoạt động","không tuyển","trống","tuyển1","tuyển0","","tuyển","không tồn tại",BLANK()}))
+		formatString: 0
+		lineageTag: 4b47d17c-88b7-4f19-9d6b-259c5b93a4db
+
+	measure 'SL Tuyen' = CALCULATE(COUNT(Org[Mã nhân viên]), Org[Mã nhân viên] in {"Tuyển1"})
+		formatString: 0
+		lineageTag: 6a1c4ff0-23bd-4aaa-a315-4b0f51ca30cd
+
+	measure 'Đang làm việc (KN)' =
+			
+			IF (
+			    ISINSCOPE('DanhMucDauTu'[Tên Dự Án]) || ISINSCOPE(Org[Chức danh]),
+			    CALCULATE (
+			        [SL Dang Lam Viec],
+			        'Org'[Tình trạng] = "KN"
+			    ),
+			    BLANK()
+			)
+		formatString: 0
+		lineageTag: d8fe0f9d-46e7-489f-ab6d-6b39c2b7e6b9
+
+	column 'Mã nhân viên'
+		dataType: string
+		lineageTag: 1b25ff78-836c-424c-b69b-8ecbd95b64fd
+		summarizeBy: none
+		sourceColumn: Mã nhân viên
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mã OC'
+		dataType: string
+		lineageTag: 1da530cb-ce8e-4bd4-823a-8ad8e13470df
+		summarizeBy: none
+		sourceColumn: Mã OC
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Chức danh'
+		dataType: string
+		lineageTag: 0592389d-70cb-4668-8452-863e7be29529
+		summarizeBy: none
+		sourceColumn: Chức danh
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tên nhân viên'
+		dataType: string
+		lineageTag: 6b5c6a83-52c1-4c69-869d-3b3f97ee8c84
+		summarizeBy: none
+		sourceColumn: Tên nhân viên
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Name OC'
+		dataType: string
+		lineageTag: 1a4dda44-f208-424e-a2be-4d2aa62fb926
+		summarizeBy: none
+		sourceColumn: Name OC
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ghi chú'
+		dataType: string
+		lineageTag: b04cf877-8011-49e7-a220-af9f91fb1797
+		summarizeBy: none
+		sourceColumn: Ghi chú
+
+		annotation SummarizationSetBy = Automatic
+
+	column Format_code_nv
+		dataType: string
+		lineageTag: 8b5af844-44e8-41aa-849c-caa973e386ae
+		summarizeBy: none
+		sourceColumn: Format_code_nv
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mã dự án'
+		dataType: string
+		lineageTag: 361cead2-9a3c-4c5d-8d80-0a54395d0f96
+		summarizeBy: none
+		sourceColumn: Mã dự án
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Thứ tự'
+		dataType: int64
+		formatString: 0
+		lineageTag: b842c51c-31e9-482b-9b24-fc71b1bdd87a
+		summarizeBy: sum
+		sourceColumn: Thứ tự
+
+		annotation SummarizationSetBy = Automatic
+
+	column OCD
+		dataType: string
+		lineageTag: 29be6414-29b5-4efc-94d6-3b5bc9f005ce
+		summarizeBy: none
+		sourceColumn: OCD
+
+		annotation SummarizationSetBy = Automatic
+
+	column ITD
+		dataType: string
+		lineageTag: 9c2ee064-2c3f-48e9-9dfe-0c024aa38450
+		summarizeBy: none
+		sourceColumn: ITD
+
+		annotation SummarizationSetBy = Automatic
+
+	column HRBP
+		dataType: string
+		lineageTag: 62cf7f05-ca1a-456f-beb9-a72f80ffa9bb
+		summarizeBy: none
+		sourceColumn: HRBP
+
+		annotation SummarizationSetBy = Automatic
+
+	column Is_Khong_Ton_Tai =
+			
+			IF ( LOWER ( TRIM ( Org[Ghi chú] ) ) = "không tồn tại"|| CONTAINSSTRING(LOWER(Org[Ghi chú]),"không hoạt động") , 1, 0 )
+		formatString: 0
+		lineageTag: b228af63-e719-402b-a613-a9bdba9effca
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column HTML_Nhan_Vien =
+			
+			VAR _name_gap = 3
+			VAR _ten = TRIM ( Org[Tên nhân viên] )
+			VAR _gc  = TRIM ( Org[Ghi chú] )
+			VAR _gc_fmt = IF ( LEN ( _gc ) > 1, " " & _gc, "" )
+			VAR _line   = TRIM ( _ten  & _gc_fmt )
+			RETURN
+			    "<span style='display:block;margin:0 0 " & _name_gap & "px 0;padding:0'>" &
+			        IF ( _line = "", "(Trống)", _line ) &
+			    "</span>"
+		lineageTag: b7385758-2f45-4533-b290-939341bd38d7
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Phòng
+		type: calculated
+		lineageTag: ff6cf9c0-afe5-4134-b5ef-c5f21505a283
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tình trạng'
+		dataType: string
+		lineageTag: 92609dd2-324d-4e47-afab-cdc45dc629d0
+		summarizeBy: none
+		sourceColumn: Tình trạng
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sort_Phong_Ban =
+			
+			SWITCH(
+			    TRUE(),
+			    Org[Mã OC] IN {"GMD", "GMD4"}, "1.0 " & Org[Name OC],
+			    Org[Name OC] = "PHÒNG ĐIỀU HÀNH DỰ ÁN", "4.0 PHÒNG ĐIỀU HÀNH DỰ ÁN",
+			    Org[Name OC] = "PHÒNG THỦ TỤC PHÁP LÝ DỰ ÁN", "4.1 PHÒNG THỦ TỤC PHÁP LÝ DỰ ÁN",
+			    Org[Name OC] = "PHÒNG QUẢN LÝ THIẾT KẾ", "4.2 PHÒNG QUẢN LÝ THIẾT KẾ",
+			    Org[Name OC] = "PHÒNG QLXD, AN TOÀN VÀ MÔI TRƯỜNG", "4.3 PHÒNG QLXD, AN TOÀN VÀ MÔI TRƯỜNG",
+			    Org[Name OC] = "PHÒNG QUẢN LÝ VẬN HÀNH DỰ ÁN", "4.4 PHÒNG QUẢN LÝ VẬN HÀNH DỰ ÁN",
+			    "" -- Giá trị trả về mặc định nếu không thỏa mãn các điều kiện trên
+			)
+		lineageTag: 57dea379-b3b7-4a59-9832-b8611c2f2684
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column12
+		dataType: string
+		lineageTag: 27ded95a-8d4a-46de-bf21-348d4bfd3a09
+		summarizeBy: none
+		sourceColumn: Column12
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Org = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://novaland.sharepoint.com/sites/DataTeam/Shared%20Documents/General/D%E1%BB%B1%20%C3%A1n/GMC/Data_structure_v1.xlsx"), null, true),
+				    Org_Sheet = Source{[Item="Chung (để copy)",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Org_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Mã dự án", type text}, {"Mã nhân viên", type any}, {"Mã OC", type text}, {"Name OC", type text}, {"Chức danh", type text}, {"Ghi chú", type text}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Changed Type",{{"Mã nhân viên", type text}}),
+				    #"Added Custom Column" = Table.AddColumn(#"Changed Type1", "Format_code_nv", each Text.PadStart([Mã nhân viên], 5, "0"), type text),
+				    #"Merged Queries" = Table.NestedJoin(#"Added Custom Column", {"Format_code_nv"}, #"db_novahub_pro employeeorg1offices", {"perNumber"}, "db_novahub_pro employeeorg1offices", JoinKind.LeftOuter),
+				    #"Expanded db_novahub_pro employeeorg1offices" = Table.ExpandTableColumn(#"Merged Queries", "db_novahub_pro employeeorg1offices", {"fullName"}, {"fullName"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Expanded db_novahub_pro employeeorg1offices",{{"fullName", "Tên nhân viên"}}),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Renamed Columns",{"Mã nhân viên", "Mã OC", "Chức danh", "Tên nhân viên", "Name OC", "Ghi chú", "Format_code_nv"}),
+				    #"Sorted Rows" = Table.Sort(#"Reordered Columns",{{"Mã OC", Order.Ascending}}),
+				    #"Removed Duplicates" = Table.Distinct(#"Sorted Rows"),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Removed Duplicates",{{"Thứ tự", Int64.Type}})
+				in
+				    #"Changed Type2"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

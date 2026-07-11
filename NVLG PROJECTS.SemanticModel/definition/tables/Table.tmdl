@@ -1,0 +1,369 @@
+table Table
+	lineageTag: 07bf366b-2b52-49da-904c-957d23b77ab4
+
+	measure 'Số lượng dự án' =
+			
+			VAR Loc = MAX(DanhMucDauTu[BanDieuHanh])
+			VAR x =  CALCULATE(DISTINCTCOUNTNOBLANK(DuAn_By_KhuVuc[TenDuAn]),DuAn_By_KhuVuc[BanDieuHanh] = Loc&& DuAn_By_KhuVuc[isDelete] = 0)
+			RETURN IF(x>0,x,0)
+		formatString: 0
+		lineageTag: 1aa3a24e-5d0d-4c98-ab78-67e40f1ec15c
+
+	measure DrillThrough_Link_Du_An = ```
+			
+			VAR BaseURL = "https://app.powerbi.com/groups/fecd8a18-81ab-40b5-ba84-705da522e90b/reports/f7e2d494-15f1-419e-a992-3c065fe2ce14/e87daea54d3f16a8c6ab?experience=power-bi&clientSideAuth=0"
+			
+			// 1. Lấy giá trị từ bảng và cột ĐÃ ĐỔI TÊN trong Power BI Desktop
+			// Hãy đảm bảo bạn chọn đúng trường đã đổi tên ở đây
+			VAR Gia_Tri_Loc = SELECTEDVALUE('DanhMucDauTu'[BanDieuHanh])
+			
+			// 2. Xây dựng tham số lọc (URL Filter)
+			// Bây giờ URL sẽ rất sạch, không cần %20 nữa
+			// Cấu trúc: &filter=TenBang/TenCot eq 'GiaTri'
+			
+			VAR FilterParam = 
+			    "&filter=DanhMucDauTu/BanDieuHanh eq '" 
+			    & Gia_Tri_Loc 
+			    & "'"
+			
+			RETURN
+			    BaseURL & FilterParam
+			```
+		lineageTag: 7490c4d5-fcac-45ea-999f-b3f31faa9caa
+
+	measure HTML_DrillThrough_Final = ```
+			
+			VAR Ten =
+			    SELECTEDVALUE ( KhuVuc_Layout[Khu vực] )
+			
+			-- Tự build link từ Ten, không phụ thuộc vào hàng trong DanhMucDauTu
+			VAR BaseURL =
+			    "https://app.powerbi.com/groups/fecd8a18-81ab-40b5-ba84-705da522e90b/reports/f7e2d494-15f1-419e-a992-3c065fe2ce14/e87daea54d3f16a8c6ab?experience=power-bi&clientSideAuth=0"
+			
+			-- Ví dụ filter theo khu vực (tùy bạn encode thế nào)
+			VAR Link =
+			    BaseURL
+			        & "&filter=DanhMucDauTu/BanDieuHanh eq '"
+			        & Ten
+			        & "'"
+			
+			RETURN
+			IF (
+			    ISBLANK ( Ten ),
+			    BLANK (),
+			    "<a href=""" & Link
+			        & """ target=""_blank"" style=""text-decoration:none;"">"
+			        & Ten
+			        & "</a>"
+			)
+			
+			```
+		lineageTag: e201bfbd-b077-4960-ba83-b9dd9235009d
+
+	measure 'Total công việc' =
+			
+			Var x = CALCULATE(COUNT(Eoffice_TD[title]))
+			RETURN IF(x>0,x,"Chưa có công việc trên eoffice")
+		formatString: 0
+		lineageTag: b5123512-e75f-44b4-8ebc-fd734cae0885
+
+	measure New_Tasks_Current_Month =
+			
+			VAR _CurrentDate = TODAY()
+			RETURN
+			    CALCULATE(
+			        COUNTROWS('Eoffice_TD'), -- Thay 'TenBangCuaBan' bằng tên bảng thực tế
+			        MONTH('Eoffice_TD'[start_plan]) = MONTH(_CurrentDate) &&
+			        YEAR('Eoffice_TD'[start_plan]) = YEAR(_CurrentDate)
+			    )
+		formatString: 0
+		lineageTag: 22257015-54a0-47fb-8839-90bd9f5bce76
+
+	measure 'Total công việc hoàn thành' =
+			
+			Var x = CALCULATE(COUNT(Eoffice_TD[title]),Eoffice_TD[status] = "Hoàn thành")
+			RETURN IF(x>0,x,0)
+		formatString: 0
+		lineageTag: ef8af20d-5b3e-425a-acb7-c8f4c97dc375
+
+	measure 'Total công việc lv3' =
+			
+			Var x = CALCULATE(DISTINCTCOUNT(Deep_Lv3[title]))
+			RETURN IF(x>0,x,"Chưa có công việc trên eoffice")
+		formatString: 0
+		lineageTag: 1c5a7383-7383-4219-a270-1cc163d55cb5
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Total công việc hoàn thành lv3' =
+			
+			Var x = CALCULATE(DISTINCTCOUNTNOBLANK(Deep_Lv3[title]),Deep_Lv3[status] = "Hoàn thành")
+			RETURN IF(x>0,x,0)
+		formatString: 0
+		lineageTag: 7c57062d-fca6-4a8d-90f7-30bba904fda5
+
+	measure New_Tasks_Current_Month_LV3 = ```
+			
+			VAR _CurrentDate = TODAY()
+			RETURN
+			    CALCULATE(
+			        DISTINCTCOUNTNOBLANK(Deep_Lv3[title]), -- Thay 'TenBangCuaBan' bằng tên bảng thực tế
+			        MONTH('Deep_Lv3'[start_plan]) = MONTH(_CurrentDate) &&
+			        YEAR('Deep_Lv3'[start_plan]) = YEAR(_CurrentDate) 
+			    )
+			```
+		formatString: 0
+		lineageTag: f7fa67f5-2153-4d53-8aba-2ff1377d58bb
+
+	measure Measure_Filter_Week = ```
+			
+			VAR _NgayCanCheck = SELECTEDVALUE(Deep_Lv3[start_plan]) -- Sửa ở đây
+			VAR _HomNay = TODAY()
+			VAR _Thu2_TuanNay = _HomNay - WEEKDAY(_HomNay, 2) + 1 
+			VAR _Thu2_TuanTruoc = _Thu2_TuanNay - 7
+			
+			RETURN
+			    IF(
+			        _NgayCanCheck >= _Thu2_TuanTruoc && 
+			        _NgayCanCheck <= _HomNay,
+			        1, -- Trả về 1 nếu đúng
+			        0
+			    )
+			```
+		formatString: 0
+		lineageTag: 07637a11-692a-49d8-8123-6512a3586daa
+
+	measure 'Số lượng dự án _ (Khu Vực)' =
+			
+			CALCULATE(DISTINCTCOUNTNOBLANK(DuAn_By_KhuVuc[TenDuAn]), DuAn_By_KhuVuc[isDelete] = 0)
+		formatString: 0
+		lineageTag: 2bdd3af2-13f2-4d09-bcad-00234eb1bfdf
+
+	measure User_principal = USERPRINCIPALNAME()
+		lineageTag: 15d1bd33-f9d8-4815-8cd8-443dbecd737b
+
+	measure 'Final Percent Measure' = ```
+			
+			VAR _pct3 = AVERAGE(Deep_Lv3[percent])/100
+			VAR _pct2 = AVERAGE(Deep_Lv2[percent])/100
+			VAR _pct1 = AVERAGE(Deep_Lv1[percent])/100
+			RETURN
+			 SWITCH( TRUE(),
+			        -- Nếu đang xem ở cấp 3: Lấy 3, nếu 3 trống lấy 2, nếu 2 trống lấy 1...
+			        ISINSCOPE(Deep_Lv3[title]), COALESCE(_pct3, _pct2, _pct1),
+			        
+			        -- Nếu đang xem ở cấp 2: Lấy 2, nếu 2 trống lấy 1...
+			        ISINSCOPE(Deep_Lv2[title]), COALESCE(_pct2, _pct1),
+			        
+			       
+			        -- Mặc định cho cấp 0 hoặc các cấp cao hơn nữa
+			        _pct1
+			    )
+			```
+		formatString: 0%;-0%;0%
+		lineageTag: 48cc7af3-358c-4f0f-952f-87c0a13a3b20
+
+	measure 'Final Deadlist Measure' = ```
+			
+			VAR _pct3 = MAX(Deep_Lv3[deadline_list])
+			VAR _pct2 = MAX(Deep_Lv2[deadline_list])
+			
+			RETURN
+			    IF (
+			        ISINSCOPE(Deep_Lv2[title]), 
+			        COALESCE(_pct3, _pct2), 
+			        BLANK()
+			    )
+			```
+		lineageTag: 813ec968-a08e-431a-a406-8b9994394656
+
+	measure 'Final assign_ids Measure' = ```
+			
+			VAR _pct3 = MAX(Deep_Lv3[assign_ids])
+			VAR _pct2 = MAX(Deep_Lv2[assign_ids])
+			VAR _pct1 = MAX(Deep_Lv1[assign_ids])
+			VAR _pct0 = MAX(Deep_Lv0[assign_ids])
+			
+			RETURN
+			    SWITCH( TRUE(),
+			        -- Nếu đang xem ở cấp 3: Lấy 3, nếu 3 trống lấy 2, nếu 2 trống lấy 1...
+			        ISINSCOPE(Deep_Lv3[title]), COALESCE(_pct3, _pct2, _pct1, _pct0),
+			        
+			        -- Nếu đang xem ở cấp 2: Lấy 2, nếu 2 trống lấy 1...
+			        ISINSCOPE(Deep_Lv2[title]), COALESCE(_pct2, _pct1, _pct0),
+			        
+			        -- Nếu đang xem ở cấp 1: Lấy 1, nếu 1 trống lấy 0
+			        ISINSCOPE(Deep_Lv1[title]), COALESCE(_pct1, _pct0),
+			        
+			        -- Mặc định cho cấp 0 hoặc các cấp cao hơn nữa
+			        _pct0
+			    )
+			```
+		lineageTag: 0a46db94-b592-45d4-a03b-cc08c7739783
+
+	measure 'Final End Date Measure' = ```
+			
+			VAR _pct3 = MAX(Deep_Lv3[end_plan])
+			VAR _pct2 = MAX(Deep_Lv2[end_plan])
+			
+			RETURN
+			    IF (
+			        ISINSCOPE(Deep_Lv2[title]), 
+			        COALESCE(_pct3, _pct2), 
+			        BLANK()
+			    )
+			```
+		lineageTag: 7245a076-3c4c-4ba1-9c22-028db2096041
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Công việc quá hạn' = CALCULATE(DISTINCTCOUNTNOBLANK(Eoffice_TD[title]),CONTAINSSTRING(Eoffice_TD[deadline_list],"Quá hạn"))
+		formatString: 0
+		lineageTag: bc2c6138-ce0a-419b-8606-6f56029cbc93
+
+	measure 'Tổng số CV' = CALCULATE(COUNT(Eoffice_TD[title]))
+		formatString: 0
+		lineageTag: 222a0730-15ac-438e-9cbc-58bf4a82cb10
+
+	measure 'CV hoàn thành' = CALCULATE(DISTINCTCOUNTNOBLANK(Eoffice_TD[title]),Eoffice_TD[status] = "Hoàn thành")
+		formatString: 0
+		lineageTag: e6ddbbca-65fc-433f-834a-9df0aa003150
+
+	measure 'CV đang thực hiện' = CALCULATE(DISTINCTCOUNTNOBLANK(Eoffice_TD[title]),Eoffice_TD[status] = "Đang thực hiện")
+		formatString: 0
+		lineageTag: cb38d2e5-ab00-48ad-9fbc-1ba65aaf0dbf
+
+	measure 'CV sắp đến hạn kết thúc' =
+			
+			
+			CALCULATE(DISTINCTCOUNTNOBLANK(Eoffice_TD[title]),Eoffice_TD[status] = "Đang thực hiện" && DATEDIFF(Eoffice_TD[end_plan], TODAY(), DAY) <= 30 && DATEDIFF(Eoffice_TD[end_plan], TODAY(), DAY) >= 1)
+		formatString: 0
+		lineageTag: 7c639311-889b-41cd-ac6c-b8fcf10c05d6
+
+	measure Per_cent_năm =
+			
+			
+			VAR _pct1 = AVERAGE(Deep_Lv2[Per_cent_dc])
+			VAR _pct0 = AVERAGE(Deep_Lv0[percent])/100
+			RETURN
+			 COALESCE(_pct1, _pct0)
+		formatString: 0%;-0%;0%
+		lineageTag: fc4ffab1-8e25-4593-b0e3-6846a6fd3024
+
+	measure KH_năm =
+			
+			
+			VAR _pct1 = AVERAGE(Deep_Lv2[KH])
+			VAR _pct0 = AVERAGE(Deep_Lv1[KH])
+			RETURN
+			 COALESCE(_pct1, _pct0)
+		formatString: 0%;-0%;0%
+		lineageTag: b569c28d-164b-450e-a947-8159efeefaef
+
+	measure 'KH_dự án năm' = [KH_năm]*0.6+ AVERAGE(Deep_Lv3[KH])*0.4
+		formatString: 0%;-0%;0%
+		lineageTag: d406935f-dd15-4d21-9803-c833bcdae757
+
+	measure 'Thực tế năm' = [Per_cent_năm]*0.6 + AVERAGE(Deep_Lv3[Per_cent_dc])*0.4
+		formatString: 0%;-0%;0%
+		lineageTag: 6e8cdb3a-8b1a-4677-bdf0-fd014d4bca7b
+
+	measure KH_VD = SUM(Project[KH])
+		formatString: 0%;-0%;0%
+		lineageTag: 4a34042e-cdc3-4cf1-b15d-5ca2c7c57cd8
+
+	measure TT_VĐ = MAX(Project[progress])
+		lineageTag: 093a95ff-4722-44ae-bf71-1df399e87085
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure KH_Dynamic =
+			
+			Var x = MAX('Table'[id])
+			RETURN IF(x = "1",[KH_dự án năm],[KH_VD])
+		formatString: 0%;-0%;0%
+		lineageTag: 025489fc-8fb1-43dd-8b67-4e0ee95eaa66
+
+	measure TT_Dynamic =
+			
+			var x = max('Table'[id])
+			RETURN IF( x = "1", 'Table'[Thực tế năm],[TT_VĐ])
+		formatString: 0%;-0%;0%
+		lineageTag: 9436bebf-fa9c-40a2-8817-02eca10a1ccf
+
+	measure KH_Ban_VD = AVERAGE(Deep_Lv0[KH])
+		lineageTag: c76f0f62-4854-43b4-a6dd-51ec2c30fcf0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure KH_Ban_Dynamic =
+			
+			var x = MAX('Table'[id])
+			RETURN IF(x = "1", [KH_năm],[KH_Ban_VD])
+		formatString: 0%;-0%;0%
+		lineageTag: 1d5e918e-21d7-4cf6-a830-1a2074049ef7
+
+	measure TT_Ban_Dynamic =
+			
+			var x = MAX('Table'[id])
+			RETURN IF(x="1", [Per_cent_năm],[Final Percent Measure])
+		formatString: 0%;-0%;0%
+		lineageTag: add05f29-01b8-4c82-9019-e9f3f8450f3d
+
+	measure TT_4_P_Năm = AVERAGE(Deep_Lv3[Per_cent_dc])
+		lineageTag: 20b10029-7add-4f39-9a41-fa2f1f754289
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure KH_4_p_năm = AVERAGE(Deep_Lv3[KH])
+		lineageTag: 4d974413-f5bd-48be-8b99-d3552268bce9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure KH_4_P_VD = AVERAGE(Deep_Lv1[KH])
+		lineageTag: f8cbf262-fc96-4026-b5d0-4fbfcf065531
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure KH_4_P_Dynamic =
+			
+			var x = Max('Table'[id])
+			RETURN IF(x = "1", [KH_4_p_năm],[KH_4_P_VD])
+		formatString: 0%;-0%;0%
+		lineageTag: d3bda600-5a9d-4430-ad73-2dfe1b97abd9
+
+	measure TT_4_P_Dynamic =
+			
+			Var x = max('Table'[id])
+			RETURN IF(x = "1",[TT_4_P_Năm],[Final Percent Measure])
+		formatString: 0%;-0%;0%
+		lineageTag: 04c0e8f0-f1bc-4300-9871-9655ca1cb2d7
+
+	column id
+		dataType: string
+		lineageTag: 3dddd57f-ad55-4831-b338-b21dc97d5cc7
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 68c0abf2-8a67-435a-b9df-11c89b47863d
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Table = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlTSUYpIzVUoyUjNV8g70pyrFKsTrWSELFp2eFNeusKRiQ93z81USHm4e6PC4YV5SrGxAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [id = _t, name = _t])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

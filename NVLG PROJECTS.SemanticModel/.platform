@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "NVLG PROJECTS"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "13e22e27-e80a-441e-8f22-f19d0175453e"
+  }
+}

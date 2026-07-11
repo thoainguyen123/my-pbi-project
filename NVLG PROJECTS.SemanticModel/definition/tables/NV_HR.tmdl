@@ -1,0 +1,145 @@
+table NV_HR
+	lineageTag: 041ba006-e3bb-4bfa-87c5-2ae0f3ac3e5b
+
+	measure 'SL Đang làm việc' = CALCULATE(SUm(Head_Count[SL Đang làm việc] ))
+		formatString: 0
+		lineageTag: 1740f6f6-505f-4423-a8e8-03ef02315a0f
+
+	measure 'Tổng headcount' = CALCULATE(SUM(Head_Count[Tổng headcount 2026]))
+		formatString: 0
+		lineageTag: 4979b85a-abb1-4111-8b56-3b20e08bcc62
+
+	measure 'SL sắp OB' =
+			
+			var x = CALCULATE(SUM(Head_Count[SL Sắp ONB & Đ/c]))
+			RETURN x
+		formatString: 0
+		lineageTag: 97bac87b-b89d-4e6f-8744-8d73c0265e8f
+
+	measure HTML_Dinh_Bien = ```
+			
+			VAR _Total_Plan = [Tổng headcount] + 0
+			VAR _Total_Current = [SL Đang làm việc] + 0
+			
+			-- Logic màu sắc (Giữ nguyên)
+			VAR _Color_Number =
+			    SWITCH(
+			        TRUE(),
+			        _Total_Current < _Total_Plan, "#d32f2f",   -- Đỏ (Thiếu người)
+			        _Total_Current = _Total_Plan, "#2e7d32",   -- Xanh (Đủ)
+			        _Total_Current > _Total_Plan, "#f9a825",   -- Vàng (Thừa)
+			        "#000000"
+			    )
+			
+			VAR _Header_Dinh_Bien = 
+			    IF(
+			        _Total_Plan > 0, 
+			        -- Đã xóa dòng border-bottom ở style bên dưới
+			        "<div style='text-align:center;
+			                     font-size:14px;
+			                     font-family:Segoe UI, sans-serif;'>"
+			
+			            -- Text: Màu Xanh Navy
+			            & "<div style='color:#003366; margin-bottom:2px;'>Định biên:</div>"
+			
+			            -- Số: Màu động theo logic + !important để fix lỗi trên Service
+			            & "<div style='font-weight:bold; color:" & _Color_Number & " !important;'>"
+			            & _Total_Current & "/" & _Total_Plan &
+			            "</div>"
+			
+			        & "</div>",
+			        ""
+			    )
+			
+			RETURN
+			    _Header_Dinh_Bien
+			```
+		lineageTag: ad6a884b-764d-4c94-b108-74dfeb0ea423
+
+	measure 'Cần tuyển thêm' = CALCULATE(SUm(Head_Count[SL Đang tuyển] ))
+		formatString: 0
+		lineageTag: d4c64617-2941-4699-9720-40ff0993cf19
+
+	measure HTML_Title_Custom = ```
+			
+			-- 1. INPUT: Khai báo 4 biến dữ liệu
+			VAR _Line1_TieuDe  = "BAN ĐIỀU HÀNH DỰ ÁN KHU VỰC"
+			VAR _Line2_KhuVuc  = SELECTEDVALUE('DanhMucDauTu'[BanDieuHanh])
+			VAR _Line3_ChucVu  = "Giám Đốc Ban Điều Hành Dự Án (GMD-NVLG)"
+			VAR _Line4_TenNV   = MAX(DanhMucDauTu[Quản Lý Khu Vực])
+			
+			-- 2. XỬ LÝ TEXT: Làm sạch chữ "Khu vực" ở dòng 2 cho đỡ bị lặp từ
+			VAR _Line2_Clean = UPPER(TRIM(SUBSTITUTE(_Line2_KhuVuc, "Khu vực", "")))
+			
+			-- 3. TRẢ VỀ HTML (4 Dòng từ trên xuống dưới)
+			RETURN
+			    "<div style='text-align: center; font-family: Segoe UI, sans-serif; color: #003366;'>" & 
+			        
+			        -- Dòng 1: Tiêu đề chung (Cỡ chữ 12px)
+			        "<div style='font-size: 12px; margin-bottom: 2px; font-weight: bold;'>" & 
+			            _Line1_TieuDe & 
+			        "</div>" &
+			
+			        -- Dòng 2: Tên Khu Vực (Cỡ chữ TO 16px để nhấn mạnh)
+			        "<div style='font-size: 12px; font-weight: 900; margin-bottom: 4px; text-transform: uppercase;'>" & 
+			            _Line2_Clean & 
+			        "</div>" &
+			
+			        -- Dòng 3: Chức danh cố định (Cỡ chữ 12px)
+			        "<div style='font-size: 12px; margin-bottom: 2px; font-weight: bold'>" & 
+			            _Line3_ChucVu & 
+			        "</div>" &
+			
+			        -- Dòng 4: Tên Nhân Viên (Cỡ chữ 14px, in đậm)
+			        "<div style='font-size: 12px; '>" & 
+			            _Line4_TenNV & 
+			        "</div>" &
+			
+			    "</div>"
+			```
+		lineageTag: 3ea536e8-9c9e-479d-87ee-6b7b1b6d026b
+
+	measure Text_khuvuc = "BẠN ĐANG XEM " & UPPER(Max(DanhMucDauTu[BanDieuHanh]))
+		lineageTag: 45375ce4-d6b2-4840-954b-7190bdfe5d9e
+
+	measure TenDuAn_CoSTT = ```
+			
+			IF(
+			    HASONEVALUE('DanhMucDauTu'[Tên Dự Án]),
+			    VAR TenHienTai = MAX('DanhMucDauTu'[Tên Dự Án])
+			    VAR SoThuTu = RANKX(
+			        ALLSELECTED('DanhMucDauTu'[Tên Dự Án]), 
+			        CALCULATE(MAX('DanhMucDauTu'[Tên Dự Án])), 
+			        , 
+			        ASC, 
+			        DENSE
+			    )
+			    RETURN SoThuTu & ". " & TenHienTai,
+			    BLANK()
+			)
+			```
+		lineageTag: a8c6d397-6363-4c41-8e73-ade409a806dc
+
+	measure 'Current Month Title VN' =
+			
+			VAR _CurrentDate = TODAY()
+			VAR _Month = FORMAT(_CurrentDate, "MM")
+			VAR _Year = FORMAT(_CurrentDate, "YYYY")
+			RETURN
+			    "THÁNG " & _Month & "/" & _Year
+		lineageTag: 420fec7b-b73e-4ee2-a306-e1a73ec0cd06
+
+	partition NV_HR = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlSKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", Int64.Type}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

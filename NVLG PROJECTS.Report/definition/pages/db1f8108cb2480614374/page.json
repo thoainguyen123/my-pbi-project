@@ -1,0 +1,48 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "db1f8108cb2480614374",
+  "displayName": "4.4 Quản lý Vận hành",
+  "displayOption": "FitToWidth",
+  "height": 720,
+  "width": 1080,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "aa505e5e043801d39988",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DanhMucDauTu"
+              }
+            },
+            "Property": "TenDuAn_CoSTT"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "a372fa37ece76279d308",
+    "type": "Drillthrough",
+    "parameters": [
+      {
+        "name": "2c3d0387672d4e455308",
+        "boundFilter": "aa505e5e043801d39988",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DanhMucDauTu"
+              }
+            },
+            "Property": "TenDuAn_CoSTT"
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode"
+}

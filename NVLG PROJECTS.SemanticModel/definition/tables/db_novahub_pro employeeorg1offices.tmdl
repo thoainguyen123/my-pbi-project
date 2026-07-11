@@ -1,0 +1,47 @@
+table 'db_novahub_pro employeeorg1offices'
+	isHidden
+	lineageTag: 26d7e958-b407-4e6b-aa09-a9e6911233c3
+
+	column fullName
+		dataType: string
+		isHidden
+		lineageTag: e11a98ea-93ed-4a00-8fc7-c8db3c88c113
+		summarizeBy: none
+		sourceColumn: fullName
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column perNumber
+		dataType: string
+		lineageTag: 48a352e2-7cba-47d2-ae23-1fb5479dab38
+		summarizeBy: none
+		sourceColumn: perNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'db_novahub_pro employeeorg1offices' = m
+		mode: import
+		source =
+				let
+				    Source = Json.Document(File.Contents("C:\Python\employee_list_with_org.json")),
+				    list = Source[list],
+				    #"Converted to Table" = Table.FromList(list, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+				    #"Expanded Column1" = Table.ExpandRecordColumn(#"Converted to Table", "Column1", {"_id", "perNumber", "source", "__v", "blacklist", "company", "companyName", "createdAt", "department", "departmentName", "division", "divisionName", "email", "employeeType", "employeeTypeName", "endDate", "event", "eventName", "fullName", "gender", "group", "groupN1", "groupN1Name", "groupN2", "groupN2Name", "groupN3", "groupN3Name", "groupName", "hireDate", "jobCode", "jobTitle", "jobTitleId", "location", "locationName", "managerID", "marStatus", "national", "nationalId", "phone", "position", "positionId", "positionName", "seniDate", "startDate", "status", "updatedAt", "level", "levelName"}, {"_id", "perNumber", "source", "__v", "blacklist", "company", "companyName", "createdAt", "department", "departmentName", "division", "divisionName", "email", "employeeType", "employeeTypeName", "endDate", "event", "eventName", "fullName", "gender", "group", "groupN1", "groupN1Name", "groupN2", "groupN2Name", "groupN3", "groupN3Name", "groupName", "hireDate", "jobCode", "jobTitle", "jobTitleId", "location", "locationName", "managerID", "marStatus", "national", "nationalId", "phone", "position", "positionId", "positionName", "seniDate", "startDate", "status", "updatedAt", "level", "levelName"}),
+				    #"Filtered Rows" = Table.SelectRows(#"Expanded Column1", each ([status] = 1)),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Filtered Rows",{"perNumber", "fullName"}),
+				    #"Appended Query" = Table.Combine({#"Removed Other Columns", Sheet1}),
+				    #"Removed Duplicates" = Table.Distinct(#"Appended Query", {"perNumber"}),
+				    Custom1 = Table.AddColumn(#"Removed Duplicates", "Format_code_nv", each Text.PadStart([perNumber], 5, "0"), type text),
+				    #"Removed Columns" = Table.RemoveColumns(Custom1,{"perNumber"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Format_code_nv", "perNumber"}})
+				in
+				    #"Renamed Columns"
+
+	changedProperty = IsHidden
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

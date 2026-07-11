@@ -1,0 +1,48 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "34576bca7ae3234803cb",
+  "displayName": "9.5 Cung ứng Đấu thầu",
+  "displayOption": "FitToWidth",
+  "height": 720,
+  "width": 1080,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f14f61d527086e4a3915",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DanhMucDauTu"
+              }
+            },
+            "Property": "TenDuAn_CoSTT"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "92b9e3d008e64bd03da5",
+    "type": "Drillthrough",
+    "parameters": [
+      {
+        "name": "4e9e8600096cc34e7b48",
+        "boundFilter": "f14f61d527086e4a3915",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DanhMucDauTu"
+              }
+            },
+            "Property": "TenDuAn_CoSTT"
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode"
+}

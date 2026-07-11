@@ -1,0 +1,224 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "f454464973e4bf8b6485",
+  "displayName": "Duplicate of Dự án",
+  "displayOption": "ActualSize",
+  "height": 1700,
+  "width": 1500,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "df6fbe2979d2b9ad516b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DanhMucDauTu"
+              }
+            },
+            "Property": "BanDieuHanh"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "1ca47ff5ae9631a0208a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DanhMucDauTu"
+              }
+            },
+            "Property": "BanDieuHanh"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "DanhMucDauTu",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "d"
+                          }
+                        },
+                        "Property": "BanDieuHanh"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Ban điều hành Dự án Vùng TP.HCM 2.1'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {}
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "a2c3965ae41304d4da33",
+    "type": "Drillthrough",
+    "parameters": [
+      {
+        "name": "acd6567ed543b5360d25",
+        "boundFilter": "df6fbe2979d2b9ad516b",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DanhMucDauTu"
+              }
+            },
+            "Property": "BanDieuHanh"
+          }
+        }
+      }
+    ]
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              }
+            }
+          },
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": 0
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "393L"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode",
+  "visualInteractions": [
+    {
+      "source": "98ffdc10e1d0a5b0d021",
+      "target": "fd4759f819b33be935e7",
+      "type": "NoFilter"
+    },
+    {
+      "source": "98ffdc10e1d0a5b0d021",
+      "target": "d3652272537df58e632b",
+      "type": "NoFilter"
+    },
+    {
+      "source": "98ffdc10e1d0a5b0d021",
+      "target": "1042b44bfef94c8416df",
+      "type": "NoFilter"
+    },
+    {
+      "source": "98ffdc10e1d0a5b0d021",
+      "target": "3855756aa30bda948b7b",
+      "type": "NoFilter"
+    },
+    {
+      "source": "98ffdc10e1d0a5b0d021",
+      "target": "d8cb02ce53686439f923",
+      "type": "NoFilter"
+    },
+    {
+      "source": "98ffdc10e1d0a5b0d021",
+      "target": "979770f1c96672198e19",
+      "type": "NoFilter"
+    },
+    {
+      "source": "98ffdc10e1d0a5b0d021",
+      "target": "63c8ce8398eb1735dfd5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "98ffdc10e1d0a5b0d021",
+      "target": "6b92335e2b5294a59ee2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "98ffdc10e1d0a5b0d021",
+      "target": "b289486a3f099dd7a84b",
+      "type": "NoFilter"
+    },
+    {
+      "source": "98ffdc10e1d0a5b0d021",
+      "target": "1184f8c82c054eb09f28",
+      "type": "NoFilter"
+    },
+    {
+      "source": "98ffdc10e1d0a5b0d021",
+      "target": "5fc041f1cab84b506b58",
+      "type": "NoFilter"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+role PQ_DuAn
+	modelPermission: read
+
+	tablePermission PQ_Du_An = [Email (*)] == USERPRINCIPALNAME()
+
+	annotation PBI_Id = 2ea8882d5a5a46f0b415cc9667dad6e1
+

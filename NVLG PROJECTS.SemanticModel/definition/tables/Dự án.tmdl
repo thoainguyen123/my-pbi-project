@@ -1,0 +1,133 @@
+table 'Dự án'
+	isHidden
+	lineageTag: d0cfd250-2bc0-4ae2-a972-34aa91ecff6d
+
+	column 'Mã dự án - Phân khu'
+		dataType: string
+		isHidden
+		lineageTag: 93cace52-eb0d-45fd-bf2f-d446b51cea10
+		summarizeBy: none
+		sourceColumn: Mã dự án - Phân khu
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Link dự án'
+		dataType: string
+		isHidden
+		lineageTag: 811aad48-49d0-496a-bf64-b1cf50d7954b
+		summarizeBy: none
+		sourceColumn: Link dự án
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tên Dự Án'
+		dataType: string
+		isHidden
+		lineageTag: 3895629d-ac49-4e85-94fe-fa808d766f42
+		summarizeBy: none
+		sourceColumn: Tên Dự Án
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Hiện trạng đầu tư'
+		dataType: string
+		isHidden
+		lineageTag: ba47af39-1a88-4455-8528-c90cef9834a1
+		summarizeBy: none
+		sourceColumn: Hiện trạng đầu tư
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nhóm Dự án'
+		dataType: string
+		isHidden
+		lineageTag: bdfbd447-ccad-411c-9284-8a8e3113cc6c
+		summarizeBy: none
+		sourceColumn: Nhóm Dự án
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ban điều hành dự án'
+		dataType: string
+		isHidden
+		lineageTag: 2261e5f7-9b69-4593-8896-47d7d236a00b
+		summarizeBy: none
+		sourceColumn: Ban điều hành dự án
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nhân sự'
+		dataType: string
+		isHidden
+		lineageTag: d2351017-9077-414b-83f1-c0e35d8cad0c
+		summarizeBy: none
+		sourceColumn: Nhân sự
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ITD Check'
+		dataType: string
+		isHidden
+		lineageTag: 5cc59a71-ce62-4471-9498-e31620b71808
+		summarizeBy: none
+		sourceColumn: ITD Check
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mã mapping - IND'
+		dataType: string
+		isHidden
+		lineageTag: 86d72263-8e54-433b-9787-b91dc22f72e0
+		summarizeBy: none
+		sourceColumn: Mã mapping - IND
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column9
+		dataType: string
+		lineageTag: f85434a4-616a-4a97-9f19-0ae3b7a5b85a
+		summarizeBy: none
+		sourceColumn: Column9
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dự án' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://novaland.sharepoint.com/sites/DataTeam/Shared%20Documents/General/D%E1%BB%B1%20%C3%A1n/GMC/Data_structure_v1.xlsx"), null, true),
+				    #"Dự án_Sheet" = Source{[Item="Dự án",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Dự án_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Khu vực", type any}, {"Mã mapping - IND", type text}, {"Mã dự án - Phân khu", type text}, {"Mã dự án - Tiểu khu", type text}, {"Tên dự án", type text}, {"Hiện trạng đầu tư", type text}, {"Nhóm", type text}, {"Quản lý dự án", type any}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Khu vực", "Quản lý dự án"}),
+				    #"Filtered Rows" = Table.SelectRows(#"Removed Columns", each ([#"Mã mapping - IND"] <> null)),
+				    #"Merged Queries" = Table.NestedJoin(#"Filtered Rows", {"Mã mapping - IND"}, DanhMucMoi, {"Link dự án"}, "Danh Mục Dự Án", JoinKind.LeftOuter),
+				    #"Expanded Danh Mục Dự Án" = Table.ExpandTableColumn(#"Merged Queries", "Danh Mục Dự Án", {"Ban điều hành dự án", "Nhân sự"}, {"Ban điều hành dự án", "Nhân sự"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Expanded Danh Mục Dự Án",{{"Mã dự án - Tiểu khu", "Link dự án"}, {"Nhóm", "Nhóm Dự án"}, {"Tên dự án", "Tên Dự Án"}})
+				in
+				    #"Renamed Columns"
+
+	changedProperty = IsHidden
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
