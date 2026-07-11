@@ -719,40 +719,6 @@ table Eoffice_TD
 
 		annotation SummarizationSetBy = Automatic
 
-	column Cleaned_Parent_Code = 
-			VAR _Parent = Eoffice_TD[parent_code]
-			VAR _Exists = 
-				IF(
-					ISBLANK(_Parent),
-					FALSE,
-					NOT ISBLANK(
-						MAXX(
-							FILTER(Eoffice_TD, Eoffice_TD[code] = _Parent),
-							Eoffice_TD[code]
-						)
-					)
-				)
-			RETURN
-				IF(_Exists, _Parent, BLANK())
-		summarizeBy: none
-
-		annotation SummarizationSetBy = Automatic
-
-	column Cleaned_Parent_Code_Unique = 
-			VAR _CurrentCode = Eoffice_TD[code]
-			RETURN
-				IF(
-					ISBLANK(_CurrentCode),
-					BLANK(),
-					MAXX(
-						FILTER(Eoffice_TD, Eoffice_TD[code] = _CurrentCode),
-						Eoffice_TD[Cleaned_Parent_Code]
-					)
-				)
-		summarizeBy: none
-
-		annotation SummarizationSetBy = Automatic
-
 	column HierarchyPath = PATH(Eoffice_TD[code], Eoffice_TD[Cleaned_Parent_Code_Unique])
 		lineageTag: 9d288d08-31ec-461a-b614-383f33d7f54f
 		summarizeBy: none
@@ -795,6 +761,42 @@ table Eoffice_TD
 			VAR _Code = PATHITEM(Eoffice_TD[HierarchyPath], 5, TEXT)
 			RETURN LOOKUPVALUE(Eoffice_TD[title], Eoffice_TD[code], _Code)
 		lineageTag: 368cff85-f72c-47c1-9ff9-9859cd9f0b73
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cleaned_Parent_Code =
+			VAR _Parent = Eoffice_TD[parent_code]
+			VAR _Exists =
+				IF(
+					ISBLANK(_Parent),
+					FALSE,
+					NOT ISBLANK(
+						MAXX(
+							FILTER(Eoffice_TD, Eoffice_TD[code] = _Parent),
+							Eoffice_TD[code]
+						)
+					)
+				)
+			RETURN
+				IF(_Exists, _Parent, BLANK())
+		lineageTag: 4e6b1728-3f17-496e-b9f7-4aea8c80db46
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cleaned_Parent_Code_Unique =
+			VAR _CurrentCode = Eoffice_TD[code]
+			RETURN
+				IF(
+					ISBLANK(_CurrentCode),
+					BLANK(),
+					MAXX(
+						FILTER(Eoffice_TD, Eoffice_TD[code] = _CurrentCode),
+						Eoffice_TD[Cleaned_Parent_Code]
+					)
+				)
+		lineageTag: d27ec54c-b213-4bb4-b823-14ff78d7e63d
 		summarizeBy: none
 
 		annotation SummarizationSetBy = Automatic
