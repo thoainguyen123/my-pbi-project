@@ -731,7 +731,7 @@ table Eoffice_TD
 				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Custom", Percentage.Type}}),
 				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type1",{"percent"}),
 				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Custom", "percent"}}),
-				    #"Filtered Rows" = Table.SelectRows(#"Renamed Columns", each ([status] <> "Hủy")),
+				    #"Filtered Rows" = Table.SelectRows(#"Renamed Columns", each ([status] <> "Hủy" and [code] <> null and [status] <> "Đóng")),
 				    #"Added Custom1" = Table.AddColumn(
 				    #"Filtered Rows",
 				    "Custom",
@@ -757,9 +757,10 @@ table Eoffice_TD
 				    #"Removed Duplicates" = Table.Distinct(#"Renamed Columns1", {"ID"}),
 				    #"Changed Type with Locale" = Table.TransformColumnTypes(#"Removed Duplicates", {{"start_plan", type date}}, "en-DE"),
 				    #"Changed Type with Locale1" = Table.TransformColumnTypes(#"Changed Type with Locale", {{"end_plan", type date}}, "en-DE"),
-				    #"Replaced Errors" = Table.ReplaceErrorValues(#"Changed Type with Locale1", {{"start_plan", null},{"end_plan", null}})
+				    #"Replaced Errors" = Table.ReplaceErrorValues(#"Changed Type with Locale1", {{"start_plan", null},{"end_plan", null}}),
+				    #"Removed Duplicates1" = Table.Distinct(#"Replaced Errors", {"code"})
 				in
-				    #"Replaced Errors"
+				    #"Removed Duplicates1"
 				```
 
 	annotation PBI_NavigationStepName = Navigation
