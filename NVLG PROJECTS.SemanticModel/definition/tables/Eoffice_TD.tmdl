@@ -1,6 +1,54 @@
 table Eoffice_TD
 	lineageTag: dfa78093-9074-468b-bbd8-1d8f37664f5a
 
+	measure 'PL Tổng hạng mục' =
+			CALCULATE(
+				DISTINCTCOUNT(Eoffice_TD[code]),
+				Eoffice_TD[deep_level] = "Cấp 3",
+				NOT ISBLANK(Eoffice_TD[Legal_Group])
+			)
+		formatString: #,0
+		lineageTag: 3eb2d6eb-afaf-4552-bcc6-517406f6b8c7
+
+	measure 'PL Hoàn thành' = CALCULATE([PL Tổng hạng mục], Eoffice_TD[Legal_Status] = "Hoàn thành")
+		formatString: #,0
+		lineageTag: 961c0607-94cb-4528-8162-81f437a2e149
+
+	measure 'PL Đang thực hiện' = CALCULATE([PL Tổng hạng mục], Eoffice_TD[Legal_Status] = "Đang thực hiện")
+		formatString: #,0
+		lineageTag: 1c2e1532-104f-4d21-9862-6b4bc486babe
+
+	measure 'PL Chưa hoàn thành' = [PL Tổng hạng mục] - [PL Hoàn thành]
+		formatString: #,0
+		lineageTag: f7783aaa-e332-407c-b14b-2f87c118e04a
+
+	measure 'PL Quá hạn' = CALCULATE([PL Tổng hạng mục], Eoffice_TD[Legal_Status] = "Quá hạn")
+		formatString: #,0
+		lineageTag: a1cb8e11-f336-407a-ae9c-2f505d28d21c
+
+	measure 'PL Tỷ lệ hoàn thành' = DIVIDE([PL Hoàn thành], [PL Tổng hạng mục])
+		formatString: 0%;-0%;0%
+		lineageTag: 1416984d-52f2-4812-8992-ebf5e8bd4eb0
+
+	measure 'PL Tiến độ trung bình' =
+			CALCULATE(
+				AVERAGE(Eoffice_TD[percent]),
+				Eoffice_TD[deep_level] = "Cấp 3",
+				NOT ISBLANK(Eoffice_TD[Legal_Group])
+			)
+		formatString: 0%;-0%;0%
+		lineageTag: 372e30ce-c21d-41dd-b851-e6e7c4da4602
+
+	measure 'PL Hoàn thành lũy kế' =
+			VAR _maxDate = MAX(Eoffice_TD[end_plan])
+			RETURN
+				CALCULATE(
+					[PL Hoàn thành],
+					FILTER(ALLSELECTED(Eoffice_TD[end_plan]), Eoffice_TD[end_plan] <= _maxDate)
+				)
+		formatString: #,0
+		lineageTag: 29ffafeb-fbc4-43cf-aba8-853b01c99232
+
 	column ID
 		dataType: int64
 		formatString: 0
@@ -719,6 +767,141 @@ table Eoffice_TD
 
 		annotation SummarizationSetBy = Automatic
 
+	column TreeKey =
+			IF(
+				ISBLANK(Eoffice_TD[code]),
+				BLANK(),
+				Eoffice_TD[project_code] & "|" & Eoffice_TD[code]
+			)
+		isHidden
+		lineageTag: 3156cd1e-98f3-4c59-86e9-da1f18f2deed
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+	column ParentTreeKey =
+			IF(
+				ISBLANK(Eoffice_TD[parent_code]),
+				BLANK(),
+				Eoffice_TD[project_code] & "|" & Eoffice_TD[parent_code]
+			)
+		isHidden
+		lineageTag: da6bb2e3-92d3-4b30-8f25-787d783d53c7
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+	column level_title_1 =
+			VAR _level = VALUE(SUBSTITUTE(Eoffice_TD[deep_level], "Cấp ", ""))
+			VAR _parent1 = Eoffice_TD[ParentTreeKey]
+			VAR _parent2 = MAXX(FILTER(ALL(Eoffice_TD), Eoffice_TD[TreeKey] = _parent1), Eoffice_TD[ParentTreeKey])
+			VAR _parent3 = MAXX(FILTER(ALL(Eoffice_TD), Eoffice_TD[TreeKey] = _parent2), Eoffice_TD[ParentTreeKey])
+			VAR _parent4 = MAXX(FILTER(ALL(Eoffice_TD), Eoffice_TD[TreeKey] = _parent3), Eoffice_TD[ParentTreeKey])
+			VAR _target = SWITCH(_level, 1, Eoffice_TD[TreeKey], 2, _parent1, 3, _parent2, 4, _parent3, 5, _parent4)
+			RETURN MAXX(FILTER(ALL(Eoffice_TD), Eoffice_TD[TreeKey] = _target), Eoffice_TD[title])
+		lineageTag: 0a1bb6b0-a3b5-406d-bfe0-d24cf6597d21
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+	column level_title_2 =
+			VAR _level = VALUE(SUBSTITUTE(Eoffice_TD[deep_level], "Cấp ", ""))
+			VAR _parent1 = Eoffice_TD[ParentTreeKey]
+			VAR _parent2 = MAXX(FILTER(ALL(Eoffice_TD), Eoffice_TD[TreeKey] = _parent1), Eoffice_TD[ParentTreeKey])
+			VAR _parent3 = MAXX(FILTER(ALL(Eoffice_TD), Eoffice_TD[TreeKey] = _parent2), Eoffice_TD[ParentTreeKey])
+			VAR _target = SWITCH(_level, 2, Eoffice_TD[TreeKey], 3, _parent1, 4, _parent2, 5, _parent3)
+			RETURN MAXX(FILTER(ALL(Eoffice_TD), Eoffice_TD[TreeKey] = _target), Eoffice_TD[title])
+		lineageTag: e5517118-6633-4ef3-ae15-4b74c52523d9
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+	column level_title_3 =
+			VAR _level = VALUE(SUBSTITUTE(Eoffice_TD[deep_level], "Cấp ", ""))
+			VAR _parent1 = Eoffice_TD[ParentTreeKey]
+			VAR _parent2 = MAXX(FILTER(ALL(Eoffice_TD), Eoffice_TD[TreeKey] = _parent1), Eoffice_TD[ParentTreeKey])
+			VAR _target = SWITCH(_level, 3, Eoffice_TD[TreeKey], 4, _parent1, 5, _parent2)
+			RETURN MAXX(FILTER(ALL(Eoffice_TD), Eoffice_TD[TreeKey] = _target), Eoffice_TD[title])
+		lineageTag: c64f9d1c-421d-40f0-89f4-01be24a528c6
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+	column level_title_4 =
+			VAR _level = VALUE(SUBSTITUTE(Eoffice_TD[deep_level], "Cấp ", ""))
+			VAR _parent1 = Eoffice_TD[ParentTreeKey]
+			VAR _target = SWITCH(_level, 4, Eoffice_TD[TreeKey], 5, _parent1)
+			RETURN MAXX(FILTER(ALL(Eoffice_TD), Eoffice_TD[TreeKey] = _target), Eoffice_TD[title])
+		lineageTag: a869fca4-d35f-4d0c-b849-9322d71279fc
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+	column level_title_5 =
+			VAR _target = IF(VALUE(SUBSTITUTE(Eoffice_TD[deep_level], "Cấp ", "")) = 5, Eoffice_TD[TreeKey])
+			RETURN MAXX(FILTER(ALL(Eoffice_TD), Eoffice_TD[TreeKey] = _target), Eoffice_TD[title])
+		lineageTag: 9eb034d7-a2fc-4937-9768-5322caf3eee5
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+	column Legal_Group =
+			SWITCH(
+				TRUE(),
+				LEFT(Eoffice_TD[title], 5) = "4.1.1", "1. Chung",
+				LEFT(Eoffice_TD[title], 5) = "4.1.2", "2. Đầu tư",
+				LEFT(Eoffice_TD[title], 5) = "4.1.3", "3. Đất đai",
+				LEFT(Eoffice_TD[title], 5) = "4.1.4", "4. Quy hoạch",
+				LEFT(Eoffice_TD[title], 5) = "4.1.5", "5. Xây dựng",
+				LEFT(Eoffice_TD[title], 5) = "4.1.6", "6. Bán hàng",
+				BLANK()
+			)
+		lineageTag: 31064029-fd43-4f4f-a701-ae8a1876d583
+		summarizeBy: none
+		sortByColumn: Legal_Group_Order
+
+		annotation SummarizationSetBy = User
+
+	column Legal_Group_Order =
+			SWITCH(
+				TRUE(),
+				LEFT(Eoffice_TD[title], 5) = "4.1.1", 1,
+				LEFT(Eoffice_TD[title], 5) = "4.1.2", 2,
+				LEFT(Eoffice_TD[title], 5) = "4.1.3", 3,
+				LEFT(Eoffice_TD[title], 5) = "4.1.4", 4,
+				LEFT(Eoffice_TD[title], 5) = "4.1.5", 5,
+				LEFT(Eoffice_TD[title], 5) = "4.1.6", 6,
+				BLANK()
+			)
+		isHidden
+		lineageTag: 6577f6fb-369c-4ee5-bcbd-e8c11b52d2ef
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+	column Legal_Status =
+			VAR _progress = COALESCE(Eoffice_TD[percent], 0)
+			RETURN
+				SWITCH(
+					TRUE(),
+					_progress >= 1, "Hoàn thành",
+					NOT ISBLANK(Eoffice_TD[end_plan]) && Eoffice_TD[end_plan] < TODAY(), "Quá hạn",
+					_progress > 0, "Đang thực hiện",
+					"Chưa thực hiện"
+				)
+		lineageTag: f1187ad1-1439-436d-8105-6135bee1f69e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+	column Phong_Nhom
+		dataType: string
+		lineageTag: d273d3f4-e671-4642-9113-754bd77aba94
+		summarizeBy: none
+		sourceColumn: Phong_Nhom
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Eoffice_TD = m
 		mode: import
 		source = ```
@@ -731,7 +914,7 @@ table Eoffice_TD
 				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Custom", Percentage.Type}}),
 				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type1",{"percent"}),
 				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Custom", "percent"}}),
-				    #"Filtered Rows" = Table.SelectRows(#"Renamed Columns", each ([status] <> "Hủy" and [code] <> null and [status] <> "Đóng")),
+				    #"Filtered Rows" = Table.SelectRows(#"Renamed Columns", each ([status] <> "Hủy" and [status] <> "Đóng") and ([code] <> null) and ([deep_level] <> "work.normal.field.deep_level.6" and [deep_level] <> "work.normal.field.deep_level.7" and [deep_level] <> "work.normal.field.deep_level.8")),
 				    #"Added Custom1" = Table.AddColumn(
 				    #"Filtered Rows",
 				    "Custom",
@@ -758,9 +941,10 @@ table Eoffice_TD
 				    #"Changed Type with Locale" = Table.TransformColumnTypes(#"Removed Duplicates", {{"start_plan", type date}}, "en-DE"),
 				    #"Changed Type with Locale1" = Table.TransformColumnTypes(#"Changed Type with Locale", {{"end_plan", type date}}, "en-DE"),
 				    #"Replaced Errors" = Table.ReplaceErrorValues(#"Changed Type with Locale1", {{"start_plan", null},{"end_plan", null}}),
-				    #"Removed Duplicates1" = Table.Distinct(#"Replaced Errors", {"code"})
+				    #"Removed Duplicates1" = Table.Distinct(#"Replaced Errors", {"code"}),
+				    #"Added Conditional Column" = Table.AddColumn(#"Removed Duplicates1", "Phong_Nhom", each if Text.StartsWith([title], "4.1") then "4.1 PLP" else null)
 				in
-				    #"Removed Duplicates1"
+				    #"Added Conditional Column"
 				```
 
 	annotation PBI_NavigationStepName = Navigation

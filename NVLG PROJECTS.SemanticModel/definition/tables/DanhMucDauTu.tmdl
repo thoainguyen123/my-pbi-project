@@ -10,6 +10,12 @@ table DanhMucDauTu
 			RETURN "Tổng Vùng : "&x
 		lineageTag: 22cad853-864c-4f2a-afc8-6ed247e2ebbe
 
+	measure 'Quy mô' =
+			
+			VAR MaxScale = MAX(DanhMucDauTu[scale])
+			RETURN "Quy mô : " & IF(ISBLANK(MaxScale), "0", FORMAT(MaxScale, "#,0")) & " (m²)"
+		lineageTag: e656be47-0e69-42b7-873b-fde0fbc51a14
+
 	column 'Tổng công ty'
 		dataType: string
 		lineageTag: 339ffb9f-6491-4bbd-8a90-79169bbe23fc

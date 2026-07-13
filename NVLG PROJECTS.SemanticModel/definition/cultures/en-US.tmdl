@@ -704,16 +704,6 @@ cultureInfo en-US
 			          "code": {
 			            "State": "Generated"
 			          }
-			        },
-			        {
-			          "key": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.714
-			          }
 			        }
 			      ]
 			    },
@@ -7822,16 +7812,6 @@ cultureInfo en-US
 			          "code": {
 			            "State": "Generated"
 			          }
-			        },
-			        {
-			          "key": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.714
-			          }
 			        }
 			      ]
 			    },
@@ -11031,12 +11011,6 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "name": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
 			          "fullName": {
 			            "Type": "Noun",
 			            "State": "Generated",
@@ -11133,8 +11107,7 @@ cultureInfo en-US
 			            "Weight": 0.466
 			          }
 			        }
-			      ],
-			      "NameType": "Name"
+			      ]
 			    },
 			    "org.org_chart_support_dept_vertical_scroll": {
 			      "Definition": {
@@ -12175,16 +12148,6 @@ cultureInfo en-US
 			        {
 			          "code": {
 			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "key": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.714
 			          }
 			        }
 			      ]
@@ -22503,16 +22466,6 @@ cultureInfo en-US
 			        {
 			          "code": {
 			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "key": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.714
 			          }
 			        }
 			      ]
@@ -33216,16 +33169,6 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "key": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
 			          "basic": {
 			            "Type": "Noun",
 			            "State": "Suggested",
@@ -33257,6 +33200,16 @@ cultureInfo en-US
 			        },
 			        {
 			          "user doyenne": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "user doyen": {
 			            "Type": "Noun",
 			            "State": "Suggested",
 			            "Source": {
@@ -40925,6 +40878,1655 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
+			    "org.column_12": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Org",
+			          "ConceptualProperty": "Column12"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "column 12": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Column12": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "eoffice_TD.PL_tổng_hạng_mục": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Eoffice_TD",
+			          "ConceptualProperty": "PL Tổng hạng mục"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "PL tổng hạng mục": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "TỔNG SỐ HẠNG MỤC": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Số hạng mục": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "eoffice_TD.PL_hoàn_thành": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Eoffice_TD",
+			          "ConceptualProperty": "PL Hoàn thành"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "PL hoàn thành": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "ĐÃ HOÀN THÀNH": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "eoffice_TD.PL_đang_thực_hiện": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Eoffice_TD",
+			          "ConceptualProperty": "PL Đang thực hiện"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "PL đang thực hiện": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "ĐANG THỰC HIỆN": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "eoffice_TD.PL_chưa_hoàn_thành": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Eoffice_TD",
+			          "ConceptualProperty": "PL Chưa hoàn thành"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "PL chưa hoàn thành": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "CHƯA HOÀN THÀNH": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "eoffice_TD.PL_quá_hạn": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Eoffice_TD",
+			          "ConceptualProperty": "PL Quá hạn"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "PL quá hạn": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "QUÁ HẠN": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "eoffice_TD.legal_status": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Eoffice_TD",
+			          "ConceptualProperty": "Legal_Status"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "legal status": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Legal_Status": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "legal category": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "legal importance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "legal prestige": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "legal prominence": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "legal condition": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "legal class": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "legal grade": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "legal level": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "legal position": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "legal rank": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "Trạng thái": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "eoffice_TD.legal_group": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Eoffice_TD",
+			          "ConceptualProperty": "Legal_Group"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "legal group": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Legal_Group": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "legal category": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "legal organization": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "legal bracket": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "legal class": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "legal crew": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "legal team": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        }
+			      ]
+			    },
+			    "eoffice_TD.PL_tiến_độ_trung_bình": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Eoffice_TD",
+			          "ConceptualProperty": "PL Tiến độ trung bình"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "PL tiến độ trung bình": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Tiến độ": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "eoffice_TD.PL_hoàn_thành_lũy_kế": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Eoffice_TD",
+			          "ConceptualProperty": "PL Hoàn thành lũy kế"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "PL hoàn thành lũy kế": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "eoffice_TD.level_title_3": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Eoffice_TD",
+			          "ConceptualProperty": "level_title_3"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "level title 3": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "level_title_3": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "title 3": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "quantity title 3": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "threshold title 3": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "level designation 3": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "designation 3": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "amount title 3": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "grade title 3": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "point title 3": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "rank title 3": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "tier title 3": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "level name 3": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "Nhóm": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "eoffice_TD.level_title_4": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Eoffice_TD",
+			          "ConceptualProperty": "level_title_4"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "level title 4": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "level_title_4": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "title 4": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "quantity title 4": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "threshold title 4": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "level designation 4": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "designation 4": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "amount title 4": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "grade title 4": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "point title 4": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "rank title 4": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "tier title 4": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "level name 4": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        }
+			      ]
+			    },
+			    "eoffice_TD.tree_key": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Eoffice_TD",
+			          "ConceptualProperty": "TreeKey"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "tree key": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "TreeKey": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "key": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "main": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "basic": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "fundamental": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "central": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "major": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "keynote": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "essential": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "tree solution": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "tree explanation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "tree basis": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        }
+			      ]
+			    },
+			    "eoffice_TD.parent_tree_key": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Eoffice_TD",
+			          "ConceptualProperty": "ParentTreeKey"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "parent tree key": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "ParentTreeKey": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "key": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "tree key": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "parent tree solution": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.482
+			          }
+			        },
+			        {
+			          "parent tree explanation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.482
+			          }
+			        },
+			        {
+			          "parent tree basis": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.482
+			          }
+			        },
+			        {
+			          "parent tree recipe": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.482
+			          }
+			        },
+			        {
+			          "parent tree interpretation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.482
+			          }
+			        },
+			        {
+			          "parent tree resolution": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.482
+			          }
+			        },
+			        {
+			          "main": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "basic": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "fundamental": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "central": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "eoffice_TD.level_title_1": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Eoffice_TD",
+			          "ConceptualProperty": "level_title_1"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "level title 1": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "level_title_1": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "title 1": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "quantity title 1": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "threshold title 1": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "level designation 1": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "designation 1": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "amount title 1": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "grade title 1": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "point title 1": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "rank title 1": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "tier title 1": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "level name 1": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        }
+			      ]
+			    },
+			    "eoffice_TD.level_title_2": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Eoffice_TD",
+			          "ConceptualProperty": "level_title_2"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "level title 2": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "level_title_2": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "title 2": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "quantity title 2": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "threshold title 2": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "level designation 2": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "designation 2": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "amount title 2": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "grade title 2": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "point title 2": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "rank title 2": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "tier title 2": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "level name 2": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "Mục": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "eoffice_TD.level_title_5": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Eoffice_TD",
+			          "ConceptualProperty": "level_title_5"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "level title 5": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "level_title_5": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "title 5": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "quantity title 5": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "threshold title 5": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "level designation 5": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "designation 5": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "amount title 5": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "grade title 5": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "point title 5": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "rank title 5": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "tier title 5": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "level name 5": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        }
+			      ]
+			    },
+			    "eoffice_TD.legal_group_order": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Eoffice_TD",
+			          "ConceptualProperty": "Legal_Group_Order"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "legal group order": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Legal_Group_Order": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "order": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "group order": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "legal category order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "legal organization order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "category order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "organization order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "legal bracket order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "legal class order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "legal crew order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "legal team order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "bracket order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "class order": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        }
+			      ]
+			    },
+			    "eoffice_TD.phong_nhom": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Eoffice_TD",
+			          "ConceptualProperty": "Phong_Nhom"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "phong nhom": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Phong_Nhom": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "eoffice_TD.PL_tỷ_lệ_hoàn_thành": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Eoffice_TD",
+			          "ConceptualProperty": "PL Tỷ lệ hoàn thành"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "PL tỷ lệ hoàn thành": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "head_count.key_noted": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Head_Count",
+			          "ConceptualProperty": "Key Noted"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "key noted": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "solution noted": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "explanation noted": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "basis noted": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "recipe noted": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "interpretation noted": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "resolution noted": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "answer noted": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "mean noted": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "secret noted": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "source noted": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        }
+			      ]
+			    },
 			    "deep_lv1.title": {
 			      "Definition": {
 			        "Binding": {
@@ -40948,6 +42550,39 @@ cultureInfo en-US
 			    }
 			  },
 			  "Relationships": {
+			    "danh_muc_moi_created_at_3_date_hierarchy_has_danh_muc_moi_created_at_3_month": {
+			      "Binding": {
+			        "ConceptualEntity": "DanhMucMoi"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "danh_muc_moi.created_at_3.date_hierarchy": {
+			          "Target": {
+			            "Entity": "danh_muc_moi.created_at_3.date_hierarchy"
+			          }
+			        },
+			        "danh_muc_moi.created_at_3.month": {
+			          "Target": {
+			            "Entity": "danh_muc_moi.created_at_3.month"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "danh_muc_moi.created_at_3.date_hierarchy"
+			            },
+			            "Object": {
+			              "Role": "danh_muc_moi.created_at_3.month"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "created_at_3_date_hierarchy_have_created_at_3_month"
+			        }
+			      ]
+			    },
 			    "danh_muc_moi_created_at_3_date_hierarchy_has_danh_muc_moi_created_at_3_quarter": {
 			      "Binding": {
 			        "ConceptualEntity": "DanhMucMoi"
@@ -42924,7 +44559,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "created_at_3_date_hierarchy_have_created_at_3_month"
+			          "ID": "created_at_3_date_hierarchy_have_created_at_3_month1"
 			        }
 			      ]
 			    },
@@ -44304,6 +45939,600 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "projects_have_danh_muc_dau_tus"
+			        }
+			      ]
+			    },
+			    "head_count_has_key_noted": {
+			      "Binding": {
+			        "ConceptualEntity": "Head_Count"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "head_count": {
+			          "Target": {
+			            "Entity": "head_count"
+			          }
+			        },
+			        "head_count.key_noted": {
+			          "Target": {
+			            "Entity": "head_count.key_noted"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "head_count"
+			            },
+			            "Object": {
+			              "Role": "head_count.key_noted"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "head_counts_have_key_noted"
+			        }
+			      ]
+			    },
+			    "eoffice_TD_has_PL_tỷ_lệ_hoàn_thành": {
+			      "Binding": {
+			        "ConceptualEntity": "Eoffice_TD"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "eoffice_TD": {
+			          "Target": {
+			            "Entity": "eoffice_TD"
+			          }
+			        },
+			        "eoffice_TD.PL_tỷ_lệ_hoàn_thành": {
+			          "Target": {
+			            "Entity": "eoffice_TD.PL_tỷ_lệ_hoàn_thành"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "eoffice_TD"
+			            },
+			            "Object": {
+			              "Role": "eoffice_TD.PL_tỷ_lệ_hoàn_thành"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "eoffice_TD_have_PL_tỷ_lệ_hoàn_thành"
+			        }
+			      ]
+			    },
+			    "eoffice_TD_has_phong_nhom": {
+			      "Binding": {
+			        "ConceptualEntity": "Eoffice_TD"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "eoffice_TD": {
+			          "Target": {
+			            "Entity": "eoffice_TD"
+			          }
+			        },
+			        "eoffice_TD.phong_nhom": {
+			          "Target": {
+			            "Entity": "eoffice_TD.phong_nhom"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "eoffice_TD"
+			            },
+			            "Object": {
+			              "Role": "eoffice_TD.phong_nhom"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "eoffice_TD_have_phong_nhoms"
+			        }
+			      ]
+			    },
+			    "eoffice_TD_has_level_title_5": {
+			      "Binding": {
+			        "ConceptualEntity": "Eoffice_TD"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "eoffice_TD": {
+			          "Target": {
+			            "Entity": "eoffice_TD"
+			          }
+			        },
+			        "eoffice_TD.level_title_5": {
+			          "Target": {
+			            "Entity": "eoffice_TD.level_title_5"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "eoffice_TD"
+			            },
+			            "Object": {
+			              "Role": "eoffice_TD.level_title_5"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "eoffice_TD_have_level_title_5"
+			        }
+			      ]
+			    },
+			    "eoffice_TD_has_level_title_2": {
+			      "Binding": {
+			        "ConceptualEntity": "Eoffice_TD"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "eoffice_TD": {
+			          "Target": {
+			            "Entity": "eoffice_TD"
+			          }
+			        },
+			        "eoffice_TD.level_title_2": {
+			          "Target": {
+			            "Entity": "eoffice_TD.level_title_2"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "eoffice_TD"
+			            },
+			            "Object": {
+			              "Role": "eoffice_TD.level_title_2"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "eoffice_TD_have_level_title_2"
+			        }
+			      ]
+			    },
+			    "eoffice_TD_has_level_title_1": {
+			      "Binding": {
+			        "ConceptualEntity": "Eoffice_TD"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "eoffice_TD": {
+			          "Target": {
+			            "Entity": "eoffice_TD"
+			          }
+			        },
+			        "eoffice_TD.level_title_1": {
+			          "Target": {
+			            "Entity": "eoffice_TD.level_title_1"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "eoffice_TD"
+			            },
+			            "Object": {
+			              "Role": "eoffice_TD.level_title_1"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "eoffice_TD_have_level_title_1"
+			        }
+			      ]
+			    },
+			    "eoffice_TD_has_level_title_4": {
+			      "Binding": {
+			        "ConceptualEntity": "Eoffice_TD"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "eoffice_TD": {
+			          "Target": {
+			            "Entity": "eoffice_TD"
+			          }
+			        },
+			        "eoffice_TD.level_title_4": {
+			          "Target": {
+			            "Entity": "eoffice_TD.level_title_4"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "eoffice_TD"
+			            },
+			            "Object": {
+			              "Role": "eoffice_TD.level_title_4"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "eoffice_TD_have_level_title_4"
+			        }
+			      ]
+			    },
+			    "eoffice_TD_has_level_title_3": {
+			      "Binding": {
+			        "ConceptualEntity": "Eoffice_TD"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "eoffice_TD": {
+			          "Target": {
+			            "Entity": "eoffice_TD"
+			          }
+			        },
+			        "eoffice_TD.level_title_3": {
+			          "Target": {
+			            "Entity": "eoffice_TD.level_title_3"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "eoffice_TD"
+			            },
+			            "Object": {
+			              "Role": "eoffice_TD.level_title_3"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "eoffice_TD_have_level_title_3"
+			        }
+			      ]
+			    },
+			    "eoffice_TD_has_PL_hoàn_thành_lũy_kế": {
+			      "Binding": {
+			        "ConceptualEntity": "Eoffice_TD"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "eoffice_TD": {
+			          "Target": {
+			            "Entity": "eoffice_TD"
+			          }
+			        },
+			        "eoffice_TD.PL_hoàn_thành_lũy_kế": {
+			          "Target": {
+			            "Entity": "eoffice_TD.PL_hoàn_thành_lũy_kế"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "eoffice_TD"
+			            },
+			            "Object": {
+			              "Role": "eoffice_TD.PL_hoàn_thành_lũy_kế"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "eoffice_TD_have_PL_hoàn_thành_lũy_kế"
+			        }
+			      ]
+			    },
+			    "eoffice_TD_has_PL_tiến_độ_trung_bình": {
+			      "Binding": {
+			        "ConceptualEntity": "Eoffice_TD"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "eoffice_TD": {
+			          "Target": {
+			            "Entity": "eoffice_TD"
+			          }
+			        },
+			        "eoffice_TD.PL_tiến_độ_trung_bình": {
+			          "Target": {
+			            "Entity": "eoffice_TD.PL_tiến_độ_trung_bình"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "eoffice_TD"
+			            },
+			            "Object": {
+			              "Role": "eoffice_TD.PL_tiến_độ_trung_bình"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "eoffice_TD_have_PL_tiến_độ_trung_bình"
+			        }
+			      ]
+			    },
+			    "eoffice_TD_has_legal_group": {
+			      "Binding": {
+			        "ConceptualEntity": "Eoffice_TD"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "eoffice_TD": {
+			          "Target": {
+			            "Entity": "eoffice_TD"
+			          }
+			        },
+			        "eoffice_TD.legal_group": {
+			          "Target": {
+			            "Entity": "eoffice_TD.legal_group"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "eoffice_TD"
+			            },
+			            "Object": {
+			              "Role": "eoffice_TD.legal_group"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "eoffice_TD_have_legal_groups"
+			        }
+			      ]
+			    },
+			    "eoffice_TD_has_legal_status": {
+			      "Binding": {
+			        "ConceptualEntity": "Eoffice_TD"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "eoffice_TD": {
+			          "Target": {
+			            "Entity": "eoffice_TD"
+			          }
+			        },
+			        "eoffice_TD.legal_status": {
+			          "Target": {
+			            "Entity": "eoffice_TD.legal_status"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "eoffice_TD"
+			            },
+			            "Object": {
+			              "Role": "eoffice_TD.legal_status"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "eoffice_TD_have_legal_statuses"
+			        }
+			      ]
+			    },
+			    "eoffice_TD_has_PL_quá_hạn": {
+			      "Binding": {
+			        "ConceptualEntity": "Eoffice_TD"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "eoffice_TD": {
+			          "Target": {
+			            "Entity": "eoffice_TD"
+			          }
+			        },
+			        "eoffice_TD.PL_quá_hạn": {
+			          "Target": {
+			            "Entity": "eoffice_TD.PL_quá_hạn"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "eoffice_TD"
+			            },
+			            "Object": {
+			              "Role": "eoffice_TD.PL_quá_hạn"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "eoffice_TD_have_PL_quá_hạn"
+			        }
+			      ]
+			    },
+			    "eoffice_TD_has_PL_chưa_hoàn_thành": {
+			      "Binding": {
+			        "ConceptualEntity": "Eoffice_TD"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "eoffice_TD": {
+			          "Target": {
+			            "Entity": "eoffice_TD"
+			          }
+			        },
+			        "eoffice_TD.PL_chưa_hoàn_thành": {
+			          "Target": {
+			            "Entity": "eoffice_TD.PL_chưa_hoàn_thành"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "eoffice_TD"
+			            },
+			            "Object": {
+			              "Role": "eoffice_TD.PL_chưa_hoàn_thành"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "eoffice_TD_have_PL_chưa_hoàn_thành"
+			        }
+			      ]
+			    },
+			    "eoffice_TD_has_PL_đang_thực_hiện": {
+			      "Binding": {
+			        "ConceptualEntity": "Eoffice_TD"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "eoffice_TD": {
+			          "Target": {
+			            "Entity": "eoffice_TD"
+			          }
+			        },
+			        "eoffice_TD.PL_đang_thực_hiện": {
+			          "Target": {
+			            "Entity": "eoffice_TD.PL_đang_thực_hiện"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "eoffice_TD"
+			            },
+			            "Object": {
+			              "Role": "eoffice_TD.PL_đang_thực_hiện"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "eoffice_TD_have_PL_đang_thực_hiện"
+			        }
+			      ]
+			    },
+			    "eoffice_TD_has_PL_hoàn_thành": {
+			      "Binding": {
+			        "ConceptualEntity": "Eoffice_TD"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "eoffice_TD": {
+			          "Target": {
+			            "Entity": "eoffice_TD"
+			          }
+			        },
+			        "eoffice_TD.PL_hoàn_thành": {
+			          "Target": {
+			            "Entity": "eoffice_TD.PL_hoàn_thành"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "eoffice_TD"
+			            },
+			            "Object": {
+			              "Role": "eoffice_TD.PL_hoàn_thành"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "eoffice_TD_have_PL_hoàn_thành"
+			        }
+			      ]
+			    },
+			    "eoffice_TD_has_PL_tổng_hạng_mục": {
+			      "Binding": {
+			        "ConceptualEntity": "Eoffice_TD"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "eoffice_TD": {
+			          "Target": {
+			            "Entity": "eoffice_TD"
+			          }
+			        },
+			        "eoffice_TD.PL_tổng_hạng_mục": {
+			          "Target": {
+			            "Entity": "eoffice_TD.PL_tổng_hạng_mục"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "eoffice_TD"
+			            },
+			            "Object": {
+			              "Role": "eoffice_TD.PL_tổng_hạng_mục"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "eoffice_TD_have_PL_tổng_hạng_mục"
+			        }
+			      ]
+			    },
+			    "org_has_column_12": {
+			      "Binding": {
+			        "ConceptualEntity": "Org"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "org": {
+			          "Target": {
+			            "Entity": "org"
+			          }
+			        },
+			        "org.column_12": {
+			          "Target": {
+			            "Entity": "org.column_12"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "org"
+			            },
+			            "Object": {
+			              "Role": "org.column_12"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "org_have_column_12"
 			        }
 			      ]
 			    },
@@ -45888,39 +48117,6 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "head_counts_have_column_18"
-			        }
-			      ]
-			    },
-			    "head_count_has_column_17": {
-			      "Binding": {
-			        "ConceptualEntity": "Head_Count"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "head_count": {
-			          "Target": {
-			            "Entity": "head_count"
-			          }
-			        },
-			        "head_count.column_17": {
-			          "Target": {
-			            "Entity": "head_count.column_17"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "head_count"
-			            },
-			            "Object": {
-			              "Role": "head_count.column_17"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "head_counts_have_column_17"
 			        }
 			      ]
 			    },
@@ -57171,19 +59367,6 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "sheet_1_have_full_names"
-			        },
-			        {
-			          "Name": {
-			            "Subject": {
-			              "Role": "sheet_1"
-			            },
-			            "Name": {
-			              "Role": "sheet_1.full_name"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "full_names_are_names_IDs_of_sheet_1"
 			        }
 			      ]
 			    },
@@ -63671,39 +65854,6 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "some_danh_muc_dau_tus_are_deactivated_danh_muc_dau_tus"
-			        }
-			      ]
-			    },
-			    "danh_muc_moi_created_at_3_date_hierarchy_has_danh_muc_moi_created_at_3_month": {
-			      "Binding": {
-			        "ConceptualEntity": "DanhMucMoi"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "danh_muc_moi.created_at_3.date_hierarchy": {
-			          "Target": {
-			            "Entity": "danh_muc_moi.created_at_3.date_hierarchy"
-			          }
-			        },
-			        "danh_muc_moi.created_at_3.month": {
-			          "Target": {
-			            "Entity": "danh_muc_moi.created_at_3.month"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "danh_muc_moi.created_at_3.date_hierarchy"
-			            },
-			            "Object": {
-			              "Role": "danh_muc_moi.created_at_3.month"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "created_at_3_date_hierarchy_have_created_at_3_month1"
 			        }
 			      ]
 			    },
