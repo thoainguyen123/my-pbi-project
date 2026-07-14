@@ -4,7 +4,7 @@ table Eoffice_TD
 	measure 'PL Tổng hạng mục' =
 			CALCULATE(
 				DISTINCTCOUNT(Eoffice_TD[code]),
-				Eoffice_TD[deep_level] in {"Cấp 3","Cấp 2"},
+				Eoffice_TD[deep_level] in {"Cấp 1","Cấp 2"},
 				NOT ISBLANK(Eoffice_TD[Legal_Group])
 			)
 		formatString: #,0
@@ -52,147 +52,199 @@ table Eoffice_TD
 		lineageTag: 6df3c401-4c3e-4f30-b188-f2683b2dbd39
 
 	measure Dynamic_Value =
-			VAR _SelectedPhong = IF(HASONEVALUE(Eoffice_TD[Phong_Nhom]), SELECTEDVALUE(Eoffice_TD[Phong_Nhom]), "9.1 HRC - NHÂN SỰ")
+			VAR _IsFiltered = ISFILTERED(Phong_Nhom_Dim[Phong_Nhom]) || ISFILTERED(Eoffice_TD[Phong_Nhom])
+			VAR _SelectedPhong =
+				IF(
+					_IsFiltered,
+					SELECTEDVALUE(Eoffice_TD[Phong_Nhom]),
+					"4.1 PLP"
+				)
+			VAR _CurrentRowPhong = SELECTEDVALUE(Eoffice_TD[Phong_Nhom])
+			VAR _CurrentColPhong = SELECTEDVALUE(MasterData_Columns[Phong_Nhom])
+			VAR _ColIndex = SELECTEDVALUE(MasterData_Columns[Col_Index])
+			RETURN
+				IF(
+					NOT(_IsFiltered) && (
+						(_CurrentRowPhong <> "4.1 PLP" && NOT(ISBLANK(_CurrentRowPhong))) ||
+						(_CurrentColPhong <> "4.1 PLP" && NOT(ISBLANK(_CurrentColPhong)))
+					),
+					BLANK(),
+					SWITCH(
+						_SelectedPhong,
+						"4.1 PLP",
+							SWITCH(
+								_ColIndex,
+								1, COALESCE(MIN(Eoffice_TD[desc]), "-"),
+								2, COALESCE(MIN(Eoffice_TD[cf16]), "-"),
+								3, COALESCE(MIN(Eoffice_TD[cf22]), "-"),
+								4, COALESCE(FORMAT(MIN(Eoffice_TD[end_plan]), "dd/MM/yyyy"), "-"),
+								5, IF(ISBLANK(MIN(Eoffice_TD[Link])), "-", "Link")
+							),
+						"9.1 HRC - NHÂN SỰ",
+							SWITCH(
+								_ColIndex,
+								1, "100 người",
+								2, "85 người",
+								3, "15 người",
+								4, "Link",
+								5, "Đang tuyển dụng"
+							),
+						"9.2 FAC",
+							SWITCH(
+								_ColIndex,
+								1, "Đã có TBTD",
+								2, "Chưa có TBTD",
+								3, "Dự kiến có TBTD",
+								4, "Link",
+								5, "Đang thẩm định"
+							),
+						"9.3 SAC - BÁN HÀNG",
+							SWITCH(
+								_ColIndex,
+								1, "450 / 500 căn",
+								2, "50 căn",
+								3, "Q4/2026",
+								4, "Link",
+								5, "Mở bán đợt 3"
+							),
+						"9.4 MAC - SALE KIT / SỰ KIỆN",
+							SWITCH(
+								_ColIndex,
+								1, "Đã hoàn thành",
+								2, "Kick-off sự kiện",
+								3, "15/10/2026",
+								4, "Link",
+								5, "Chờ duyệt ngân sách"
+							),
+						"9.5 PTC - KẾ HOẠCH CƯĐT",
+							SWITCH(
+								_ColIndex,
+								1, "Đang đấu thầu",
+								2, "Không điều chỉnh",
+								3, "30/09/2026",
+								4, "Link",
+								5, "Đúng tiến độ"
+							),
+						"9.6 QSB - NGÂN SÁCH",
+							SWITCH(
+								_ColIndex,
+								1, "Đã phê duyệt",
+								2, "Tăng 5%",
+								3, "15/09/2026",
+								4, "Link",
+								5, "Dự toán hoàn tất"
+							),
+						"9.7 SEC - AN NINH",
+							SWITCH(
+								_ColIndex,
+								1, "Đã duyệt phương án",
+								2, "Chưa duyệt",
+								3, "01/09/2026",
+								4, "Link",
+								5, "An ninh vòng ngoài"
+							),
+						"9.8 IDD - THIẾT KẾ NỘI BỘ",
+							SWITCH(
+								_ColIndex,
+								1, "Đã bàn giao",
+								2, "Có điều chỉnh",
+								3, "20/09/2026",
+								4, "Link",
+								5, "Phê duyệt thiết kế"
+							),
+						"9.9 CSC - BỒI THƯỜNG, GPMB",
+							SWITCH(
+								_ColIndex,
+								1, "Có thực hiện",
+								2, "Không thực hiện",
+								3, "31/12/2026",
+								4, "Link",
+								5, "Đã đền bù 95%"
+							),
+						"4.0 PMD - MASTER TIMELINE",
+							SWITCH(
+								_ColIndex,
+								1, "Đang theo dõi",
+								2, "Không điều chỉnh",
+								3, "30/11/2026",
+								4, "Link",
+								5, "Đã báo cáo ban giám đốc"
+							),
+						"4.2 DMD",
+							SWITCH(
+								_ColIndex,
+								1, "Đang thẩm định",
+								2, "Không điều chỉnh",
+								3, "10/10/2026",
+								4, "Link",
+								5, "Chờ phê duyệt"
+							),
+						"4.3 PCD",
+							SWITCH(
+								_ColIndex,
+								1, "85%",
+								2, "15/10/2026",
+								3, "Link",
+								4, "Đang san lấp"
+							),
+						"4.4 PM",
+							SWITCH(
+								_ColIndex,
+								1, "Đã giao 120/150 căn",
+								2, "30 căn",
+								3, "25/12/2026",
+								4, "Link",
+								5, "Bàn giao đợt cuối"
+							),
+						BLANK()
+					)
+				)
+		lineageTag: c9475112-7ea2-4812-af44-fdf822d3b7dc
+
+	measure Dynamic_Value_URL =
+			VAR _IsFiltered = ISFILTERED(Phong_Nhom_Dim[Phong_Nhom]) || ISFILTERED(Eoffice_TD[Phong_Nhom])
+			VAR _SelectedPhong =
+				IF(
+					_IsFiltered,
+					SELECTEDVALUE(Eoffice_TD[Phong_Nhom]),
+					"4.1 PLP"
+				)
 			VAR _ColIndex = SELECTEDVALUE(MasterData_Columns[Col_Index])
 			RETURN
 				SWITCH(
 					_SelectedPhong,
 					"4.1 PLP",
-						SWITCH(
-							_ColIndex,
-							1, MIN(Eoffice_TD[level_title_2]),
-							2, MIN(Eoffice_TD[level_title_3]),
-							3, MIN(Eoffice_TD[desc]),
-							4, MIN(Eoffice_TD[cf19]),
-							5, MIN(Eoffice_TD[cf22]),
-							6, FORMAT(MIN(Eoffice_TD[end_plan]), "dd/MM/yyyy"),
-							7, MIN(Eoffice_TD[rating_desc])
-						),
+						IF(_ColIndex = 5, MIN(Eoffice_TD[Link]), BLANK()),
 					"9.1 HRC - NHÂN SỰ",
-						SWITCH(
-							_ColIndex,
-							1, "100 người",
-							2, "85 người",
-							3, "15 người",
-							4, "https://link-to-hrc.novagroup.vn",
-							5, "Đang tuyển dụng"
-						),
+						IF(_ColIndex = 4, "https://link-to-hrc.novagroup.vn", BLANK()),
 					"9.2 FAC",
-						SWITCH(
-							_ColIndex,
-							1, "Đã có TBTD",
-							2, "Chưa có TBTD",
-							3, "Dự kiến có TBTD",
-							4, "https://link-to-fac.novagroup.vn",
-							5, "Đang thẩm định"
-						),
+						IF(_ColIndex = 4, "https://link-to-fac.novagroup.vn", BLANK()),
 					"9.3 SAC - BÁN HÀNG",
-						SWITCH(
-							_ColIndex,
-							1, "450 / 500 căn",
-							2, "50 căn",
-							3, "Q4/2026",
-							4, "https://link-to-sac.novagroup.vn",
-							5, "Mở bán đợt 3"
-						),
+						IF(_ColIndex = 4, "https://link-to-sac.novagroup.vn", BLANK()),
 					"9.4 MAC - SALE KIT / SỰ KIỆN",
-						SWITCH(
-							_ColIndex,
-							1, "Đã hoàn thành",
-							2, "Kick-off sự kiện",
-							3, "15/10/2026",
-							4, "https://link-to-mac.novagroup.vn",
-							5, "Chờ duyệt ngân sách"
-						),
+						IF(_ColIndex = 4, "https://link-to-mac.novagroup.vn", BLANK()),
 					"9.5 PTC - KẾ HOẠCH CƯĐT",
-						SWITCH(
-							_ColIndex,
-							1, "Gói thầu móng hầm",
-							2, "Đang đấu thầu",
-							3, "Không điều chỉnh",
-							4, "30/09/2026",
-							5, "https://link-to-ptc.novagroup.vn",
-							6, "Đúng tiến độ"
-						),
+						IF(_ColIndex = 4, "https://link-to-ptc.novagroup.vn", BLANK()),
 					"9.6 QSB - NGÂN SÁCH",
-						SWITCH(
-							_ColIndex,
-							1, "Gói thầu xây dựng",
-							2, "Đã phê duyệt",
-							3, "Tăng 5%",
-							4, "15/09/2026",
-							5, "https://link-to-qsb.novagroup.vn",
-							6, "Dự toán hoàn tất"
-						),
+						IF(_ColIndex = 4, "https://link-to-qsb.novagroup.vn", BLANK()),
 					"9.7 SEC - AN NINH",
-						SWITCH(
-							_ColIndex,
-							1, "Đã duyệt phương án",
-							2, "Chưa duyệt",
-							3, "01/09/2026",
-							4, "https://link-to-sec.novagroup.vn",
-							5, "An ninh vòng ngoài"
-						),
+						IF(_ColIndex = 4, "https://link-to-sec.novagroup.vn", BLANK()),
 					"9.8 IDD - THIẾT KẾ NỘI BỘ",
-						SWITCH(
-							_ColIndex,
-							1, "Hồ sơ cảnh quan",
-							2, "Đã bàn giao",
-							3, "Có điều chỉnh",
-							4, "20/09/2026",
-							5, "https://link-to-idd.novagroup.vn",
-							6, "Phê duyệt thiết kế"
-						),
+						IF(_ColIndex = 4, "https://link-to-idd.novagroup.vn", BLANK()),
 					"9.9 CSC - BỒI THƯỜNG, GPMB",
-						SWITCH(
-							_ColIndex,
-							1, "Có thực hiện",
-							2, "Không thực hiện",
-							3, "31/12/2026",
-							4, "https://link-to-csc.novagroup.vn",
-							5, "Đã đền bù 95%"
-						),
+						IF(_ColIndex = 4, "https://link-to-csc.novagroup.vn", BLANK()),
 					"4.0 PMD - MASTER TIMELINE",
-						SWITCH(
-							_ColIndex,
-							1, "MTL Version 2",
-							2, "Đang theo dõi",
-							3, "Không điều chỉnh",
-							4, "30/11/2026",
-							5, "https://link-to-pmd.novagroup.vn",
-							6, "Đã báo cáo ban giám đốc"
-						),
+						IF(_ColIndex = 4, "https://link-to-pmd.novagroup.vn", BLANK()),
 					"4.2 DMD",
-						SWITCH(
-							_ColIndex,
-							1, "Hồ sơ thiết kế quy hoạch",
-							2, "Đang thẩm định",
-							3, "Không điều chỉnh",
-							4, "10/10/2026",
-							5, "https://link-to-dmd.novagroup.vn",
-							6, "Chờ phê duyệt"
-						),
+						IF(_ColIndex = 4, "https://link-to-dmd.novagroup.vn", BLANK()),
 					"4.3 PCD",
-						SWITCH(
-							_ColIndex,
-							1, "Hạ tầng kỹ thuật",
-							2, "85%",
-							3, "15/10/2026",
-							4, "https://link-to-pcd.novagroup.vn",
-							5, "Đang san lấp"
-						),
+						IF(_ColIndex = 3, "https://link-to-pcd.novagroup.vn", BLANK()),
 					"4.4 PM",
-						SWITCH(
-							_ColIndex,
-							1, "Đã giao 120/150 căn",
-							2, "30 căn",
-							3, "25/12/2026",
-							4, "https://link-to-pm.novagroup.vn",
-							5, "Bàn giao đợt cuối"
-						),
+						IF(_ColIndex = 4, "https://link-to-pm.novagroup.vn", BLANK()),
 					BLANK()
 				)
-		lineageTag: c9475112-7ea2-4812-af44-fdf822d3b7dc
+		lineageTag: e8a2f3f1-4567-48b2-a1f9-d1f855e90a23
+		dataCategory: WebUrl
 
 	column ID
 		dataType: int64
@@ -1061,6 +1113,12 @@ table Eoffice_TD
 
 		annotation SummarizationSetBy = Automatic
 
+	column Chitiet = "Xem chi tiết"
+		lineageTag: b95e9b94-b360-4d36-9751-8d6c2fa6f993
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Eoffice_TD = m
 		mode: import
 		source = ```
@@ -1110,5 +1168,5 @@ table Eoffice_TD
 
 	annotation PBI_NavigationStepName = Navigation
 
-	annotation PBI_ResultType = Exception
+	annotation PBI_ResultType = Table
 

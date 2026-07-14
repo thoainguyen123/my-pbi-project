@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "657edf6d17c709be91bf",
   "position": {
     "x": 986,
@@ -680,7 +680,7 @@
                         [
                           {
                             "Literal": {
-                              "Value": "'4.0 PMD - MASTER TIMELINE'"
+                              "Value": "'4.0 PMD'"
                             }
                           }
                         ]
@@ -709,7 +709,7 @@
         }
       },
       {
-        "name": "3acc504e714b58242a6c",
+        "name": "f0336d135d35e1af179a",
         "field": {
           "Measure": {
             "Expression": {

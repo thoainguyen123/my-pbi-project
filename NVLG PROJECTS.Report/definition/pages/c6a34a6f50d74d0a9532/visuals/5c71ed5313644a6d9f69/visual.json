@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "5c71ed5313644a6d9f69",
   "position": {
-    "x": 16,
-    "y": 339,
+    "x": 15.555555555555555,
+    "y": 338.88888888888886,
     "z": 11000,
-    "height": 119,
-    "width": 1475,
+    "height": 158.88888888888889,
+    "width": 1475.5555555555554,
     "tabOrder": 11000
   },
   "visual": {
@@ -58,6 +58,13 @@
                 }
               }
             },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
             "fontColor": {
               "solid": {
                 "color": {
@@ -82,13 +89,67 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
                 }
               }
             }
           },
           "selector": {
             "id": "default"
+          }
+        },
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'NGUỒN GỐC DỰ ÁN'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": -0.5
+                    }
+                  }
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DanhMucDauTu.Nguon_goc"
           }
         }
       ],

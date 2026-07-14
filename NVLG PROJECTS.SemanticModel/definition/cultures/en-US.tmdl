@@ -41963,6 +41963,16 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.591
 			          }
+			        },
+			        {
+			          "Hạng mục/ Nội dung": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -42104,7 +42114,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Hạng mục/ Nội dung": {
+			          "Nội dung": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",

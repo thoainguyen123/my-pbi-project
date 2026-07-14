@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "md00000000000000000c",
   "position": {
-    "x": 15.714285714285715,
-    "y": 464.28571428571433,
+    "x": 15.555555555555555,
+    "y": 502.22222222222223,
     "z": 1000,
-    "height": 335.71428571428572,
-    "width": 1475.7142857142858,
+    "height": 327.77777777777777,
+    "width": 1475.5555555555554,
     "tabOrder": 1000
   },
   "visual": {
@@ -41,10 +41,10 @@
                       "Entity": "Eoffice_TD"
                     }
                   },
-                  "Property": "level_title_2"
+                  "Property": "level_title_1"
                 }
               },
-              "queryRef": "Eoffice_TD.level_title_2",
+              "queryRef": "Eoffice_TD.level_title_1",
               "nativeQueryRef": "Hạng mục/ Nội dung",
               "active": true,
               "displayName": "Hạng mục/ Nội dung"
@@ -57,10 +57,10 @@
                       "Entity": "Eoffice_TD"
                     }
                   },
-                  "Property": "level_title_3"
+                  "Property": "level_title_2"
                 }
               },
-              "queryRef": "Eoffice_TD.level_title_3",
+              "queryRef": "Eoffice_TD.level_title_2",
               "nativeQueryRef": "Nội dung",
               "active": true,
               "displayName": "Nội dung"
@@ -95,7 +95,7 @@
                     "Entity": "Eoffice_TD"
                   }
                 },
-                "Property": "level_title_2"
+                "Property": "level_title_1"
               }
             },
             "direction": "Ascending"
@@ -111,7 +111,7 @@
         "levels": [
           {
             "queryRefs": [
-              "Eoffice_TD.level_title_2"
+              "Eoffice_TD.level_title_1"
             ],
             "identityKeys": [
               {
@@ -121,7 +121,7 @@
                       "Entity": "Eoffice_TD"
                     }
                   },
-                  "Property": "level_title_2"
+                  "Property": "level_title_1"
                 }
               }
             ],
@@ -129,7 +129,7 @@
           },
           {
             "queryRefs": [
-              "Eoffice_TD.level_title_3"
+              "Eoffice_TD.level_title_2"
             ],
             "isCollapsed": true,
             "identityKeys": [
@@ -140,7 +140,7 @@
                       "Entity": "Eoffice_TD"
                     }
                   },
-                  "Property": "level_title_3"
+                  "Property": "level_title_2"
                 }
               }
             ],
@@ -306,14 +306,14 @@
             "autoSizeColumnWidth": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
             "columnAdjustment": {
               "expr": {
                 "Literal": {
-                  "Value": "'growToFit'"
+                  "Value": "'none'"
                 }
               }
             },
@@ -408,6 +408,32 @@
                 }
               }
             }
+          }
+        },
+        {
+          "properties": {
+            "webURL": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Eoffice_TD"
+                    }
+                  },
+                  "Property": "Dynamic_Value_URL"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Eoffice_TD.Dynamic_Value"
           }
         }
       ],
@@ -504,13 +530,1493 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "733D"
+                  "Value": "507D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Eoffice_TD.level_title_2"
+            "metadata": "Eoffice_TD.level_title_1"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "182D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'1. Đã bán (Ký HĐMB/Tổng số)'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "181D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'1. Đã bàn giao (Giao/Tổng số)'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "91D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'1. Đã có TBTD'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "137D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'1. Mục'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "111D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'1. Tổng định biên'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "79D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'2. Chưa bán'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "107D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'2. Chưa bàn giao'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "105D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'2. Chưa có TBTD'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "105D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'2. Đang làm việc'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "86D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'2. Hiện trạng'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "120D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'2. Hiện trạng hồ sơ'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "141D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'2. Hiện trạng KH CUĐT'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "158D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'2. Hiện trạng thi công (%)'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "198D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'2. Nội dung'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'3. Điều chỉnh'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "94D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'3. Dự kiến bán'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "120D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'3. Dự kiến có TBTD'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "123D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'3. Ngày hoàn thành'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "74D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'3. Sẽ tuyển'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "171.66666666666666D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'3. Văn bản phê duyệt'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "196.00000713861402D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'4. Khó khăn/ Vướng mắc'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "160.66668161840857D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'5. Hướng xử lý'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "123D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'6. Ngày hoàn thành'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "283.4444381548966D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'7. Chi tiết'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "123D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'4. Ngày hoàn thành'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "183D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'5. Chi tiết'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "84D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'6. Ghi chú'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "66D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'4. Chi tiết'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "68D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'5. Ghi chú'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "86D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'1. Hiện trạng'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "120D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'1. Hiện trạng hồ sơ'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "141D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'1. Hiện trạng KH CUĐT'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "158D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'1. Hiện trạng thi công (%)'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "260D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'1. Văn bản phê duyệt'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'2. Điều chỉnh'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "181D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'2. Khó khăn/ Vướng mắc'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "123D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'2. Ngày hoàn thành'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "66D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'3. Chi tiết'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "180D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'3. Hướng xử lý'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "72D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "MasterData_Columns"
+                          }
+                        },
+                        "Property": "Col_Header"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'4. Ghi chú'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
           }
         }
       ],
@@ -764,78 +2270,6 @@
                 "Entity": "Eoffice_TD"
               }
             },
-            "Property": "level_title_3"
-          }
-        },
-        "type": "Categorical",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "e",
-              "Entity": "Eoffice_TD",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "Not": {
-                  "Expression": {
-                    "In": {
-                      "Expressions": [
-                        {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Source": "e"
-                              }
-                            },
-                            "Property": "level_title_3"
-                          }
-                        }
-                      ],
-                      "Values": [
-                        [
-                          {
-                            "Literal": {
-                              "Value": "null"
-                            }
-                          }
-                        ]
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        },
-        "objects": {
-          "general": [
-            {
-              "properties": {
-                "isInvertedSelectionMode": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "true"
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
-      },
-      {
-        "name": "5a487cf581806469b9c5",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Eoffice_TD"
-              }
-            },
             "Property": "level_title_2"
           }
         },
@@ -898,6 +2332,106 @@
             }
           ]
         }
+      },
+      {
+        "name": "5a487cf581806469b9c5",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Eoffice_TD"
+              }
+            },
+            "Property": "level_title_1"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "e",
+              "Entity": "Eoffice_TD",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "e"
+                              }
+                            },
+                            "Property": "level_title_1"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "null"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "b2c9fe33a95b23764282",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MasterData_Columns"
+              }
+            },
+            "Property": "Col_Header"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "13f9b081e7795077f0af",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Eoffice_TD"
+              }
+            },
+            "Property": "Dynamic_Value"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }
