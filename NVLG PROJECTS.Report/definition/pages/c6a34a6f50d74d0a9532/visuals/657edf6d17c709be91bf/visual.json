@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "657edf6d17c709be91bf",
   "position": {
     "x": 986,
@@ -676,6 +676,13 @@
                               "Value": "'4.4 PM'"
                             }
                           }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'4.0 PMD - MASTER TIMELINE'"
+                            }
+                          }
                         ]
                       ]
                     }
@@ -700,6 +707,20 @@
             }
           ]
         }
+      },
+      {
+        "name": "3acc504e714b58242a6c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Eoffice_TD"
+              }
+            },
+            "Property": "PL Tiến độ trung bình"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

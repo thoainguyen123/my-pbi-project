@@ -2090,6 +2090,14 @@ table Org
 
 		annotation SummarizationSetBy = Automatic
 
+	column Column13
+		dataType: string
+		lineageTag: aa482dfc-0dbc-46d4-b3d1-8c6d3d269088
+		summarizeBy: none
+		sourceColumn: Column13
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Org = m
 		mode: import
 		source =

@@ -19,7 +19,7 @@ table Phong_Nhom_Dim
 				            VALUES(Eoffice_TD[Phong_Nhom]),
 				            NOT(ISBLANK(Eoffice_TD[Phong_Nhom]))
 				        ),
-				        ROW("Phong_Nhom", "4.0 PMD - MASTER TIMELINE")
+				        ROW("Phong_Nhom", "4.0 PMD")
 				    )
 				)
 
