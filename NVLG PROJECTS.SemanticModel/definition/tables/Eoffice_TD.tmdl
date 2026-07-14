@@ -31,10 +31,19 @@ table Eoffice_TD
 		lineageTag: 1416984d-52f2-4812-8992-ebf5e8bd4eb0
 
 	measure 'PL Tiến độ trung bình' =
-			CALCULATE(
-				AVERAGE(Eoffice_TD[percent]),
-				Eoffice_TD[deep_level] = "Cấp 1"
-			)
+			VAR _group = SELECTEDVALUE(Eoffice_TD[Phong_Nhom])
+			RETURN
+				IF(
+					_group = "4.0 PMD",
+					CALCULATE(
+						AVERAGE(Eoffice_TD[percent]),
+						Eoffice_TD[title] = "PMD"
+					),
+					CALCULATE(
+						AVERAGE(Eoffice_TD[percent]),
+						Eoffice_TD[deep_level] = "Cấp 1"
+					)
+				)
 		formatString: 0%;-0%;0%
 		lineageTag: 372e30ce-c21d-41dd-b851-e6e7c4da4602
 
@@ -1131,7 +1140,7 @@ table Eoffice_TD
 				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Custom", Percentage.Type}}),
 				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type1",{"percent"}),
 				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Custom", "percent"}}),
-				    #"Filtered Rows" = Table.SelectRows(#"Renamed Columns", each ([status] <> "Hủy" and [status] <> "Đóng") and ([code] <> null) and ([deep_level] <> "work.normal.field.deep_level.6" and [deep_level] <> "work.normal.field.deep_level.7" and [deep_level] <> "work.normal.field.deep_level.8")),
+				    #"Filtered Rows" = Table.SelectRows(#"Renamed Columns", each ([status] <> "Hủy" and [status] <> "Đóng") and ([code] <> null) and ([deep_level] = null or ([deep_level] <> "work.normal.field.deep_level.6" and [deep_level] <> "work.normal.field.deep_level.7" and [deep_level] <> "work.normal.field.deep_level.8"))),
 				    #"Added Custom1" = Table.AddColumn(
 				    #"Filtered Rows",
 				    "Custom",
@@ -1159,8 +1168,8 @@ table Eoffice_TD
 				    #"Changed Type with Locale1" = Table.TransformColumnTypes(#"Changed Type with Locale", {{"end_plan", type date}}, "en-DE"),
 				    #"Replaced Errors" = Table.ReplaceErrorValues(#"Changed Type with Locale1", {{"start_plan", null},{"end_plan", null}}),
 				    #"Removed Duplicates1" = Table.Distinct(#"Replaced Errors", {"code"}),
-				    #"Added Conditional Column" = Table.AddColumn(#"Removed Duplicates1", "Phong_Nhom", each if Text.StartsWith([title], "4.1") then "4.1 PLP" else if Text.StartsWith([title], "4.2") then "4.2 DMD" else if Text.StartsWith([title], "4.3") then "4.3 PCD" else if Text.StartsWith([title], "4.4") then "4.4 PM" else if Text.StartsWith([title], "9.1") then "9.1 HRC - NHÂN SỰ" else if Text.StartsWith([title], "9.2") then "9.2 FAC" else if Text.StartsWith([title], "9.3") then "9.3 SAC - BÁN HÀNG" else if Text.StartsWith([title], "9.4") then "9.4 MAC - SALE KIT / SỰ KIỆN" else if Text.StartsWith([title], "9.5") then "9.5 PTC - KẾ HOẠCH CƯĐT" else if Text.StartsWith([title], "9.6") then "9.6 QSB - NGÂN SÁCH" else if Text.StartsWith([title], "9.7") then "9.7 SEC - AN NINH" else if Text.StartsWith([title], "9.8") then "9.8 IDD - THIẾT KẾ NỘI BỘ" else if Text.StartsWith([title], "9.9") then "9.9 CSC - BỒI THƯỜNG, GPMB" else if Text.StartsWith([title], "4.0") then "4.0 PMD" else null),
-				    #"Added Conditional Column1" = Table.AddColumn(#"Added Conditional Column", "sort_phong", each if Text.StartsWith([title], "9.1") then 1 else if Text.StartsWith([title], "9.2") then 2 else if Text.StartsWith([title], "9.3") then 3 else if Text.StartsWith([title], "9.4") then 4 else if Text.StartsWith([title], "9.5") then 5 else if Text.StartsWith([title], "9.6") then 6 else if Text.StartsWith([title], "9.7") then 7 else if Text.StartsWith([title], "9.8") then 8 else if Text.StartsWith([title], "9.9") then 9 else if Text.StartsWith([title], "4.0") then 10 else if Text.StartsWith([title], "4.1") then 11 else if Text.StartsWith([title], "4.2") then 12 else if Text.StartsWith([title], "4.3") then 13 else if Text.StartsWith([title], "4.4") then 14 else 100),
+				    #"Added Conditional Column" = Table.AddColumn(#"Removed Duplicates1", "Phong_Nhom", each if Text.Trim([title]) = "PMD" or Text.StartsWith([title], "4.0") then "4.0 PMD" else if Text.StartsWith([title], "4.1") then "4.1 PLP" else if Text.StartsWith([title], "4.2") then "4.2 DMD" else if Text.StartsWith([title], "4.3") then "4.3 PCD" else if Text.StartsWith([title], "4.4") then "4.4 OM" else if Text.StartsWith([title], "9.1") then "9.1 HRC - NHÂN SỰ" else if Text.StartsWith([title], "9.2") then "9.2 FAC" else if Text.StartsWith([title], "9.3") then "9.3 SAC - BÁN HÀNG" else if Text.StartsWith([title], "9.4") then "9.4 MAC - SALE KIT / SỰ KIỆN" else if Text.StartsWith([title], "9.5") then "9.5 PTC - KẾ HOẠCH CƯĐT" else if Text.StartsWith([title], "9.6") then "9.6 QSB - NGÂN SÁCH" else if Text.StartsWith([title], "9.7") then "9.7 SEC - AN NINH" else if Text.StartsWith([title], "9.8") then "9.8 IDD - THIẾT KẾ NỘI BỘ" else if Text.StartsWith([title], "9.9") then "9.9 CSC - BỒI THƯỜNG, GPMB" else null),
+				    #"Added Conditional Column1" = Table.AddColumn(#"Added Conditional Column", "sort_phong", each if Text.StartsWith([title], "9.1") then 1 else if Text.StartsWith([title], "9.2") then 2 else if Text.StartsWith([title], "9.3") then 3 else if Text.StartsWith([title], "9.4") then 4 else if Text.StartsWith([title], "9.5") then 5 else if Text.StartsWith([title], "9.6") then 6 else if Text.StartsWith([title], "9.7") then 7 else if Text.StartsWith([title], "9.8") then 8 else if Text.StartsWith([title], "9.9") then 9 else if Text.Trim([title]) = "PMD" or Text.StartsWith([title], "4.0") then 10 else if Text.StartsWith([title], "4.1") then 11 else if Text.StartsWith([title], "4.2") then 12 else if Text.StartsWith([title], "4.3") then 13 else if Text.StartsWith([title], "4.4") then 14 else 100),
 				    #"Changed Type2" = Table.TransformColumnTypes(#"Added Conditional Column1",{{"sort_phong", Int64.Type}})
 				in
 				    #"Changed Type2"

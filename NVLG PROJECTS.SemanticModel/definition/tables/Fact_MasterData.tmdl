@@ -1,0 +1,216 @@
+table Fact_MasterData
+	lineageTag: 351bec2d-94fb-41a7-aa96-d3c6df8e998f
+
+	measure 'MasterData Dynamic Value' =
+			VAR _selectedGroup =
+				IF(
+					ISCROSSFILTERED(FactMasterData_Columns[Phong_Nhom]),
+					CALCULATE(SELECTEDVALUE(FactMasterData_Columns[nhom]), ALLSELECTED(FactMasterData_Columns[nhom]))
+				)
+			VAR _group = COALESCE(_selectedGroup, "4.1 PLP")
+			VAR _rowGroup = SELECTEDVALUE(Fact_MasterData[nhom])
+			VAR _columnGroup = SELECTEDVALUE(FactMasterData_Columns[nhom])
+			VAR _index = SELECTEDVALUE(FactMasterData_Columns[Col_Index])
+			VAR _subgroup = SELECTEDVALUE(Fact_MasterData[phan_nhom])
+			VAR _value =
+				SWITCH(
+					_group,
+					"9.1 HRC", SWITCH(_index, 1, MIN(Fact_MasterData[gia_tri_1]), 2, MIN(Fact_MasterData[gia_tri_2]), 3, MIN(Fact_MasterData[gia_tri_3]), 4, MIN(Fact_MasterData[chi_tiet]), 5, MIN(Fact_MasterData[ghi_chu])),
+					"9.2 FAC", SWITCH(_index, 1, IF(_subgroup = "HDV", MIN(Fact_MasterData[gia_tri_1]), MIN(Fact_MasterData[hien_trang])), 2, IF(_subgroup = "HDV", MIN(Fact_MasterData[gia_tri_2]), MIN(Fact_MasterData[dieu_chinh])), 3, MIN(Fact_MasterData[ngay_hoan_thanh]), 4, MIN(Fact_MasterData[chi_tiet]), 5, MIN(Fact_MasterData[ghi_chu])),
+					"9.3 SAC", SWITCH(_index, 1, MIN(Fact_MasterData[gia_tri_1]), 2, MIN(Fact_MasterData[gia_tri_2]), 3, MIN(Fact_MasterData[ngay_hoan_thanh]), 4, MIN(Fact_MasterData[chi_tiet]), 5, MIN(Fact_MasterData[ghi_chu])),
+					"9.4 MAC", SWITCH(_index, 1, MIN(Fact_MasterData[gia_tri_1]), 2, MIN(Fact_MasterData[gia_tri_2]), 3, MIN(Fact_MasterData[ngay_hoan_thanh]), 4, MIN(Fact_MasterData[chi_tiet]), 5, MIN(Fact_MasterData[ghi_chu])),
+					"9.7 SEC", SWITCH(_index, 1, MIN(Fact_MasterData[gia_tri_1]), 2, MIN(Fact_MasterData[gia_tri_2]), 3, MIN(Fact_MasterData[ngay_hoan_thanh]), 4, MIN(Fact_MasterData[chi_tiet]), 5, MIN(Fact_MasterData[ghi_chu])),
+					"9.9 CSC", SWITCH(_index, 1, MIN(Fact_MasterData[gia_tri_1]), 2, MIN(Fact_MasterData[gia_tri_2]), 3, MIN(Fact_MasterData[ngay_hoan_thanh]), 4, MIN(Fact_MasterData[chi_tiet]), 5, MIN(Fact_MasterData[ghi_chu])),
+					"4.1 PLP", SWITCH(_index, 1, MIN(Fact_MasterData[van_ban_phe_duyet]), 2, MIN(Fact_MasterData[kho_khan_vuong_mac]), 3, MIN(Fact_MasterData[huong_xu_ly]), 4, MIN(Fact_MasterData[ngay_hoan_thanh]), 5, MIN(Fact_MasterData[chi_tiet])),
+					"4.3 PCD", SWITCH(_index, 1, MIN(Fact_MasterData[hien_trang]), 2, MIN(Fact_MasterData[ngay_hoan_thanh]), 3, MIN(Fact_MasterData[chi_tiet]), 4, MIN(Fact_MasterData[ghi_chu])),
+					"4.4 OM", SWITCH(_index, 1, MIN(Fact_MasterData[gia_tri_1]), 2, MIN(Fact_MasterData[gia_tri_2]), 3, MIN(Fact_MasterData[ngay_hoan_thanh]), 4, MIN(Fact_MasterData[chi_tiet]), 5, MIN(Fact_MasterData[ghi_chu])),
+					SWITCH(_index, 1, MIN(Fact_MasterData[hien_trang]), 2, MIN(Fact_MasterData[dieu_chinh]), 3, MIN(Fact_MasterData[ngay_hoan_thanh]), 4, MIN(Fact_MasterData[chi_tiet]), 5, MIN(Fact_MasterData[ghi_chu]))
+				)
+			RETURN
+				IF(_rowGroup = _group && _columnGroup = _group, COALESCE(_value, "-"))
+		formatString: @
+		lineageTag: 7c569b37-22b5-4052-8096-61d3c2c6c8f5
+
+	column fact_id
+		dataType: string
+		lineageTag: 97a617eb-9ecd-4092-b7f7-b881c25570b9
+		summarizeBy: none
+		sourceColumn: fact_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column project_code
+		dataType: string
+		lineageTag: b06d63f0-86a8-44cc-9af7-afdf9cf35a71
+		summarizeBy: none
+		sourceColumn: project_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column nhom
+		dataType: string
+		lineageTag: 8c5dca07-388c-45c5-a25a-71ba17e951e3
+		summarizeBy: none
+		sourceColumn: nhom
+
+		annotation SummarizationSetBy = Automatic
+
+	column sort_colum
+		dataType: int64
+		formatString: 0
+		lineageTag: 4663e5e3-3cdf-44ee-94bb-0d7d39ad3dbe
+		summarizeBy: sum
+		sourceColumn: sort_colum
+
+		annotation SummarizationSetBy = Automatic
+
+	column phan_nhom
+		dataType: string
+		lineageTag: 95308c09-eaa4-4394-b222-522833e21349
+		summarizeBy: none
+		sourceColumn: phan_nhom
+
+		annotation SummarizationSetBy = Automatic
+
+	column hang_muc
+		dataType: string
+		lineageTag: 2d8c8bf8-fa18-4f3b-8999-6f45b6baf3cf
+		summarizeBy: none
+		sourceColumn: hang_muc
+
+		annotation SummarizationSetBy = Automatic
+
+	column hien_trang
+		dataType: string
+		lineageTag: b0bfc960-29ed-4c8d-a40a-1d0373f25781
+		summarizeBy: none
+		sourceColumn: hien_trang
+
+		annotation SummarizationSetBy = Automatic
+
+	column dieu_chinh
+		dataType: string
+		lineageTag: 08db6123-35e3-460a-8fd3-05d7049d8553
+		summarizeBy: none
+		sourceColumn: dieu_chinh
+
+		annotation SummarizationSetBy = Automatic
+
+	column ngay_hoan_thanh
+		dataType: string
+		lineageTag: 30cdd878-63d4-4303-ac6f-b2ad2f9f8ad7
+		summarizeBy: none
+		sourceColumn: ngay_hoan_thanh
+
+		annotation SummarizationSetBy = Automatic
+
+	column chi_tiet
+		dataType: string
+		lineageTag: 064c916c-6270-409a-b073-85beec491347
+		summarizeBy: none
+		sourceColumn: chi_tiet
+
+		annotation SummarizationSetBy = Automatic
+
+	column ghi_chu
+		dataType: string
+		lineageTag: e5cf83d0-be68-4cc5-b620-62e486a6e489
+		summarizeBy: none
+		sourceColumn: ghi_chu
+
+		annotation SummarizationSetBy = Automatic
+
+	column van_ban_phe_duyet
+		dataType: string
+		lineageTag: 45ac4f28-e9ac-4c78-bfc1-62ac8a7cfdd0
+		summarizeBy: none
+		sourceColumn: van_ban_phe_duyet
+
+		annotation SummarizationSetBy = Automatic
+
+	column kho_khan_vuong_mac
+		dataType: string
+		lineageTag: 1f5a1f0b-6894-431f-82a1-c019832efc40
+		summarizeBy: none
+		sourceColumn: kho_khan_vuong_mac
+
+		annotation SummarizationSetBy = Automatic
+
+	column huong_xu_ly
+		dataType: string
+		lineageTag: c03ee82c-c290-4541-af07-371ff7f9368f
+		summarizeBy: none
+		sourceColumn: huong_xu_ly
+
+		annotation SummarizationSetBy = Automatic
+
+	column gia_tri_1
+		dataType: string
+		lineageTag: 412f1314-6f14-4c82-90d2-8d7e315fee53
+		summarizeBy: none
+		sourceColumn: gia_tri_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column gia_tri_2
+		dataType: string
+		lineageTag: 23fbfa7f-2c6b-4137-9405-b99462f304d7
+		summarizeBy: none
+		sourceColumn: gia_tri_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_sheet
+		dataType: string
+		lineageTag: 4a00abd1-8463-4907-9ce8-d5ba1b0a03da
+		summarizeBy: none
+		sourceColumn: source_sheet
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_row
+		dataType: int64
+		formatString: 0
+		lineageTag: ebace6dd-3b4e-4e0e-b994-3a97b5d11a76
+		summarizeBy: sum
+		sourceColumn: source_row
+
+		annotation SummarizationSetBy = Automatic
+
+	column raw_data
+		dataType: string
+		lineageTag: 4bada0c4-a107-4649-b18d-aa94deccdb91
+		summarizeBy: none
+		sourceColumn: raw_data
+
+		annotation SummarizationSetBy = Automatic
+
+	column gia_tri_3
+		dataType: string
+		lineageTag: 9463d7b4-b01e-4f88-89f3-5270e1eb0bbc
+		summarizeBy: none
+		sourceColumn: gia_tri_3
+
+		annotation SummarizationSetBy = Automatic
+
+	column Phong_Nhom
+		dataType: string
+		lineageTag: 6f08bd8d-1438-4e8b-b128-c005aee3d514
+		summarizeBy: none
+		sourceColumn: Phong_Nhom
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fact_MasterData = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("C:\Users\Admin\Desktop\PowerBI\data\Fact_MasterData.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"fact_id", type text}, {"project_code", type text}, {"nhom", type text}, {"Phong_Nhom", type text}, {"sort_colum", Int64.Type}, {"phan_nhom", type text}, {"hang_muc", type text}, {"hien_trang", type text}, {"dieu_chinh", type text}, {"ngay_hoan_thanh", type text}, {"chi_tiet", type text}, {"ghi_chu", type text}, {"van_ban_phe_duyet", type text}, {"kho_khan_vuong_mac", type text}, {"huong_xu_ly", type text}, {"gia_tri_1", type text}, {"gia_tri_2", type text}, {"gia_tri_3", type text}, {"source_sheet", type text}, {"source_row", Int64.Type}, {"raw_data", type text}})
+				in
+				  #"Changed column type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table

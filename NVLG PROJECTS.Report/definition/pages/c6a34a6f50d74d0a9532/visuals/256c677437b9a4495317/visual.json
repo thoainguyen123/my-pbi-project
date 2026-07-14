@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "256c677437b9a4495317",
   "position": {
     "x": 516,
@@ -664,6 +664,13 @@
                     [
                       {
                         "Literal": {
+                          "Value": "'4.0 PMD'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
                           "Value": "'4.1 PLP'"
                         }
                       }
@@ -685,21 +692,7 @@
                     [
                       {
                         "Literal": {
-                          "Value": "'4.4 PM'"
-                        }
-                      }
-                    ],
-                    [
-                      {
-                        "Literal": {
-                          "Value": "'4.0'"
-                        }
-                      }
-                    ],
-                    [
-                      {
-                        "Literal": {
-                          "Value": "'4.0 PMD'"
+                          "Value": "'4.4 OM'"
                         }
                       }
                     ]

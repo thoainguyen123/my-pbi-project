@@ -4,14 +4,14 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 383.8235294117647,
-        "y": 0
+        "x": 1422.0588235294117,
+        "y": 547.05882352941171
       },
       "nodes": [
         {
           "location": {
             "x": 943.48530781879185,
-            "y": 1062.0340722048309
+            "y": 2070.066895197805
           },
           "nodeIndex": "db_novahub_pro employeeorg1offices",
           "nodeLineageTag": "26d7e958-b407-4e6b-aa09-a9e6911233c3",
@@ -24,7 +24,7 @@
         {
           "location": {
             "x": 1125.4518825868324,
-            "y": 751.73329609450275
+            "y": 1759.7661190874769
           },
           "nodeIndex": "Org",
           "nodeLineageTag": "c0bc12c9-4914-461a-b0cd-04b1c421db1e",
@@ -37,7 +37,7 @@
         {
           "location": {
             "x": 738.9630224816101,
-            "y": 522.26948484583738
+            "y": 1530.3023078388114
           },
           "nodeIndex": "Eoffice_TD",
           "nodeLineageTag": "dfa78093-9074-468b-bbd8-1d8f37664f5a",
@@ -50,7 +50,7 @@
         {
           "location": {
             "x": 1369.1560666156136,
-            "y": 1064.940317707204
+            "y": 2072.9731407001782
           },
           "nodeIndex": "Table",
           "nodeLineageTag": "07bf366b-2b52-49da-904c-957d23b77ab4",
@@ -63,19 +63,19 @@
         {
           "location": {
             "x": 85.54723463360267,
-            "y": 916.02721099107578
+            "y": 1924.0600339840498
           },
           "nodeIndex": "Project",
           "size": {
             "height": 300,
             "width": 234
           },
-          "zIndex": 1
+          "zIndex": 4
         },
         {
           "location": {
             "x": 268.27677765132694,
-            "y": 462.90538041575019
+            "y": 1470.9382034087243
           },
           "nodeIndex": "Dự án",
           "nodeLineageTag": "d0cfd250-2bc0-4ae2-a972-34aa91ecff6d",
@@ -83,24 +83,24 @@
             "height": 272,
             "width": 234
           },
-          "zIndex": 2
+          "zIndex": 5
         },
         {
           "location": {
             "x": 458.75816855788344,
-            "y": 849.06776770041483
+            "y": 1857.1005906933888
           },
           "nodeIndex": "DanhMucDauTu",
           "size": {
             "height": 300,
             "width": 234
           },
-          "zIndex": 3
+          "zIndex": 6
         },
         {
           "location": {
             "x": 0,
-            "y": 689.46389585751285
+            "y": 1697.496718850487
           },
           "nodeIndex": "PQ_Du_An",
           "nodeLineageTag": "b23443de-96e2-400a-9aa2-f79d5121e261",
@@ -108,12 +108,12 @@
             "height": 176,
             "width": 234
           },
-          "zIndex": 4
+          "zIndex": 7
         },
         {
           "location": {
             "x": 197.28541094464731,
-            "y": 1244.3566248048965
+            "y": 2252.3894477978706
           },
           "nodeIndex": "PQ_Khu_Vuc",
           "nodeLineageTag": "d5222841-675f-4bd5-be73-18654793ebfd",
@@ -121,36 +121,36 @@
             "height": 128,
             "width": 234
           },
-          "zIndex": 5
+          "zIndex": 8
         },
         {
           "location": {
             "x": 1571.8481711912393,
-            "y": 857.616683758577
+            "y": 1865.6495067515511
           },
           "nodeIndex": "KhuVuc_Layout",
           "size": {
             "height": 200,
             "width": 234
           },
-          "zIndex": 6
+          "zIndex": 9
         },
         {
           "location": {
             "x": 1855.8481711912393,
-            "y": 857.616683758577
+            "y": 1865.6495067515511
           },
           "nodeIndex": "DuAn_By_KhuVuc",
           "size": {
             "height": 200,
             "width": 234
           },
-          "zIndex": 7
+          "zIndex": 10
         },
         {
           "location": {
             "x": 1741.2800563658759,
-            "y": 1163.0487293805224
+            "y": 2171.0815523734964
           },
           "nodeIndex": "Sheet1",
           "nodeLineageTag": "9e5d2790-03b9-41e4-ab83-d8fff441424e",
@@ -163,7 +163,7 @@
         {
           "location": {
             "x": 2423.8481711912391,
-            "y": 839.30299799325246
+            "y": 1847.3358209862267
           },
           "nodeIndex": "DanhMucMoi",
           "nodeLineageTag": "66d39346-60bc-4f84-8a33-38f52d333cdb",
@@ -176,7 +176,7 @@
         {
           "location": {
             "x": 2707.8481711912391,
-            "y": 894.70673897507265
+            "y": 1902.7395619680469
           },
           "nodeIndex": "NV_HR",
           "size": {
@@ -188,7 +188,7 @@
         {
           "location": {
             "x": 662.61610815181655,
-            "y": 1179.3575429475477
+            "y": 2187.3903659405219
           },
           "nodeIndex": "Head_Count",
           "nodeLineageTag": "4e982d00-8ac6-4ca1-a783-3bf70576b12d",
@@ -201,7 +201,7 @@
         {
           "location": {
             "x": 2991.8481711912391,
-            "y": 661.39183116020331
+            "y": 1669.4246541531775
           },
           "nodeIndex": "Org_Chung",
           "nodeLineageTag": "c00d29b4-d4a9-415a-ab39-7959f243c32e",
@@ -209,12 +209,12 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 1
         },
         {
           "location": {
             "x": 1259.671700603004,
-            "y": 1183.8688180401464
+            "y": 2191.9016410331205
           },
           "nodeIndex": "headcount_gmd",
           "nodeLineageTag": "2561f0f7-bf58-4426-86bb-23088a576d2a",
@@ -222,7 +222,45 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 3893.8481711912391,
+            "y": 1224.2899580056019
+          },
+          "nodeIndex": "Phong_Nhom_Dim",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 21
+        },
+        {
+          "location": {
+            "x": 2829.3187594265332,
+            "y": 887.93504539535036
+          },
+          "nodeIndex": "Fact_MasterData",
+          "nodeLineageTag": "351bec2d-94fb-41a7-aa96-d3c6df8e998f",
+          "size": {
+            "height": 285.2941176470589,
+            "width": 234
+          },
+          "zIndex": 19
+        },
+        {
+          "location": {
+            "x": 3223.6128770735922,
+            "y": 1001.6409277482917
+          },
+          "nodeIndex": "FactMasterData_Columns",
+          "nodeLineageTag": "3ddfc8aa-c09d-4e95-9c8e-6095e6fc3a31",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 3
         }
       ],
       "name": "All tables",

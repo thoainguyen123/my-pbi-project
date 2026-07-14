@@ -1,0 +1,61 @@
+table FactMasterData_Columns
+	lineageTag: 3ddfc8aa-c09d-4e95-9c8e-6095e6fc3a31
+
+	column nhom
+		dataType: string
+		lineageTag: 21fd1d68-a4a0-4cda-96f3-e4e3b0bb6191
+		summarizeBy: none
+		sourceColumn: nhom
+
+	column Col_Index
+		dataType: int64
+		formatString: 0
+		lineageTag: 5c0fb655-80b9-4ac4-b069-0147a4f5c292
+		summarizeBy: sum
+		sourceColumn: Col_Index
+
+	column Col_Header
+		dataType: string
+		lineageTag: 93c17d8c-a05f-40df-aedf-19b3f9d979e3
+		summarizeBy: none
+		sourceColumn: Col_Header
+		sortByColumn: Col_Index
+
+	column Phong_Nhom
+		dataType: string
+		lineageTag: 5368a1e1-1d5b-41b9-986f-cfbc9899fc1d
+		summarizeBy: none
+		sourceColumn: Phong_Nhom
+
+	partition FactMasterData_Columns = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows({
+				        {"9.1 HRC", 1, "Tổng định biên"}, {"9.1 HRC", 2, "Đang làm việc"}, {"9.1 HRC", 3, "Sẽ tuyển dụng"}, {"9.1 HRC", 4, "Chi tiết"}, {"9.1 HRC", 5, "Ghi chú"},
+				        {"9.2 FAC", 1, "Hiện trạng / Đã có TBTD"}, {"9.2 FAC", 2, "Điều chỉnh / Chưa có TBTD"}, {"9.2 FAC", 3, "Ngày hoàn thành / Dự kiến"}, {"9.2 FAC", 4, "Chi tiết"}, {"9.2 FAC", 5, "Ghi chú"},
+				        {"9.3 SAC", 1, "Đã bán"}, {"9.3 SAC", 2, "Chưa bán"}, {"9.3 SAC", 3, "Dự kiến bán"}, {"9.3 SAC", 4, "Chi tiết"}, {"9.3 SAC", 5, "Ghi chú"},
+				        {"9.4 MAC", 1, "Sale kit"}, {"9.4 MAC", 2, "Sự kiện"}, {"9.4 MAC", 3, "Ngày tổ chức"}, {"9.4 MAC", 4, "Chi tiết"}, {"9.4 MAC", 5, "Ghi chú"},
+				        {"9.5 PTC", 1, "Hiện trạng KH CƯĐT"}, {"9.5 PTC", 2, "Điều chỉnh"}, {"9.5 PTC", 3, "Ngày hoàn thành"}, {"9.5 PTC", 4, "Chi tiết"}, {"9.5 PTC", 5, "Ghi chú"},
+				        {"9.6 QSB", 1, "Hiện trạng ngân sách"}, {"9.6 QSB", 2, "Điều chỉnh"}, {"9.6 QSB", 3, "Ngày hoàn thành"}, {"9.6 QSB", 4, "Chi tiết"}, {"9.6 QSB", 5, "Ghi chú"},
+				        {"9.7 SEC", 1, "Đã có PA an ninh"}, {"9.7 SEC", 2, "Chưa có PA an ninh"}, {"9.7 SEC", 3, "Ngày hoàn thành"}, {"9.7 SEC", 4, "Chi tiết"}, {"9.7 SEC", 5, "Ghi chú"},
+				        {"9.8 IDD", 1, "Hien trang ho so"}, {"9.8 IDD", 2, "Dieu chinh"}, {"9.8 IDD", 3, "Ngay hoan thanh"}, {"9.8 IDD", 4, "Chi tiet"}, {"9.8 IDD", 5, "Ghi chu"},
+				        {"9.9 CSC", 1, "Co thuc hien BT/GPMB"}, {"9.9 CSC", 2, "Khong thuc hien BT/GPMB"}, {"9.9 CSC", 3, "Ngay hoan thanh"}, {"9.9 CSC", 4, "Chi tiet"}, {"9.9 CSC", 5, "Ghi chu"},
+				        {"4.0 PMD", 1, "Hien trang MTL"}, {"4.0 PMD", 2, "Dieu chinh"}, {"4.0 PMD", 3, "Ngay hoan thanh"}, {"4.0 PMD", 4, "Chi tiet"}, {"4.0 PMD", 5, "Ghi chu"},
+				        {"4.1 PLP", 1, "Văn bản phê duyệt"}, {"4.1 PLP", 2, "Khó khăn / Vướng mắc"}, {"4.1 PLP", 3, "Hướng xử lý"}, {"4.1 PLP", 4, "Ngày hoàn thành"}, {"4.1 PLP", 5, "Chi tiết"},
+				        {"4.2 DMD", 1, "Hien trang ho so"}, {"4.2 DMD", 2, "Dieu chinh"}, {"4.2 DMD", 3, "Ngay hoan thanh"}, {"4.2 DMD", 4, "Chi tiet"}, {"4.2 DMD", 5, "Ghi chu"},
+				        {"4.3 PCD", 1, "Hiện trạng thi công (%)"}, {"4.3 PCD", 2, "Ngày hoàn thành"}, {"4.3 PCD", 3, "Chi tiết"}, {"4.3 PCD", 4, "Ghi chú"},
+				        {"4.4 OM", 1, "Da ban giao"}, {"4.4 OM", 2, "Chua ban giao"}, {"4.4 OM", 3, "Ngay hoan thanh"}, {"4.4 OM", 4, "Chi tiet"}, {"4.4 OM", 5, "Ghi chu"}
+				    }, type table [nhom = text, Col_Index = Int64.Type, Col_Header = text]),
+				    #"Added Phong_Nhom" = Table.AddColumn(Source, "Phong_Nhom", each
+				        if [nhom] = "9.1 HRC" then "9.1 HRC - NHÂN SỰ"
+				        else if [nhom] = "9.3 SAC" then "9.3 SAC - BÁN HÀNG"
+				        else if [nhom] = "9.4 MAC" then "9.4 MAC - SALE KIT / SỰ KIỆN"
+				        else if [nhom] = "9.5 PTC" then "9.5 PTC - KẾ HOẠCH CƯĐT"
+				        else if [nhom] = "9.6 QSB" then "9.6 QSB - NGÂN SÁCH"
+				        else if [nhom] = "9.7 SEC" then "9.7 SEC - AN NINH"
+				        else if [nhom] = "9.8 IDD" then "9.8 IDD - THIẾT KẾ NỘI BỘ"
+				        else if [nhom] = "9.9 CSC" then "9.9 CSC - BỒI THƯỜNG, GPMB"
+				        else [nhom], type text)
+				in
+				    #"Added Phong_Nhom"
