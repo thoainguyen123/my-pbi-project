@@ -3,11 +3,11 @@
   "name": "e2092d7523e35ceea2a4",
   "position": {
     "x": 15,
-    "y": 67.5,
-    "z": 10000,
-    "height": 300,
+    "y": 68,
+    "z": 2000,
+    "height": 267,
     "width": 495,
-    "tabOrder": 10000
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "textbox",

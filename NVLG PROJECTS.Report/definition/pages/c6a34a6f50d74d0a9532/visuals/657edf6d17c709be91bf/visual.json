@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "657edf6d17c709be91bf",
   "position": {
-    "x": 985.71428571428578,
-    "y": 67.142857142857153,
-    "z": 17006,
-    "height": 300,
-    "width": 505.71428571428572,
-    "tabOrder": 17005
+    "x": 986,
+    "y": 67,
+    "z": 13000,
+    "height": 268,
+    "width": 505,
+    "tabOrder": 12000
   },
   "visual": {
     "visualType": "barChart",
@@ -349,6 +349,13 @@
                   }
                 }
               }
+            },
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
             }
           }
         }
@@ -542,7 +549,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'TIẾN ĐỘ THEO NHÓM PHÁP LÝ'"
+                  "Value": "'9 BAN/ PHÒNG GIÁN TIẾP'"
                 }
               }
             },
@@ -556,7 +563,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "9D"
+                  "Value": "12D"
                 }
               }
             },
@@ -601,20 +608,6 @@
   },
   "filterConfig": {
     "filters": [
-      {
-        "name": "4f94de67253b9017410b",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Eoffice_TD"
-              }
-            },
-            "Property": "PL Tiến độ trung bình"
-          }
-        },
-        "type": "Advanced"
-      },
       {
         "name": "3125e8018ffb4c1330cf",
         "field": {

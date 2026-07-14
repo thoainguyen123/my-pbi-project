@@ -4,10 +4,10 @@
   "position": {
     "x": 15.714285714285715,
     "y": 464.28571428571433,
-    "z": 9000,
+    "z": 1000,
     "height": 335.71428571428572,
     "width": 1475.7142857142858,
-    "tabOrder": 9000
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "pivotTable",
@@ -234,6 +234,26 @@
                 {
                   "Literal": {
                     "Value": "'4.2.1 Thiết kế Quy hoạch'"
+                  }
+                }
+              ],
+              "isToggled": true
+            },
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'4.2.2 Thiết kế Hạ tầng Kỹ thuật'"
+                  }
+                }
+              ],
+              "isToggled": true
+            },
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'4.2.3 Thiết kế Cảnh quan'"
                   }
                 }
               ],
@@ -471,14 +491,29 @@
             "columnSubtotals": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             }
           }
         }
       ],
-      "columnWidth": [],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "733D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Eoffice_TD.level_title_2"
+          }
+        }
+      ],
       "columnFormatting": [],
       "general": [
         {
@@ -863,34 +898,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "608842864946c71b5f6d",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MasterData_Columns"
-              }
-            },
-            "Property": "Col_Header"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "607c945937da29aba652",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Eoffice_TD"
-              }
-            },
-            "Property": "Dynamic_Value"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

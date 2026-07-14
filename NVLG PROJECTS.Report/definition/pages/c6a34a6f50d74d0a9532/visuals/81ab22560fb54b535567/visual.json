@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
-  "name": "d90705887e142a6e4320",
+  "name": "81ab22560fb54b535567",
   "position": {
-    "x": 144.43556349616813,
-    "y": 3.8516150265644833,
-    "z": 14000,
-    "height": 34.664535239080351,
-    "width": 300.42597207202971,
-    "tabOrder": 16000
+    "x": 16,
+    "y": 68,
+    "z": 15000,
+    "height": 34,
+    "width": 494,
+    "tabOrder": 14000
   },
   "visual": {
     "visualType": "textbox",
@@ -19,11 +19,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "PHÁP LÝ DỰ ÁN",
+                    "value": "TỔNG QUAN DỰ ÁN",
                     "textStyle": {
-                      "fontWeight": "bold",
-                      "fontSize": "14pt",
-                      "color": "#173b70"
+                      "fontFamily": "Segoe UI Semibold",
+                      "fontSize": "12pt",
+                      "color": "#094780"
                     }
                   }
                 ]

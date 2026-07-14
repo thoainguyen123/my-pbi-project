@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "256c677437b9a4495317",
   "position": {
-    "x": 515.71428571428578,
-    "y": 67.142857142857153,
-    "z": 17007,
-    "height": 300,
-    "width": 465.71428571428572,
-    "tabOrder": 17006
+    "x": 516,
+    "y": 67,
+    "z": 14000,
+    "height": 268,
+    "width": 465,
+    "tabOrder": 13000
   },
   "visual": {
     "visualType": "barChart",
@@ -303,6 +303,20 @@
                   "Value": "false"
                 }
               }
+            },
+            "switchAxisPosition": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "concatenateLabels": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
             }
           }
         }
@@ -347,6 +361,13 @@
                       "Percent": -0.5
                     }
                   }
+                }
+              }
+            },
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
@@ -542,7 +563,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'TIẾN ĐỘ THEO NHÓM PHÁP LÝ'"
+                  "Value": "'4 PHÒNG TRỰC TIẾP'"
                 }
               }
             },
@@ -556,7 +577,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "9D"
+                  "Value": "11D"
                 }
               }
             },
@@ -683,7 +704,7 @@
         }
       },
       {
-        "name": "c7afb963e0a98c95af16",
+        "name": "b4d47bc7ee4919eedd5b",
         "field": {
           "Measure": {
             "Expression": {

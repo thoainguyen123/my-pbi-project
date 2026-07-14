@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "5c71ed5313644a6d9f69",
   "position": {
-    "x": 15.714285714285715,
-    "y": 368.57142857142861,
-    "z": 17003,
-    "height": 92.857142857142861,
-    "width": 1475.7142857142858,
-    "tabOrder": 17003
+    "x": 16,
+    "y": 339,
+    "z": 11000,
+    "height": 119,
+    "width": 1475,
+    "tabOrder": 11000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -161,23 +161,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "0c29142be86d128838b4",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DanhMucDauTu"
-              }
-            },
-            "Property": "Nguon_goc"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }
