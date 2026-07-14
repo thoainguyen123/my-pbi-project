@@ -40,12 +40,12 @@ table FactMasterData_Columns
 				        {"9.6 QSB", 1, "Hiện trạng ngân sách"}, {"9.6 QSB", 2, "Điều chỉnh"}, {"9.6 QSB", 3, "Ngày hoàn thành"}, {"9.6 QSB", 4, "Chi tiết"}, {"9.6 QSB", 5, "Ghi chú"},
 				        {"9.7 SEC", 1, "Đã có PA an ninh"}, {"9.7 SEC", 2, "Chưa có PA an ninh"}, {"9.7 SEC", 3, "Ngày hoàn thành"}, {"9.7 SEC", 4, "Chi tiết"}, {"9.7 SEC", 5, "Ghi chú"},
 				        {"9.8 IDD", 1, "Hien trang ho so"}, {"9.8 IDD", 2, "Dieu chinh"}, {"9.8 IDD", 3, "Ngay hoan thanh"}, {"9.8 IDD", 4, "Chi tiet"}, {"9.8 IDD", 5, "Ghi chu"},
-				        {"9.9 CSC", 1, "Co thuc hien BT/GPMB"}, {"9.9 CSC", 2, "Khong thuc hien BT/GPMB"}, {"9.9 CSC", 3, "Ngay hoan thanh"}, {"9.9 CSC", 4, "Chi tiet"}, {"9.9 CSC", 5, "Ghi chu"},
-				        {"4.0 PMD", 1, "Hien trang MTL"}, {"4.0 PMD", 2, "Dieu chinh"}, {"4.0 PMD", 3, "Ngay hoan thanh"}, {"4.0 PMD", 4, "Chi tiet"}, {"4.0 PMD", 5, "Ghi chu"},
+				        {"9.9 CSC", 1, "Có thực hiện BT/GPMB"}, {"9.9 CSC", 2, "Không thực hiện BT/GPMB"}, {"9.9 CSC", 3, "Ngày hoàn thành"}, {"9.9 CSC", 4, "Chi tiết"}, {"9.9 CSC", 5, "Ghi chú"},
+				        {"4.0 PMD", 1, "Hiện trạng MTL"}, {"4.0 PMD", 2, "Điều chỉnh"}, {"4.0 PMD", 3, "Ngày hoàn thành"}, {"4.0 PMD", 4, "Chi tiết"}, {"4.0 PMD", 5, "Ghi chú"},
 				        {"4.1 PLP", 1, "Văn bản phê duyệt"}, {"4.1 PLP", 2, "Khó khăn / Vướng mắc"}, {"4.1 PLP", 3, "Hướng xử lý"}, {"4.1 PLP", 4, "Ngày hoàn thành"}, {"4.1 PLP", 5, "Chi tiết"},
-				        {"4.2 DMD", 1, "Hien trang ho so"}, {"4.2 DMD", 2, "Dieu chinh"}, {"4.2 DMD", 3, "Ngay hoan thanh"}, {"4.2 DMD", 4, "Chi tiet"}, {"4.2 DMD", 5, "Ghi chu"},
+				        {"4.2 DMD", 1, "Hiện trạng hồ sơ"}, {"4.2 DMD", 2, "Điều chỉnh"}, {"4.2 DMD", 3, "Ngày hoàn thànhh"}, {"4.2 DMD", 4, "Chi tiet"}, {"4.2 DMD", 5, "Ghi chú"},
 				        {"4.3 PCD", 1, "Hiện trạng thi công (%)"}, {"4.3 PCD", 2, "Ngày hoàn thành"}, {"4.3 PCD", 3, "Chi tiết"}, {"4.3 PCD", 4, "Ghi chú"},
-				        {"4.4 OM", 1, "Da ban giao"}, {"4.4 OM", 2, "Chua ban giao"}, {"4.4 OM", 3, "Ngay hoan thanh"}, {"4.4 OM", 4, "Chi tiet"}, {"4.4 OM", 5, "Ghi chu"}
+				        {"4.4 OM", 1, "Đã bàn giao"}, {"4.4 OM", 2, "Chưa bàn giao"}, {"4.4 OM", 3, "Ngày hoàn thành"}, {"4.4 OM", 4, "Chi tiết"}, {"4.4 OM", 5, "Ghi chú"}
 				    }, type table [nhom = text, Col_Index = Int64.Type, Col_Header = text]),
 				    #"Added Phong_Nhom" = Table.AddColumn(Source, "Phong_Nhom", each
 				        if [nhom] = "9.1 HRC" then "9.1 HRC - NHÂN SỰ"
@@ -59,3 +59,7 @@ table FactMasterData_Columns
 				        else [nhom], type text)
 				in
 				    #"Added Phong_Nhom"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
