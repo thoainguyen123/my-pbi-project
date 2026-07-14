@@ -13,7 +13,7 @@ table MasterData_Columns
 		dataType: int64
 		formatString: 0
 		lineageTag: c9475224-7ea2-4812-af44-fdf822d3b7d8
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: Col_Index
 
 		annotation SummarizationSetBy = Automatic
@@ -95,8 +95,6 @@ table MasterData_Columns
 				        {"4.0 PMD - MASTER TIMELINE", 5, "5. Chi tiết"},
 				        {"4.0 PMD - MASTER TIMELINE", 6, "6. Ghi chú"},
 				
-				        {"4.1 PLP", 1, "1. Mục"},
-				        {"4.1 PLP", 2, "2. Nội dung"},
 				        {"4.1 PLP", 3, "3. Văn bản phê duyệt"},
 				        {"4.1 PLP", 4, "4. Khó khăn/ Vướng mắc"},
 				        {"4.1 PLP", 5, "5. Hướng xử lý"},

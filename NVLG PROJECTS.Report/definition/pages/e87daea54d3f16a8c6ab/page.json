@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
   "name": "e87daea54d3f16a8c6ab",
   "displayName": "Dự án",
   "displayOption": "ActualSize",
@@ -64,7 +64,7 @@
                     [
                       {
                         "Literal": {
-                          "Value": "'Ban điều hành Dự án Vùng TP.HCM 1'"
+                          "Value": "'Ban điều hành Dự án Vùng Đồng Nai 1'"
                         }
                       }
                     ]

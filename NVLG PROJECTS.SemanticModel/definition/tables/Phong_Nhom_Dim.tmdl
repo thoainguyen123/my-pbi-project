@@ -1,26 +1,22 @@
 table Phong_Nhom_Dim
-	lineageTag: a1c1f2e1-4567-48b2-a1f9-d1f855e90a21
+	lineageTag: de61d706-1703-45c9-bf97-12630c5a84aa
 
 	column Phong_Nhom
-		dataType: string
-		lineageTag: c9475224-7ea2-4812-af44-fdf822d3b7d6
+		lineageTag: ad7dce19-e9a3-4532-93ae-47c005da2cf7
 		summarizeBy: none
-		sourceColumn: Phong_Nhom
+		isNameInferred
+		sourceColumn: Eoffice_TD[Phong_Nhom]
 
 		annotation SummarizationSetBy = Automatic
 
-	partition Phong_Nhom_Dim = m
+	partition Phong_Nhom_Dim = calculated
 		mode: import
 		source =
-				let
-				    Source = Eoffice_TD,
-				    #"Removed Other Columns" = Table.SelectColumns(Source,{"Phong_Nhom"}),
-				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns"),
-				    #"Filtered Rows" = Table.SelectRows(#"Removed Duplicates", each ([Phong_Nhom] <> null))
-				in
-				    #"Filtered Rows"
+				
+				FILTER(
+				    DISTINCT(Eoffice_TD[Phong_Nhom]),
+				    NOT(ISBLANK(Eoffice_TD[Phong_Nhom]))
+				)
 
-	annotation PBI_NavigationStepName = Navigation
-
-	annotation PBI_ResultType = Table
+	annotation PBI_Id = a8a471d6acf94fee8e748d5d354d55c9
 

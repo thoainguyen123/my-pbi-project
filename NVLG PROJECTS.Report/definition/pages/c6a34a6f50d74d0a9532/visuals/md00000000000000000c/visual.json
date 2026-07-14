@@ -178,6 +178,66 @@
                 }
               ],
               "isToggled": true
+            },
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'4.1.2 THỦ TỤC PHÁP LÝ ĐẦU TƯ'"
+                  }
+                }
+              ],
+              "isToggled": true
+            },
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'4.1.3 THỦ TỤC PHÁP LÝ ĐẤT ĐAI'"
+                  }
+                }
+              ],
+              "isToggled": true
+            },
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'4.1.4 THỦ TỤC PHÁP LÝ QUY HOẠCH'"
+                  }
+                }
+              ],
+              "isToggled": true
+            },
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'4.1.5 THỦ TỤC PHÁP LÝ XÂY DỰNG'"
+                  }
+                }
+              ],
+              "isToggled": true
+            },
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'4.1.6 THỦ TỤC PHÁP LÝ BÁN HÀNG'"
+                  }
+                }
+              ],
+              "isToggled": true
+            },
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'4.2.1 Thiết kế Quy hoạch'"
+                  }
+                }
+              ],
+              "isToggled": true
             }
           ]
         }
@@ -405,6 +465,13 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            },
+            "columnSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -796,6 +863,34 @@
             }
           ]
         }
+      },
+      {
+        "name": "608842864946c71b5f6d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MasterData_Columns"
+              }
+            },
+            "Property": "Col_Header"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "607c945937da29aba652",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Eoffice_TD"
+              }
+            },
+            "Property": "Dynamic_Value"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }
