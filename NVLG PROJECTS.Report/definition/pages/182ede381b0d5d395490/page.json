@@ -2,9 +2,9 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
   "name": "182ede381b0d5d395490",
   "displayName": "4.1 Thủ tục Pháp lý Dự án",
-  "displayOption": "FitToWidth",
-  "height": 720,
-  "width": 1080,
+  "displayOption": "FitToPage",
+  "height": 800,
+  "width": 1280,
   "filterConfig": {
     "filters": [
       {
@@ -49,7 +49,7 @@
                     [
                       {
                         "Literal": {
-                          "Value": "'01. 29.8HA CẦN GIỜ'"
+                          "Value": "'01. GRAND MANHATTAN'"
                         }
                       }
                     ]
@@ -60,6 +60,60 @@
           ]
         },
         "howCreated": "Drillthrough"
+      },
+      {
+        "name": "b74c867f048dc9b6b5a8",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Eoffice_TD"
+              }
+            },
+            "Property": "Phong_Nhom"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "e",
+              "Entity": "Eoffice_TD",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "e"
+                          }
+                        },
+                        "Property": "Phong_Nhom"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'4.1 PLP'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
       }
     ]
   },

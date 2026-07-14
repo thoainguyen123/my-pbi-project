@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "md000000000000000001",
   "position": {
-    "x": 0,
-    "y": 3.67816091954023,
+    "x": 16,
+    "y": 0,
     "z": 0,
-    "height": 61.793103448275865,
-    "width": 1280,
+    "height": 62,
+    "width": 1476,
     "tabOrder": 0
   },
   "visual": {
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "         PHÁP LÝ DỰ ÁN",
+                    "value": "              ",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "18pt",
@@ -40,7 +40,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -109,7 +109,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },

@@ -190,3 +190,13 @@ relationship 59d519dd-d969-030c-ea72-81448ef0a52e
 	fromColumn: headcount_gmd.'Mã cụm'
 	toColumn: DanhMucDauTu.BanDieuHanh
 
+relationship c9475112-7ea2-4812-af44-fdf822d3b7da
+	crossFilteringBehavior: bothDirections
+	fromColumn: Eoffice_TD.Phong_Nhom
+	toColumn: Phong_Nhom_Dim.Phong_Nhom
+
+relationship c9475112-7ea2-4812-af44-fdf822d3b7db
+	crossFilteringBehavior: bothDirections
+	fromColumn: MasterData_Columns.Phong_Nhom
+	toColumn: Phong_Nhom_Dim.Phong_Nhom
+

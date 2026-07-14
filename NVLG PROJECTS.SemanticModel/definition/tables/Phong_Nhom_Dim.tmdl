@@ -1,0 +1,26 @@
+table Phong_Nhom_Dim
+	lineageTag: a1c1f2e1-4567-48b2-a1f9-d1f855e90a21
+
+	column Phong_Nhom
+		dataType: string
+		lineageTag: c9475224-7ea2-4812-af44-fdf822d3b7d6
+		summarizeBy: none
+		sourceColumn: Phong_Nhom
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Phong_Nhom_Dim = m
+		mode: import
+		source =
+				let
+				    Source = Eoffice_TD,
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"Phong_Nhom"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns"),
+				    #"Filtered Rows" = Table.SelectRows(#"Removed Duplicates", each ([Phong_Nhom] <> null))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

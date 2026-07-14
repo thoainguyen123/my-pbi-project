@@ -1,10 +1,10 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
   "name": "c6a34a6f50d74d0a9532",
   "displayName": "MasterData dự án",
-  "displayOption": "FitToPage",
-  "height": 720,
-  "width": 1280,
+  "displayOption": "ActualSize",
+  "height": 800,
+  "width": 1500,
   "filterConfig": {
     "filters": [
       {
@@ -32,16 +32,89 @@
           "Where": [
             {
               "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "e"
+                              }
+                            },
+                            "Property": "Phong_Nhom"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "null"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "e7740768a1f5842325fb",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DanhMucDauTu"
+              }
+            },
+            "Property": "TenDuAn_CoSTT"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "DanhMucDauTu",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
                 "In": {
                   "Expressions": [
                     {
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Source": "e"
+                            "Source": "d"
                           }
                         },
-                        "Property": "Phong_Nhom"
+                        "Property": "TenDuAn_CoSTT"
                       }
                     }
                   ],
@@ -49,7 +122,7 @@
                     [
                       {
                         "Literal": {
-                          "Value": "'4.1 PLP'"
+                          "Value": "'04. Aqua 91'"
                         }
                       }
                     ]
@@ -59,7 +132,29 @@
             }
           ]
         },
-        "howCreated": "User"
+        "howCreated": "Drillthrough"
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "5ba051e8d7393b41f937",
+    "type": "Drillthrough",
+    "parameters": [
+      {
+        "name": "82fb4384f7f1fdc62819",
+        "boundFilter": "e7740768a1f5842325fb",
+        "asAggregation": false,
+        "qnaSingleSelectRequired": false,
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DanhMucDauTu"
+              }
+            },
+            "Property": "TenDuAn_CoSTT"
+          }
+        }
       }
     ]
   },
@@ -88,5 +183,6 @@
         }
       }
     ]
-  }
+  },
+  "visibility": "HiddenInViewMode"
 }

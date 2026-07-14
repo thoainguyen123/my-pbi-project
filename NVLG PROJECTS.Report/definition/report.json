@@ -31,7 +31,7 @@
           "expanded": {
             "expr": {
               "Literal": {
-                "Value": "true"
+                "Value": "false"
               }
             }
           }
@@ -48,6 +48,17 @@
     "orgChart021B261450284A21B688B59A7342AC52"
   ],
   "resourcePackages": [
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "CY24SU10",
+          "path": "BaseThemes/CY24SU10.json",
+          "type": "BaseTheme"
+        }
+      ]
+    },
     {
       "name": "RegisteredResources",
       "type": "RegisteredResources",
@@ -116,17 +127,6 @@
           "name": "team13274156178040009.png",
           "path": "team13274156178040009.png",
           "type": "Image"
-        }
-      ]
-    },
-    {
-      "name": "SharedResources",
-      "type": "SharedResources",
-      "items": [
-        {
-          "name": "CY24SU10",
-          "path": "BaseThemes/CY24SU10.json",
-          "type": "BaseTheme"
         }
       ]
     }

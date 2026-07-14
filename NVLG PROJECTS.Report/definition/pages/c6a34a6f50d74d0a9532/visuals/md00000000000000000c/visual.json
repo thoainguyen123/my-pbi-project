@@ -1,18 +1,36 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "md00000000000000000c",
   "position": {
-    "x": 16,
-    "y": 408,
+    "x": 15.555555555555555,
+    "y": 375.55555555555554,
     "z": 9000,
-    "height": 296,
-    "width": 1248,
+    "height": 424.44444444444446,
+    "width": 1475.5555555555554,
     "tabOrder": 9000
   },
   "visual": {
     "visualType": "pivotTable",
     "query": {
       "queryState": {
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MasterData_Columns"
+                    }
+                  },
+                  "Property": "Col_Header"
+                }
+              },
+              "queryRef": "MasterData_Columns.Col_Header",
+              "active": true
+            }
+          ]
+        },
         "Rows": {
           "projections": [
             {
@@ -27,9 +45,9 @@
                 }
               },
               "queryRef": "Eoffice_TD.level_title_2",
-              "nativeQueryRef": "Mục",
+              "nativeQueryRef": "Hạng mục/ Nội dung",
               "active": true,
-              "displayName": "Mục"
+              "displayName": "Hạng mục/ Nội dung"
             },
             {
               "field": {
@@ -43,54 +61,14 @@
                 }
               },
               "queryRef": "Eoffice_TD.level_title_3",
-              "nativeQueryRef": "Nhóm",
-              "active": false,
-              "displayName": "Nhóm"
+              "nativeQueryRef": "Nội dung",
+              "active": true,
+              "displayName": "Nội dung"
             }
           ]
         },
         "Values": {
           "projections": [
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Eoffice_TD"
-                        }
-                      },
-                      "Property": "Legal_Status"
-                    }
-                  },
-                  "Function": 3
-                }
-              },
-              "queryRef": "Min(Eoffice_TD.Legal_Status)",
-              "nativeQueryRef": "Trạng thái",
-              "displayName": "Trạng thái"
-            },
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Eoffice_TD"
-                        }
-                      },
-                      "Property": "end_plan"
-                    }
-                  },
-                  "Function": 4
-                }
-              },
-              "queryRef": "Min(Eoffice_TD.end_plan)",
-              "nativeQueryRef": "Ngày dự kiến hoàn thành",
-              "displayName": "Ngày dự kiến hoàn thành"
-            },
             {
               "field": {
                 "Measure": {
@@ -99,12 +77,10 @@
                       "Entity": "Eoffice_TD"
                     }
                   },
-                  "Property": "PL Tiến độ trung bình"
+                  "Property": "Dynamic_Value"
                 }
               },
-              "queryRef": "Eoffice_TD.PL Tiến độ trung bình",
-              "nativeQueryRef": "Tiến độ",
-              "displayName": "Tiến độ"
+              "queryRef": "Eoffice_TD.Dynamic_Value"
             }
           ]
         }
@@ -119,7 +95,7 @@
                     "Entity": "Eoffice_TD"
                   }
                 },
-                "Property": "level_title_3"
+                "Property": "level_title_2"
               }
             },
             "direction": "Ascending"
@@ -137,7 +113,6 @@
             "queryRefs": [
               "Eoffice_TD.level_title_2"
             ],
-            "isCollapsed": true,
             "identityKeys": [
               {
                 "Column": {
@@ -172,7 +147,40 @@
             "isPinned": true
           }
         ],
-        "root": {}
+        "root": {
+          "children": [
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'4.1.1 THỦ TỤC PHÁP LÝ CHUNG'"
+                  }
+                }
+              ],
+              "isToggled": true
+            },
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'4.1.03.15 [SOP.PLP] Xây dựng STCD Chuyên gia Tổ chức pháp lý Dự án'"
+                  }
+                }
+              ],
+              "isToggled": true
+            },
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'4.1 Phát hành hợp đồng và phụ lục hợp đồng đạt chất lượng và tiến độ tháng 10'"
+                  }
+                }
+              ],
+              "isToggled": true
+            }
+          ]
+        }
       }
     ],
     "objects": {
@@ -226,6 +234,20 @@
               "expr": {
                 "Literal": {
                   "Value": "'growToFit'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "titleAlignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
                 }
               }
             }
@@ -389,47 +411,18 @@
           }
         }
       ],
-      "columnWidth": [
+      "columnWidth": [],
+      "columnFormatting": [],
+      "general": [
         {
           "properties": {
-            "value": {
+            "layout": {
               "expr": {
                 "Literal": {
-                  "Value": "538.0636540325697D"
+                  "Value": "'Compact'"
                 }
               }
             }
-          },
-          "selector": {
-            "metadata": "Eoffice_TD.level_title_2"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "339.6819193059219D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Min(Eoffice_TD.end_plan)"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "157.48275862068965D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Min(Eoffice_TD.Legal_Status)"
           }
         }
       ]
@@ -528,14 +521,42 @@
             "transparency": {
               "expr": {
                 "Literal": {
-                  "Value": "78L"
+                  "Value": "70L"
                 }
               }
             },
             "preset": {
               "expr": {
                 "Literal": {
-                  "Value": "'BottomRight'"
+                  "Value": "'TopRight'"
+                }
+              }
+            },
+            "angle": {
+              "expr": {
+                "Literal": {
+                  "Value": "45L"
+                }
+              }
+            },
+            "shadowDistance": {
+              "expr": {
+                "Literal": {
+                  "Value": "10L"
+                }
+              }
+            },
+            "shadowBlur": {
+              "expr": {
+                "Literal": {
+                  "Value": "10L"
+                }
+              }
+            },
+            "shadowSpread": {
+              "expr": {
+                "Literal": {
+                  "Value": "3L"
                 }
               }
             }
@@ -568,7 +589,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'CHI TIẾT PHÁP LÝ'"
+                  "Value": "'CHI TIẾT'"
                 }
               }
             },

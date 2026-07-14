@@ -40989,22 +40989,22 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "eoffice_TD.PL_chưa_hoàn_thành": {
+			    "eoffice_TD.PL_chưa_thực_hiện": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Eoffice_TD",
-			          "ConceptualProperty": "PL Chưa hoàn thành"
+			          "ConceptualProperty": "PL Chưa thực hiện"
 			        }
 			      },
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "PL chưa hoàn thành": {
+			          "PL chưa thực hiện": {
 			            "State": "Generated"
 			          }
 			        },
 			        {
-			          "CHƯA HOÀN THÀNH": {
+			          "CHƯA THỰC HIỆN": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -41427,7 +41427,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Nhóm": {
+			          "Nội dung": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -42094,7 +42094,17 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Mục": {
+			          "Hạng mục": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Hạng mục/ Nội dung": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -42523,6 +42533,448 @@ cultureInfo en-US
 			              "Agent": "Thesaurus"
 			            },
 			            "Weight": 0.461
+			          }
+			        }
+			      ]
+			    },
+			    "danh_muc_dau_tu.quy_mô": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DanhMucDauTu",
+			          "ConceptualProperty": "Quy mô"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "quy mô": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "danh_muc_dau_tu.tên_dự_án_scope": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DanhMucDauTu",
+			          "ConceptualProperty": "Tên dự án scope"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "tên dự án scope": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "tên dự án possibility": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "tên dự án opportunity": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "tên dự án latitude": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "tên dự án choice": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "tên dự án room": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "tên dự án space": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "tên dự án extent": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.489
+			          }
+			        },
+			        {
+			          "tên dự án range": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.474
+			          }
+			        },
+			        {
+			          "tên dự án capacity": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.474
+			          }
+			        },
+			        {
+			          "tên dự án span": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.474
+			          }
+			        }
+			      ]
+			    },
+			    "danh_muc_dau_tu.địa_chỉ_scope": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DanhMucDauTu",
+			          "ConceptualProperty": "Địa chỉ scope"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "địa chỉ scope": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "địa chỉ possibility": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "địa chỉ opportunity": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "địa chỉ latitude": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "địa chỉ choice": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "địa chỉ room": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "địa chỉ space": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "địa chỉ extent": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.482
+			          }
+			        },
+			        {
+			          "địa chỉ range": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.468
+			          }
+			        },
+			        {
+			          "địa chỉ capacity": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.468
+			          }
+			        },
+			        {
+			          "địa chỉ span": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.468
+			          }
+			        }
+			      ]
+			    },
+			    "danh_muc_dau_tu.mã_dự_án": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DanhMucDauTu",
+			          "ConceptualProperty": "Mã dự án"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "mã dự án": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "eoffice_TD.card_thoi_gian_ngan": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Eoffice_TD",
+			          "ConceptualProperty": "Card_ThoiGian_Ngan"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "card thoi gian ngan": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Card_ThoiGian_Ngan": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "danh_muc_dau_tu.tên_dự_án_scope_thương_mại": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DanhMucDauTu",
+			          "ConceptualProperty": "Tên dự án scope thương mại"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "tên dự án scope thương mại": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "danh_muc_dau_tu.chủ_đầu_tư_scope": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DanhMucDauTu",
+			          "ConceptualProperty": "chủ đầu tư scope"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "chủ đầu tư scope": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "chủ đầu tư possibility": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "chủ đầu tư opportunity": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "chủ đầu tư latitude": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "chủ đầu tư choice": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "chủ đầu tư room": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "chủ đầu tư space": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "chủ đầu tư extent": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.489
+			          }
+			        },
+			        {
+			          "chủ đầu tư range": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.474
+			          }
+			        },
+			        {
+			          "chủ đầu tư capacity": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.474
+			          }
+			        },
+			        {
+			          "chủ đầu tư span": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.474
+			          }
+			        }
+			      ]
+			    },
+			    "danh_muc_dau_tu.nguon_goc": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DanhMucDauTu",
+			          "ConceptualProperty": "Nguon_goc"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "nguon goc": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Nguon_goc": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
 			          }
 			        }
 			      ]
@@ -45942,6 +46394,270 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
+			    "danh_muc_dau_tu_has_nguon_goc": {
+			      "Binding": {
+			        "ConceptualEntity": "DanhMucDauTu"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "danh_muc_dau_tu": {
+			          "Target": {
+			            "Entity": "danh_muc_dau_tu"
+			          }
+			        },
+			        "danh_muc_dau_tu.nguon_goc": {
+			          "Target": {
+			            "Entity": "danh_muc_dau_tu.nguon_goc"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "danh_muc_dau_tu"
+			            },
+			            "Object": {
+			              "Role": "danh_muc_dau_tu.nguon_goc"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "danh_muc_dau_tus_have_nguon_goc"
+			        }
+			      ]
+			    },
+			    "project_has_danh_muc_dau_tu_chủ_đầu_tư_scope": {
+			      "Binding": {
+			        "ConceptualEntity": "Project"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "project": {
+			          "Target": {
+			            "Entity": "project"
+			          }
+			        },
+			        "danh_muc_dau_tu.chủ_đầu_tư_scope": {
+			          "Target": {
+			            "Entity": "danh_muc_dau_tu.chủ_đầu_tư_scope"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "project"
+			            },
+			            "Object": {
+			              "Role": "danh_muc_dau_tu.chủ_đầu_tư_scope"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "projects_have_chủ_đầu_tư_scope"
+			        }
+			      ]
+			    },
+			    "project_has_danh_muc_dau_tu_tên_dự_án_scope_thương_mại": {
+			      "Binding": {
+			        "ConceptualEntity": "Project"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "project": {
+			          "Target": {
+			            "Entity": "project"
+			          }
+			        },
+			        "danh_muc_dau_tu.tên_dự_án_scope_thương_mại": {
+			          "Target": {
+			            "Entity": "danh_muc_dau_tu.tên_dự_án_scope_thương_mại"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "project"
+			            },
+			            "Object": {
+			              "Role": "danh_muc_dau_tu.tên_dự_án_scope_thương_mại"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "projects_have_tên_dự_án_scope_thương_mại"
+			        }
+			      ]
+			    },
+			    "eoffice_TD_has_card_thoi_gian_ngan": {
+			      "Binding": {
+			        "ConceptualEntity": "Eoffice_TD"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "eoffice_TD": {
+			          "Target": {
+			            "Entity": "eoffice_TD"
+			          }
+			        },
+			        "eoffice_TD.card_thoi_gian_ngan": {
+			          "Target": {
+			            "Entity": "eoffice_TD.card_thoi_gian_ngan"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "eoffice_TD"
+			            },
+			            "Object": {
+			              "Role": "eoffice_TD.card_thoi_gian_ngan"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "eoffice_TD_have_card_thoi_gian_ngan"
+			        }
+			      ]
+			    },
+			    "project_has_danh_muc_dau_tu_mã_dự_án": {
+			      "Binding": {
+			        "ConceptualEntity": "Project"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "project": {
+			          "Target": {
+			            "Entity": "project"
+			          }
+			        },
+			        "danh_muc_dau_tu.mã_dự_án": {
+			          "Target": {
+			            "Entity": "danh_muc_dau_tu.mã_dự_án"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "project"
+			            },
+			            "Object": {
+			              "Role": "danh_muc_dau_tu.mã_dự_án"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "projects_have_mã_dự_án"
+			        }
+			      ]
+			    },
+			    "project_has_danh_muc_dau_tu_địa_chỉ_scope": {
+			      "Binding": {
+			        "ConceptualEntity": "Project"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "project": {
+			          "Target": {
+			            "Entity": "project"
+			          }
+			        },
+			        "danh_muc_dau_tu.địa_chỉ_scope": {
+			          "Target": {
+			            "Entity": "danh_muc_dau_tu.địa_chỉ_scope"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "project"
+			            },
+			            "Object": {
+			              "Role": "danh_muc_dau_tu.địa_chỉ_scope"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "projects_have_địa_chỉ_scope"
+			        }
+			      ]
+			    },
+			    "project_has_danh_muc_dau_tu_tên_dự_án_scope": {
+			      "Binding": {
+			        "ConceptualEntity": "Project"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "project": {
+			          "Target": {
+			            "Entity": "project"
+			          }
+			        },
+			        "danh_muc_dau_tu.tên_dự_án_scope": {
+			          "Target": {
+			            "Entity": "danh_muc_dau_tu.tên_dự_án_scope"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "project"
+			            },
+			            "Object": {
+			              "Role": "danh_muc_dau_tu.tên_dự_án_scope"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "projects_have_tên_dự_án_scope"
+			        }
+			      ]
+			    },
+			    "danh_muc_dau_tu_has_quy_mô": {
+			      "Binding": {
+			        "ConceptualEntity": "DanhMucDauTu"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "danh_muc_dau_tu": {
+			          "Target": {
+			            "Entity": "danh_muc_dau_tu"
+			          }
+			        },
+			        "danh_muc_dau_tu.quy_mô": {
+			          "Target": {
+			            "Entity": "danh_muc_dau_tu.quy_mô"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "danh_muc_dau_tu"
+			            },
+			            "Object": {
+			              "Role": "danh_muc_dau_tu.quy_mô"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "danh_muc_dau_tus_have_quy_mô"
+			        }
+			      ]
+			    },
 			    "head_count_has_key_noted": {
 			      "Binding": {
 			        "ConceptualEntity": "Head_Count"
@@ -46371,7 +47087,7 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "eoffice_TD_has_PL_chưa_hoàn_thành": {
+			    "eoffice_TD_has_PL_chưa_thực_hiện": {
 			      "Binding": {
 			        "ConceptualEntity": "Eoffice_TD"
 			      },
@@ -46382,9 +47098,9 @@ cultureInfo en-US
 			            "Entity": "eoffice_TD"
 			          }
 			        },
-			        "eoffice_TD.PL_chưa_hoàn_thành": {
+			        "eoffice_TD.PL_chưa_thực_hiện": {
 			          "Target": {
-			            "Entity": "eoffice_TD.PL_chưa_hoàn_thành"
+			            "Entity": "eoffice_TD.PL_chưa_thực_hiện"
 			          }
 			        }
 			      },
@@ -46395,12 +47111,12 @@ cultureInfo en-US
 			              "Role": "eoffice_TD"
 			            },
 			            "Object": {
-			              "Role": "eoffice_TD.PL_chưa_hoàn_thành"
+			              "Role": "eoffice_TD.PL_chưa_thực_hiện"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "eoffice_TD_have_PL_chưa_hoàn_thành"
+			          "ID": "eoffice_TD_have_PL_chưa_thực_hiện"
 			        }
 			      ]
 			    },
