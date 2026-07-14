@@ -1,0 +1,471 @@
+
+MASTER DATA DỰ ÁN [_A_]
+I. TỔNG QUAN DỰ ÁN
+Tên pháp lý dự án
+[Nhập tên dự án]
+Tên thương mại
+[Nhập tên thương mại/tên gọi khác]
+Chủ đầu tư
+[Tên pháp nhân chủ đầu tư]
+Địa điểm dự án
+[Số nhà, đường, phường/xã, tỉnh/thành]
+Quy mô
+[Tổng diện tích (m²]), [Số lượng sản phẩm]
+Nguồn gốc dự án
+[M&A], [Đấu giá quyền SDĐ], [Đấu thầu lựa chọn NĐT]…
+9.1 HRC – NHÂN SỰ
+STT
+Tổng nhân sự theo định biên
+Đang làm việc
+Sẽ tuyển dụng
+Chi tiết
+Ghi chú
+1
+[Số lượng]
+[Số lượng]
+[Số lượng]
+Link chi tiết
+
+9.2 FAC HUY ĐỘNG VỐN
+STT
+Đã có
+thông báo tín dụng
+Chưa có
+thông báo tín dụng
+Dự kiến
+có thông báo tín dụng
+Chi tiết
+Ghi chú
+1
+[Có]
+[Chưa]
+[Thời gian]
+Link chi tiết
+
+FS
+STT
+Mục
+Hiện trạng FS
+Điều chỉnh (nếu có)
+Ngày hoàn thành
+Chi tiết
+Ghi chú
+1
+FS (Version…)
+[Có/chưa]
+[Có]
+[Thời gian]
+Link chi tiết
+
+9.3 SAC - BÁN HÀNG
+STT
+Đã bán
+( Số lượng ký HĐMB/Tổng số)
+Chưa bán
+Dự kiến bán
+Chi tiết
+Ghi chú
+1
+
+
+[Thời gian]
+Link chi tiết
+Link chi tiết
+9.4 MAC – SALE KIT/ SỰ KIỆN
+STT
+Sale kit
+Sự kiện
+Ngày tổ chức
+Chi tiết
+Ghi chú
+1
+
+
+[Thời gian]
+Link chi tiết
+
+9.5 PTC – KẾ HOẠCH CUNG ỨNG ĐẤU THẦU (KH CUĐT)
+STT
+Mục
+Hiện trạng KH CUĐT
+Điều chỉnh
+(nếu có)
+Ngày hoàn thành
+Chi tiết
+Ghi chú
+1
+Kế hoạch CUĐT (Version…)
+
+
+[Thời gian]
+Link chi tiết
+
+9.6 QSB - NGÂN SÁCH
+STT
+Mục
+Hiện trạng
+ngân sách
+Điều chỉnh
+(nếu có)
+Ngày hoàn thành
+Chi tiết
+Ghi chú
+1
+Khái toán
+
+
+[Thời gian]
+Link chi tiết
+
+2
+Dự toán
+
+
+[Thời gian]
+
+
+3
+Thực thi
+
+
+[Thời gian]
+
+
+9.7 SEC - AN NINH
+STT
+Đã có PA An ninh
+Chưa có PA An ninh
+Ngày hoàn thành
+Chi tiết
+Ghi chú
+1
+[Version]
+[Chưa có]
+[Thời gian]
+Link chi tiết
+
+9.8. IDD - THIẾT KẾ NỘI BỘ
+STT
+Mục
+Hiện trạng hồ sơ
+Điều chỉnh
+(nếu có)
+Ngày hoàn thành
+Chi tiết
+Ghi chú
+1
+Thiết kế quy hoạch
+
+[Có]
+[Thời gian]
+Link chi tiết
+
+2
+Thiết kế ý tưởng kiến trúc
+
+[Có]
+[Thời gian]
+
+
+3
+Thiết kế nội thất
+
+[Có]
+[Thời gian]
+
+
+4
+Thiết kế cảnh quan
+
+[Có]
+[Thời gian]
+
+
+5
+Triển khai thiết kế BIM
+
+[Có]
+[Thời gian]
+
+
+6
+Sa bàn ảo và Đồ họa số
+
+[Có]
+[Thời gian]
+
+
+7
+Thiết kế khách sạn
+
+[Có]
+[Thời gian]
+
+
+8
+Thiết kế công viên vui chơi giải trí
+
+[Có]
+[Thời gian]
+
+
+9.9. CSC - BỒI THƯỜNG, GIẢI PHÓNG MẶT BẰNG
+STT
+Có thực hiện BT/GPMB
+Không thực hiện BT/GPMB
+Ngày hoàn thành
+Chi tiết
+Ghi chú
+1
+[Version]
+[x]
+[Thời gian]
+Link chi tiết
+
+4.0 PMD - MASTER TIMELINE (MTL)
+STT
+Mục
+Hiện trạng MTL
+Điều chỉnh
+(nếu có)
+Ngày hoàn thành
+Chi tiết
+Ghi chú
+1
+[MTL-Version]
+
+[x]
+[Thời gian]
+Link chi tiết
+
+4.1 PLP - PHÁP LÝ
+STT
+Mục
+Nội dung
+Văn bản phê duyệt
+Khó khăn/
+Vướng mắc
+Hướng xử lý
+Ngày hoàn thành
+Chi tiết
+1
+Chung
+Làm việc với Thanh tra (Có/ không)
+Liệt kê số văn bản
+
+
+
+Link chi tiết
+2
+Đầu tư
+Chấp thuận chủ trương đầu tư (Có/ không)
+Liệt kê số văn bản
+
+
+
+Link chi tiết
+3
+Quy hoạch
+Phê duyệt QH 1/2000 (Có/ không)
+Liệt kê số văn bản
+
+
+
+Link chi tiết
+
+
+Phê duyệt QH 1/500 (Có/ không)
+Liệt kê số văn bản
+
+
+
+
+4
+Đất đai
+Quyết định giao đất (Có/ không)
+Liệt kê số văn bản
+
+
+
+Link chi tiết
+
+
+Quyết định cho thuê đất (Có/ không)
+Liệt kê số văn bản
+
+
+
+
+
+
+Hoàn thành nghĩa vụ tài chính (Có/ không)
+Liệt kê số văn bản
+
+
+
+
+
+
+Giấy chứng nhận QSDĐ (Có/ không)
+Liệt kê số văn bản
+
+
+
+
+5
+Xây dựng
+Thông báo thẩm định BCNCKT (Có/ không)
+Liệt kê số văn bản
+
+
+
+Link chi tiết
+
+
+Quyết định phê duyệt ĐTM (Có/ không)
+Liệt kê số văn bản
+
+
+
+
+
+
+Thẩm định thiết kế PCCC Có/ không)
+Liệt kê số văn bản
+
+
+
+
+
+
+Giấy phép xây dựng (Có/ không)
+Liệt kê số văn bản
+
+
+
+
+
+
+Nghiệm thu, bàn giao hạ tầng/công trình (Có/ không)
+Liệt kê số văn bản
+
+
+
+
+6
+Bán hàng
+Thông báo đủ điều kiện đưa bất động sản vào kinh doanh (Có/ không)
+Liệt kê số văn bản
+
+
+
+Link chi tiết
+4.2 DMD - THIẾT KẾ
+STT
+Mục
+Hiện trạng hồ sơ
+Ý tưởng/TKCS/TKTC
+Điều chỉnh
+(nếu có)
+Ngày hoàn thành
+Chi tiết
+Ghi chú
+1
+Quy hoạch
+
+
+[Thời gian]
+Link chi tiết
+
+2
+Kiến trúc
+
+
+[Thời gian]
+Link chi tiết
+
+3
+Cơ điện
+
+
+[Thời gian]
+Link chi tiết
+
+4
+Kết cấu
+
+
+[Thời gian]
+Link chi tiết
+
+5
+Hạ tầng
+
+
+[Thời gian]
+Link chi tiết
+
+6
+Cảnh quan
+
+
+[Thời gian]
+Link chi tiết
+
+7
+Nội thất
+
+
+[Thời gian]
+Link chi tiết
+
+4.3 PCD - THI CÔNG
+STT
+Mục
+Hiện trạng thi công (%)
+Ngày hoàn thành
+Chi tiết
+Ghi chú
+1
+Hạ tầng kỹ thuật
+
+[Thời gian]
+Link chi tiết
+
+2
+Nhà cao tầng/ thấp tầng
+
+[Thời gian]
+
+
+3
+Tiện ích / phụ trợ
+
+[Thời gian]
+
+
+4
+Cảnh quan
+
+[Thời gian]
+
+
+5
+Nội thất
+
+[Thời gian]
+
+
+4.4 OM – BÀN GIAO NHÀ
+STT
+Đã bàn giao ( Số lượng giao /Tổng số)
+Chưa bàn giao
+Ngày hoàn thành
+Chi tiết
+Ghi chú
+1
+[Số lượng]
+[Số lượng]
+[Thời gian]
+Link chi tiết
+
