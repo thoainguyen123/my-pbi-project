@@ -13,9 +13,14 @@ table Phong_Nhom_Dim
 		mode: import
 		source =
 				
-				FILTER(
-				    DISTINCT(Eoffice_TD[Phong_Nhom]),
-				    NOT(ISBLANK(Eoffice_TD[Phong_Nhom]))
+				DISTINCT(
+				    UNION(
+				        FILTER(
+				            VALUES(Eoffice_TD[Phong_Nhom]),
+				            NOT(ISBLANK(Eoffice_TD[Phong_Nhom]))
+				        ),
+				        ROW("Phong_Nhom", "4.0 PMD")
+				    )
 				)
 
 	annotation PBI_Id = a8a471d6acf94fee8e748d5d354d55c9

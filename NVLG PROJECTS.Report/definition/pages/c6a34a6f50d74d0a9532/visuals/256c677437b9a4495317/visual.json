@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
-  "name": "657edf6d17c709be91bf",
+  "name": "256c677437b9a4495317",
   "position": {
-    "x": 985.71428571428578,
+    "x": 515.71428571428578,
     "y": 67.142857142857153,
-    "z": 17006,
+    "z": 17007,
     "height": 300,
-    "width": 505.71428571428572,
-    "tabOrder": 17005
+    "width": 465.71428571428572,
+    "tabOrder": 17006
   },
   "visual": {
     "visualType": "barChart",
@@ -602,21 +602,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "4f94de67253b9017410b",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Eoffice_TD"
-              }
-            },
-            "Property": "PL Tiến độ trung bình"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "3125e8018ffb4c1330cf",
+        "name": "a93f503c4a0b2cbcf03d",
         "field": {
           "Column": {
             "Expression": {
@@ -640,53 +626,49 @@
           "Where": [
             {
               "Condition": {
-                "Not": {
-                  "Expression": {
-                    "In": {
-                      "Expressions": [
-                        {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Source": "e"
-                              }
-                            },
-                            "Property": "Phong_Nhom"
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "e"
                           }
-                        }
-                      ],
-                      "Values": [
-                        [
-                          {
-                            "Literal": {
-                              "Value": "'4.1 PLP'"
-                            }
-                          }
-                        ],
-                        [
-                          {
-                            "Literal": {
-                              "Value": "'4.2 DMD'"
-                            }
-                          }
-                        ],
-                        [
-                          {
-                            "Literal": {
-                              "Value": "'4.3 PCD'"
-                            }
-                          }
-                        ],
-                        [
-                          {
-                            "Literal": {
-                              "Value": "'4.4 PM'"
-                            }
-                          }
-                        ]
-                      ]
+                        },
+                        "Property": "Phong_Nhom"
+                      }
                     }
-                  }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'4.1 PLP'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'4.2 DMD'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'4.3 PCD'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'4.4 PM'"
+                        }
+                      }
+                    ]
+                  ]
                 }
               }
             }
@@ -695,18 +677,24 @@
         "objects": {
           "general": [
             {
-              "properties": {
-                "isInvertedSelectionMode": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "true"
-                    }
-                  }
-                }
-              }
+              "properties": {}
             }
           ]
         }
+      },
+      {
+        "name": "c7afb963e0a98c95af16",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Eoffice_TD"
+              }
+            },
+            "Property": "PL Tiến độ trung bình"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }
