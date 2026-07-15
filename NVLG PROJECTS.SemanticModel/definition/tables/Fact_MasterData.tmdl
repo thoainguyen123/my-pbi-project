@@ -214,3 +214,4 @@ table Fact_MasterData
 	annotation PBI_NavigationStepName = Navigation
 
 	annotation PBI_ResultType = Table
+
