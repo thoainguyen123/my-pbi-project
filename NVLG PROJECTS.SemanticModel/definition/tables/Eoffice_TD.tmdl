@@ -37,7 +37,7 @@ table Eoffice_TD
 					_group = "4.0 PMD",
 					CALCULATE(
 						AVERAGE(Eoffice_TD[percent]),
-						Eoffice_TD[title] = "PMD"
+						Eoffice_TD[deep_level] = ""
 					),
 					CALCULATE(
 						AVERAGE(Eoffice_TD[percent]),

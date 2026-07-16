@@ -652,6 +652,13 @@
                         [
                           {
                             "Literal": {
+                              "Value": "'4.0 PMD'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
                               "Value": "'4.1 PLP'"
                             }
                           }
@@ -680,7 +687,7 @@
                         [
                           {
                             "Literal": {
-                              "Value": "'4.0 PMD'"
+                              "Value": "'4.4 OM'"
                             }
                           }
                         ]

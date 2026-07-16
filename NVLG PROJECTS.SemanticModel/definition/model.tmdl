@@ -7,7 +7,7 @@ model Model
 		legacyRedirects
 		returnErrorValuesAsNull
 
-annotation PBI_QueryOrder = ["Org","db_novahub_pro employeeorg1offices","Eoffice_TD","Table","Project","Dự án","DanhMucDauTu","PQ_Du_An","PQ_Khu_Vuc","Sheet1","DanhMucMoi","NV_HR","Head_Count","Org_Chung","headcount_gmd","Fact_MasterData","FactMasterData_Columns"]
+annotation PBI_QueryOrder = ["Org","db_novahub_pro employeeorg1offices","Eoffice_TD","Table","Project","Dự án","DanhMucDauTu","PQ_Du_An","PQ_Khu_Vuc","Sheet1","DanhMucMoi","NV_HR","Head_Count","Org_Chung","headcount_gmd","Fact_MasterData","FactMasterData_Columns","Tổng quan dự án"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
@@ -64,6 +64,7 @@ ref table LocalDateTable_6e877ef4-1951-4e97-9e47-8848b6d42526
 ref table Phong_Nhom_Dim
 ref table Fact_MasterData
 ref table FactMasterData_Columns
+ref table 'Tổng quan dự án'
 
 ref role PQ_KhuVuc
 ref role All

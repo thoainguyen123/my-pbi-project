@@ -1,0 +1,75 @@
+table 'Tổng quan dự án'
+	lineageTag: 89ded7cd-7075-4919-883e-d2cfa1db6060
+
+	column 'Mã dự án'
+		dataType: string
+		lineageTag: b15820e3-4df4-4061-8376-b270173ae918
+		summarizeBy: none
+		sourceColumn: Mã dự án
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tên pháp lý dự án'
+		dataType: string
+		lineageTag: 02b9e8f3-199c-456b-8955-6b785fe9b0e5
+		summarizeBy: none
+		sourceColumn: Tên pháp lý dự án
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tên thương mại'
+		dataType: string
+		lineageTag: ec748aaf-5927-459b-a669-0e33cbe3f9d5
+		summarizeBy: none
+		sourceColumn: Tên thương mại
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Chủ đầu tư'
+		dataType: string
+		lineageTag: 523ccb77-ef71-4e79-bab7-b16a71e5f389
+		summarizeBy: none
+		sourceColumn: Chủ đầu tư
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Địa điểm dự án'
+		dataType: string
+		lineageTag: def3ea30-e4a9-4bd2-bcfd-aad3e816b42d
+		summarizeBy: none
+		sourceColumn: Địa điểm dự án
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tổng diện tích (ha)'
+		dataType: string
+		lineageTag: df3db9c3-e214-4dc4-89c6-78a0dbd4b743
+		summarizeBy: none
+		sourceColumn: Tổng diện tích (ha)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Số lượng sản phẩm'
+		dataType: string
+		lineageTag: c85452d5-2a4c-488d-9ff5-fe93c52dbb1a
+		summarizeBy: none
+		sourceColumn: Số lượng sản phẩm
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Tổng quan dự án' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://novaland.sharepoint.com/sites/DataTeam/Shared%20Documents/General/D%E1%BB%B1%20%C3%A1n/GMS/Template_Nhap_Lieu_Master_Data_Du_An.xlsx"), null, true),
+				    #"Tổng quan dự án_Sheet" = Source{[Item="Tổng quan dự án",Kind="Sheet"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(#"Tổng quan dự án_Sheet",{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}, {"Column6", type text}, {"Column7", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Mã dự án", type text}, {"Tên pháp lý dự án", type text}, {"Tên thương mại", type text}, {"Chủ đầu tư", type text}, {"Địa điểm dự án", type text}, {"Tổng diện tích (ha)", type text}, {"Số lượng sản phẩm", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -2090,6 +2090,14 @@ table Org
 
 		annotation SummarizationSetBy = Automatic
 
+	column Column13
+		dataType: string
+		lineageTag: e852165b-1206-4885-b10c-924d3ada7701
+		summarizeBy: none
+		sourceColumn: Column13
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Org = m
 		mode: import
 		source =
@@ -2112,5 +2120,5 @@ table Org
 
 	annotation PBI_NavigationStepName = Navigation
 
-	annotation PBI_ResultType = Table
+	annotation PBI_ResultType = Exception
 

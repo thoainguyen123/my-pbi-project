@@ -10,23 +10,22 @@ table DanhMucDauTu
 			RETURN "Tổng Vùng : "&x
 		lineageTag: 22cad853-864c-4f2a-afc8-6ed247e2ebbe
 
-	measure 'Quy mô' = ```
+	measure 'Quy mô' =
 			
-			VAR MaxScale = MAX(DanhMucDauTu[scale])
-			RETURN "Quy mô : " & IF(ISBLANK(MaxScale), "0", FORMAT(MaxScale, "#,0")) & " (m²)" & ", Số lượng sản phẩm : 2,586 căn NOTT" 
-			```
+			VAR MaxScale = MAX('Tổng quan dự án'[Tổng diện tích (ha)])
+			VAR SP = MAX('Tổng quan dự án'[Số lượng sản phẩm])
+			RETURN "Quy mô : " & MaxScale & ", Số lượng sản phẩm : " &SP
 		lineageTag: e656be47-0e69-42b7-873b-fde0fbc51a14
 
-	measure 'Tên dự án scope' = ```
+	measure 'Tên dự án scope' =
 			
-			VAR Project  = MAX(DanhMucDauTu[Tên Dự Án])
-			RETURN "Tên pháp lý : Khu đô thị Aqua Waterfont City" 
-			```
+			VAR Project  = MAX('Tổng quan dự án'[Tên pháp lý dự án])
+			RETURN "Tên pháp lý : " & Project
 		lineageTag: d0ce0ff1-11ef-4e2c-b2ea-1b6fe4ba3488
 
 	measure 'Địa chỉ scope' =
 			
-			VAR Project  = MAX(DanhMucDauTu[address])
+			VAR Project  = MAX('Tổng quan dự án'[Địa điểm dự án])
 			RETURN "Địa điểm : " & Project
 		lineageTag: b7748168-5e56-4d26-b9c1-338dd1bc43ea
 
@@ -38,14 +37,14 @@ table DanhMucDauTu
 
 	measure 'Tên dự án scope thương mại' = ```
 			
-			VAR Project  = MAX(DanhMucDauTu[Tên Dự Án])
-			RETURN "Tên thương mại : Khu đô thị Aqua Waterfont City" 
+			VAR Project  = MAX('Tổng quan dự án'[Tên thương mại]) 
+			RETURN "Tên thương mại : " & Project
 			```
 		lineageTag: 14c6121b-2eec-4821-ae3c-06bdd37af0cd
 
 	measure 'chủ đầu tư scope' =
 			
-			VAR Project  = MAX(DanhMucDauTu[project_owner])
+			VAR Project  = MAX('Tổng quan dự án'[Chủ đầu tư])
 			RETURN "Chủ đầu tư : " & Project
 		lineageTag: 6b015d60-964d-4641-b967-7578d9efc074
 

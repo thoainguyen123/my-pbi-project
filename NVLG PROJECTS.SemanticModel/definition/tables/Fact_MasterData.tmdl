@@ -31,6 +31,16 @@ table Fact_MasterData
 		formatString: @
 		lineageTag: 7c569b37-22b5-4052-8096-61d3c2c6c8f5
 
+	measure Mau_Nền_Card = ```
+			
+			IF(
+			    ISFILTERED(Eoffice_TD[Phong_Nhom]), 
+			    "#FFFFFF00", -- Có bấm filter: Trả về màu TRONG SUỐT (Thêm 2 số 0 ở cuối mã Hex)
+			    "#FFFFFF"    -- Không bấm filter: Trả về màu TRẮNG tinh để che đi
+			)
+			```
+		lineageTag: 46e07580-33e6-45b6-8c09-e953c9cc15fa
+
 	column fact_id
 		dataType: string
 		lineageTag: 97a617eb-9ecd-4092-b7f7-b881c25570b9
@@ -205,7 +215,7 @@ table Fact_MasterData
 		mode: import
 		source =
 				let
-				  Source = Csv.Document(File.Contents("C:\Users\Admin\Desktop\PowerBI\data\Fact_MasterData.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				  Source = Csv.Document(File.Contents("C:\Data\Fact_MasterData.csv"),[Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
 				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
 				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"fact_id", type text}, {"project_code", type text}, {"nhom", type text}, {"Phong_Nhom", type text}, {"sort_colum", Int64.Type}, {"phan_nhom", type text}, {"hang_muc", type text}, {"hien_trang", type text}, {"dieu_chinh", type text}, {"ngay_hoan_thanh", type text}, {"chi_tiet", type text}, {"ghi_chu", type text}, {"van_ban_phe_duyet", type text}, {"kho_khan_vuong_mac", type text}, {"huong_xu_ly", type text}, {"gia_tri_1", type text}, {"gia_tri_2", type text}, {"gia_tri_3", type text}, {"source_sheet", type text}, {"source_row", Int64.Type}, {"raw_data", type text}})
 				in

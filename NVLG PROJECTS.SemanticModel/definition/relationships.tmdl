@@ -203,3 +203,8 @@ relationship 5b916677-466a-f96d-c5b4-429f54282155
 	fromColumn: FactMasterData_Columns.Phong_Nhom
 	toColumn: Phong_Nhom_Dim.Phong_Nhom
 
+relationship e6641e27-b080-513a-b128-5c49b7fa8a91
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Tổng quan dự án'.'Mã dự án'
+	toColumn: DanhMucDauTu.'Link dự án'
+
